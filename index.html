@@ -1,61 +1,68 @@
+import React from "react";
+import { motion } from "framer-motion";
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white flex flex-col items-center justify-start p-6">
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-center max-w-4xl"
-      >
-        <img src="/leem-logo.png" alt="Logo do LEEM" className="mx-auto w-40 mb-6" />
-        <h1 className="text-4xl font-bold text-blue-800 mb-4">LEEM</h1>
-
-        <p className="text-lg text-gray-700 mb-4">
-          O <strong>LEEM</strong> (Learner eXperience Evoluation Model) é um modelo que avalia a experiência de aprendiz com o uso de Tecnologias Digitais de Informação e Comunicação (TDICs).
+    <main className="min-h-screen bg-gradient-to-b from-white to-blue-50 flex flex-col items-center justify-start px-4 pt-12 pb-24">
+      <header className="w-full max-w-6xl text-center mb-12">
+        <img src="/leem-logo.png" alt="Logo do LEEM" className="mx-auto w-28 mb-4" />
+        <h1 className="text-5xl font-extrabold text-blue-800">LEEM</h1>
+        <p className="text-xl text-gray-700 mt-4 max-w-3xl mx-auto">
+          Levantamento de Expectativas para o Ensino e a Aprendizagem de Matemática
         </p>
+      </header>
 
-        <h2 className="text-2xl font-semibold text-blue-700 mt-8 mb-2">Como o LEEM é organizado?</h2>
-        <p className="text-gray-700 mb-4">
+      <section className="w-full max-w-5xl bg-white shadow-xl rounded-2xl p-8 mb-12">
+        <h2 className="text-3xl font-semibold text-blue-700 mb-4">Objetivo</h2>
+        <p className="text-gray-700 text-lg">
+          O <strong>LEEM</strong> tem como objetivo investigar as percepções e expectativas de alunos e professores
+          sobre o uso de Tecnologias Digitais de Informação e Comunicação (TDICs) no processo de ensino-aprendizagem,
+          promovendo experiências educacionais mais significativas.
+        </p>
+      </section>
+
+      <section className="w-full max-w-5xl bg-white shadow-xl rounded-2xl p-8 mb-12">
+        <h2 className="text-3xl font-semibold text-blue-700 mb-4">Organização do LEEM</h2>
+        <p className="text-gray-700 text-lg mb-4">
           O modelo é dividido em três etapas de avaliação:
         </p>
-        <ul className="text-left text-gray-700 list-disc pl-6 mb-6">
-          <li><strong>Pré-avaliação:</strong> coleta as expectativas dos aprendizes antes de uma atividade educacional.</li>
-          <li><strong>Avaliação-Durante:</strong> coleta percepções dos aprendizes durante o desenvolvimento da atividade educacional.</li>
-          <li><strong>Pós-avaliação:</strong> coleta sentimentos e reflexões dos aprendizes após a conclusão da atividade educacional.</li>
+        <ul className="list-disc list-inside text-gray-700 text-lg space-y-2">
+          <li><strong>Pré-avaliação:</strong> coleta expectativas iniciais dos estudantes.</li>
+          <li><strong>Avaliação:</strong> coleta percepções durante o desenvolvimento das atividades.</li>
+          <li><strong>Pós-avaliação:</strong> reflexões dos estudantes após a conclusão da atividade, via grupo focal.</li>
         </ul>
+      </section>
 
-        <h2 className="text-2xl font-semibold text-blue-700 mb-2">Elementos de Learner Experience (LX) avaliados</h2>
-        <p className="text-gray-700 mb-4">
-          Em cada etapa, são analisados diferentes elementos de LX:
+      <section className="w-full max-w-5xl bg-white shadow-xl rounded-2xl p-8 mb-12">
+        <h2 className="text-3xl font-semibold text-blue-700 mb-4">Elementos de Learner Experience (LX)</h2>
+        <p className="text-gray-700 text-lg mb-4">
+          Em cada etapa, o LEEM avalia diferentes dimensões da experiência de aprendizagem:
         </p>
-        <ul className="text-left text-gray-700 list-disc pl-6 mb-6">
+        <ul className="list-disc list-inside text-gray-700 text-lg space-y-2">
           <li><strong>Pré-avaliação:</strong> Habilidades, Valor, Participação, Autenticidade, Usabilidade, Desejabilidade</li>
-          <li><strong>Avaliação-Durante:</strong> Desejabilidade, Usabilidade, Adaptabilidade, Valor, Confortabilidade, Persistência</li>
-          <li><strong>Pós-avaliação (Grupo Focal):</strong> Resultados, Valor e Satisfação</li>
+          <li><strong>Avaliação:</strong> Desejabilidade, Usabilidade, Adaptabilidade, Valor, Confortabilidade, Persistência</li>
+          <li><strong>Pós-avaliação (Grupo Focal):</strong> Resultados, Valor, Satisfação</li>
         </ul>
-      </motion.div>
+      </section>
 
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10"
-      >
-        <div className="max-w-sm shadow-xl bg-white p-6 rounded-xl">
-          <h2 className="text-2xl font-semibold mb-2">Sou Professor</h2>
-          <p className="mb-4 text-gray-600">Acesse o sistema para aplicar o LEEM e visualizar as respostas dos aprendizes</p>
-          <button className="w-full bg-blue-600 text-white px-4 py-2 rounded-xl">Entrar como Professor</button>
+      <section className="w-full max-w-5xl mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white shadow-lg p-6 rounded-2xl text-center">
+            <h3 className="text-2xl font-bold text-blue-700 mb-2">Sou Professor</h3>
+            <p className="text-gray-600 mb-4">Acesse o sistema para aplicar o modelo LEEM e visualizar os dados dos alunos.</p>
+            <button className="px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700">Entrar como Professor</button>
+          </div>
+          <div className="bg-white shadow-lg p-6 rounded-2xl text-center">
+            <h3 className="text-2xl font-bold text-green-700 mb-2">Sou Aluno</h3>
+            <p className="text-gray-600 mb-4">Responda ao formulário do LEEM de forma simples, rápida e anônima.</p>
+            <button className="px-6 py-3 rounded-xl bg-green-600 text-white font-semibold hover:bg-green-700">Entrar como Aluno</button>
+          </div>
         </div>
+      </section>
 
-        <div className="max-w-sm shadow-xl bg-white p-6 rounded-xl">
-          <h2 className="text-2xl font-semibold mb-2">Sou Aluno</h2>
-          <p className="mb-4 text-gray-600">Responda ao formulário do LEEM de forma simples e anônima.</p>
-          <button className="w-full bg-green-600 text-white px-4 py-2 rounded-xl">Entrar como Aluno</button>
-        </div>
-      </motion.div>
-
-      <footer className="mt-16 text-sm text-gray-500 text-center">
-        <p>Desenvolvido por Gabriela Corbari dos Santos, 2025.</p>
+      <footer className="w-full text-center mt-20 text-sm text-gray-500">
+        <p>Desenvolvido por Gabriela Corbari dos Santos — 2025</p>
       </footer>
     </main>
+  );
 }
