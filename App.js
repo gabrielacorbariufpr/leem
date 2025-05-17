@@ -1,0 +1,42 @@
+import React from "react";
+import { motion } from "framer-motion";
+
+function App() {
+  return (
+    <main className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center"
+      >
+        <h1 className="text-4xl font-bold text-blue-700 mb-4">LEEM</h1>
+        <p className="text-lg text-gray-700 max-w-xl">
+          LEEM (Levantamento de Expectativas para o Ensino e a Aprendizagem de Matemática)
+          é um modelo para investigar as expectativas de alunos e professores no contexto educacional.
+        </p>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10"
+      >
+        <div className="max-w-sm shadow-xl bg-white p-6 rounded-xl">
+          <h2 className="text-2xl font-semibold mb-2">Sou Professor</h2>
+          <p className="mb-4 text-gray-600">Acesse o formulário de levantamento de expectativas e visualize as respostas dos alunos.</p>
+          <button className="w-full bg-blue-600 text-white px-4 py-2 rounded-xl">Entrar como Professor</button>
+        </div>
+
+        <div className="max-w-sm shadow-xl bg-white p-6 rounded-xl">
+          <h2 className="text-2xl font-semibold mb-2">Sou Aluno</h2>
+          <p className="mb-4 text-gray-600">Responda ao formulário de expectativas de forma simples e anônima.</p>
+          <button className="w-full bg-green-600 text-white px-4 py-2 rounded-xl">Entrar como Aluno</button>
+        </div>
+      </motion.div>
+    </main>
+  );
+}
+
+export default App;
