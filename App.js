@@ -12,8 +12,8 @@ function App() {
       >
         <h1 className="text-4xl font-bold text-blue-700 mb-4">LEEM</h1>
         <p className="text-lg text-gray-700 max-w-xl">
-          LEEM (Levantamento de Expectativas para o Ensino e a Aprendizagem de Matemática)
-          é um modelo para investigar as expectativas de alunos e professores no contexto educacional.
+          LEEM (Learner eXperience Evoluation Model)
+          é um modelo para avaliar a experiência do aprendiz ao usar Tecnologias Digitais de Comunicação e Informação (TDIC).
         </p>
       </motion.div>
 
