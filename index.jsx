@@ -12,7 +12,7 @@ export default function Home() {
         transition={{ duration: 0.6 }}
       >
         <img
-          src="/logo-leem.png" // Substitua pelo caminho da sua imagem real
+          src="/logo LEEM.png" // Substitua pelo caminho da sua imagem real
           alt="Logo LEEM"
           className="w-28 h-28 mb-6"
         />
