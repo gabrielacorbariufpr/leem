@@ -6,7 +6,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 
-export default function Home() {
+export default function App() {
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6">
       {/* Logo */}
@@ -16,7 +16,7 @@ export default function Home() {
         transition={{ duration: 0.6 }}
       >
         <img
-          src="/logo LEEM.png" // Substitua pelo caminho da sua imagem real
+          src="/logo-LEEM.png" // Substitua pelo caminho da sua imagem real
           alt="Logo LEEM"
           className="w-28 h-28 mb-6"
         />
