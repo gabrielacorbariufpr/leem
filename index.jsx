@@ -1,3 +1,7 @@
+npm install framer-motion
+npm install lucide-react
+
+
 import React from "react";
 import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
