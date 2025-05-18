@@ -1,42 +1,92 @@
+npm install framer-motion
+npm install lucide-react
+
+
 import React from "react";
 import { motion } from "framer-motion";
+import { CheckCircle } from "lucide-react";
 
-function App() {
+export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6">
+      {/* Logo */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-center"
+        transition={{ duration: 0.6 }}
       >
-        <h1 className="text-4xl font-bold text-blue-700 mb-4">LEEM</h1>
-        <p className="text-lg text-gray-700 max-w-xl">
-          LEEM (Learner eXperience Evoluation Model)
-          é um modelo para avaliar a experiência do aprendiz ao usar Tecnologias Digitais de Comunicação e Informação (TDIC).
+        <img
+          src="/logo LEEM.png" // Substitua pelo caminho da sua imagem real
+          alt="Logo LEEM"
+          className="w-28 h-28 mb-6"
+        />
+      </motion.div>
+
+      {/* Título */}
+      <motion.h1
+        className="text-2xl md:text-3xl font-semibold text-blue-700 text-center mb-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        Laboratório de Experiência em Ensino Mediado
+      </motion.h1>
+
+      <div className="w-20 border-b-2 border-blue-600 mb-4"></div>
+
+      {/* Objetivo */}
+      <motion.div
+        className="text-center text-gray-700 max-w-xl mb-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+      >
+        <h2 className="text-blue-700 font-semibold text-lg mb-2">Objetivo</h2>
+        <p>
+          O LEEM tem como objetivo avaliar a experiência do aprendiz ao usar
+          Tecnologia Digital de comunicação e informação.
+        </p>
+        <p className="mt-2">
+          Este questionário está dividido em quatro etapas para compreender sua
+          experiência completa.
         </p>
       </motion.div>
 
+      {/* Como funciona */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10"
+        className="bg-blue-50 border border-blue-100 rounded-xl p-5 w-full max-w-md shadow-md mb-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
       >
-        <div className="max-w-sm shadow-xl bg-white p-6 rounded-xl">
-          <h2 className="text-2xl font-semibold mb-2">Sou Professor</h2>
-          <p className="mb-4 text-gray-600">Acesse o formulário de levantamento de expectativas e visualize as respostas dos alunos.</p>
-          <button className="w-full bg-blue-600 text-white px-4 py-2 rounded-xl">Entrar como Professor</button>
-        </div>
-
-        <div className="max-w-sm shadow-xl bg-white p-6 rounded-xl">
-          <h2 className="text-2xl font-semibold mb-2">Sou Aluno</h2>
-          <p className="mb-4 text-gray-600">Responda ao formulário de expectativas de forma simples e anônima.</p>
-          <button className="w-full bg-green-600 text-white px-4 py-2 rounded-xl">Entrar como Aluno</button>
-        </div>
+        <h3 className="text-blue-700 font-semibold text-lg mb-3">
+          Como funciona:
+        </h3>
+        <ul className="space-y-2 text-gray-700">
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-5 h-5 text-blue-600" />
+            Responda cada pergunta para desbloquear a próxima
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-5 h-5 text-blue-600" />
+            Ganhe pontos de experiência (XP) ao completar perguntas
+          </li>
+          <li className="flex items-start gap-2">
+            <CheckCircle className="w-5 h-5 text-blue-600" />
+            Veja seu progresso e pontuação no dashboard final
+          </li>
+        </ul>
       </motion.div>
-    </main>
+
+      {/* Botão */}
+      <motion.button
+        className="bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-6 py-2 rounded-full shadow-md transition duration-300"
+        initial={{ scale: 0.9 }}
+        animate={{ scale: 1 }}
+        whileHover={{ scale: 1.05 }}
+      >
+        Iniciar Questionário
+      </motion.button>
+    </div>
   );
 }
-
-export default App;
