@@ -27,9 +27,7 @@ function showPopup(points) {
   popup.innerHTML = `🎉 Você ganhou <strong>${points} pontos</strong>!`;
 
   document.body.appendChild(popup);
-  setTimeout(() => {
-    popup.classList.add('show');
-  }, 10);
+  setTimeout(() => popup.classList.add('show'), 10);
   setTimeout(() => {
     popup.classList.remove('show');
     setTimeout(() => popup.remove(), 500);
@@ -41,6 +39,23 @@ function updateProgress() {
   const percent = (completed / questions.length) * 100;
   progressFill.style.width = percent + '%';
   pointsText.innerHTML = `⭐ ${totalXP} XP acumulado`;
+}
+
+function checkFinalCompletion() {
+  if (answered.every(val => val)) {
+    setTimeout(() => {
+      let medal = '';
+      if (totalXP >= 500) medal = '🏆 Medalha Diamante';
+      else if (totalXP >= 400) medal = '🥇 Medalha Ouro';
+      else if (totalXP >= 300) medal = '🥈 Medalha Prata';
+      else if (totalXP >= 200) medal = '🥉 Medalha Bronze';
+      else medal = '🎖 Participação';
+
+      alert(`Parabéns! Você concluiu o questionário.
+${medal}
+Total de XP: ${totalXP}`);
+    }, 500);
+  }
 }
 
 questions.forEach((q, i) => {
@@ -86,6 +101,8 @@ questions.forEach((q, i) => {
       answered[i] = false;
       updateProgress();
     }
+
+    checkFinalCompletion();
   });
 });
 
