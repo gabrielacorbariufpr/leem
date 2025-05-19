@@ -128,3 +128,34 @@ footer {
   margin-bottom: 0.5rem;
   color: #555;
 }
+
+.trilha-medalhas {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #fdfaff;
+  margin-top: 2rem;
+  border-top: 2px dashed #ddd;
+}
+.trilha-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+.medalha.etapa {
+  background: #fff;
+  padding: 1rem;
+  flex: 1;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+.medalha.etapa span {
+  font-size: 2rem;
+  display: block;
+}
+.medalha.etapa:hover {
+  transform: translateY(-5px);
+  background: #eef3ff;
+}
