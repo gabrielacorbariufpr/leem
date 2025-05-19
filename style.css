@@ -207,3 +207,21 @@ footer {
   margin-top: 4rem;
   border-top: 1px solid #ddd;
 }
+
+.popup-points {
+  position: fixed;
+  top: 20px;
+  right: -300px;
+  background: #4a3aff;
+  color: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  transition: right 0.5s ease;
+  z-index: 9999;
+}
+.popup-points.show {
+  right: 20px;
+}
