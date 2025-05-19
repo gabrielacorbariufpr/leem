@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LEEM - Início</title>
   <link rel="stylesheet" href="intro-style.css" />
+  <script defer src="intro-script.js"></script>
 </head>
 <body>
   <div class="intro-container">
@@ -19,16 +20,16 @@
     <section class="dashboard">
       <h2>Seu Progresso</h2>
       <div class="info-boxes">
-        <div class="info-box">⭐ XP Acumulado: <strong>285</strong></div>
-        <div class="info-box">🏆 Medalha Atual: <strong>Prata</strong></div>
-        <div class="info-box">🥇 Ranking: <strong>Top 15%</strong></div>
+        <div class="info-box">⭐ XP Acumulado: <strong id="xp">0</strong></div>
+        <div class="info-box">🏆 Medalha Atual: <strong id="medalha">Nenhuma</strong></div>
+        <div class="info-box">🥇 Ranking: <strong id="ranking">---</strong></div>
       </div>
     </section>
 
     <section>
       <h2>Missões por Etapa</h2>
       <div class="fase-container">
-        <div class="fase fase1">
+        <div class="fase fase1 animated">
           <h3>Pré-avaliação</h3>
           <div class="elemento" title="Elemento avaliado na pré-avaliação">Habilidades</div>
           <div class="elemento" title="Elemento avaliado na pré-avaliação">Valor</div>
@@ -36,8 +37,9 @@
           <div class="elemento" title="Elemento avaliado na pré-avaliação">Autêntico</div>
           <div class="elemento" title="Elemento avaliado na pré-avaliação">Usabilidade</div>
           <div class="elemento" title="Elemento avaliado na pré-avaliação">Desejabilidade</div>
+          <button class="start-btn">Iniciar Pré-avaliação</button>
         </div>
-        <div class="fase fase2">
+        <div class="fase fase2 animated">
           <h3>Avaliação Durante</h3>
           <div class="elemento" title="Elemento avaliado na avaliação durante">Desejabilidade</div>
           <div class="elemento" title="Elemento avaliado na avaliação durante">Usabilidade</div>
@@ -45,12 +47,14 @@
           <div class="elemento" title="Elemento avaliado na avaliação durante">Valor</div>
           <div class="elemento" title="Elemento avaliado na avaliação durante">Confortabilidade</div>
           <div class="elemento" title="Elemento avaliado na avaliação durante">Persistência</div>
+          <button class="start-btn">Iniciar Avaliação Durante</button>
         </div>
-        <div class="fase fase3">
+        <div class="fase fase3 animated">
           <h3>Pós-avaliação</h3>
           <a href="pos-avaliacao.html" class="elemento linkavel" title="Clique para iniciar a Missão de Pós-avaliação">Resultado</a>
           <a href="pos-avaliacao.html" class="elemento linkavel" title="Clique para iniciar a Missão de Pós-avaliação">Valor</a>
           <a href="pos-avaliacao.html" class="elemento linkavel" title="Clique para iniciar a Missão de Pós-avaliação">Satisfação</a>
+          <a href="pos-avaliacao.html" class="start-btn">Iniciar Pós-avaliação</a>
         </div>
       </div>
     </section>

@@ -100,3 +100,24 @@ footer {
   margin-top: 3rem;
   border-top: 1px solid #ddd;
 }
+
+.animated {
+  animation: fadeIn 1.2s ease;
+}
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.start-btn {
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background: #4a3aff;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.start-btn:hover {
+  background: #372ee2;
+}
