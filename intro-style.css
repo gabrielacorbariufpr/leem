@@ -159,3 +159,24 @@ footer {
   transform: translateY(-5px);
   background: #eef3ff;
 }
+
+.ranking-simulacao {
+  background: #fefefe;
+  padding: 2rem 1rem;
+  border-top: 2px dashed #ddd;
+  text-align: center;
+}
+.ranking-tabela {
+  width: 100%;
+  max-width: 700px;
+  margin: 1rem auto;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.ranking-tabela th, .ranking-tabela td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #ddd;
+}
+.ranking-tabela tbody tr:nth-child(even) {
+  background: #f9f9ff;
+}
