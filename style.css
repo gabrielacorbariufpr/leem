@@ -163,3 +163,17 @@ textarea {
   margin-top: 0.5rem;
   font-weight: bold;
 }
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #4a3aff;
+  border-radius: 6px;
+  transition: width 0.5s ease;
+}
+.points {
+  color: #4a3aff;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}

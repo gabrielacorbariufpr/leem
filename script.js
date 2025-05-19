@@ -13,7 +13,20 @@ const questions = [
   "Você sente que a atividade tem relação com os conceitos/assuntos que você já tinha aprendido? Comente."
 ];
 
+let totalXP = 0;
+const pointsPerQuestion = 15;
+const answered = Array(questions.length).fill(false);
+
 const container = document.getElementById('questions-container');
+const progressFill = document.querySelector('.progress-fill');
+const pointsText = document.querySelector('.points');
+
+function updateProgress() {
+  const completed = answered.filter(x => x).length;
+  const percent = (completed / questions.length) * 100;
+  progressFill.style.width = percent + '%';
+  pointsText.innerHTML = `⭐ ${completed * pointsPerQuestion} XP acumulado`;
+}
 
 questions.forEach((q, i) => {
   const div = document.createElement('div');
@@ -22,21 +35,6 @@ questions.forEach((q, i) => {
     <label for="q${i}"><strong>${(i+1).toString().padStart(2, '0')}.</strong> ${q}</label>
     <textarea id="q${i}" rows="3" maxlength="500" placeholder="Digite sua resposta (máx. 500 caracteres)"></textarea>
     <div class="char-limit" id="char${i}">0 / 500</div>
-
-    <div class="slider-box">
-      <label class="slider-labels">
-        😕 Não gostei
-        <input type="range" min="1" max="5" value="3" class="reaction-slider" id="slider${i}" />
-        😍 Adorei
-      </label>
-    </div>
-
-    <div class="emoji-options">
-      <div class="emoji">😕<span>Confuso</span></div>
-      <div class="emoji">🤔<span>Pensativo</span></div>
-      <div class="emoji">😊<span>Satisfeito</span></div>
-      <div class="emoji">🤩<span>Inspirado</span></div>
-    </div>
     <div class="points-msg" id="points${i}"></div>
   `;
   div.addEventListener('click', () => {
@@ -51,11 +49,21 @@ questions.forEach((q, i) => {
   const pointsMsg = div.querySelector(`#points${i}`);
 
   textarea.addEventListener('input', () => {
-    charDisplay.textContent = textarea.value.length + ' / 500';
-    if (textarea.value.length > 10) {
-      pointsMsg.innerHTML = '🎉 +15 pontos por compartilhar sua reflexão!';
+    const length = textarea.value.length;
+    charDisplay.textContent = `${length} / 500`;
+
+    if (length > 10 && !answered[i]) {
+      answered[i] = true;
+      pointsMsg.innerHTML = '🎉 +15 pontos adicionados!';
+      updateProgress();
+    } else if (length <= 10 && answered[i]) {
+      answered[i] = false;
+      pointsMsg.innerHTML = '❌ Resposta removida. -15 pontos.';
+      updateProgress();
     } else {
       pointsMsg.innerHTML = '';
     }
   });
 });
+
+updateProgress();
