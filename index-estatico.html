@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>LEEM - Modelo Estático</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f4f7fb;
+      color: #333;
+    }
+    header, footer {
+      background: #fff;
+      padding: 1rem 2rem;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    h1, h2 {
+      color: #2b3a67;
+    }
+    section {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .fase-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: space-between;
+    }
+    .fase {
+      background: #e9edfb;
+      padding: 1rem;
+      border-radius: 10px;
+      flex: 1;
+      min-width: 280px;
+    }
+    .fase h3 {
+      margin-top: 0;
+      color: #1d2a56;
+    }
+    .elemento {
+      background: #fff;
+      margin: 0.3rem 0;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    footer {
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>LEEM - Modelo de Avaliação da Experiência do Aprendiz</h1>
+    <p>O LEEM avalia e aprimora a experiência do aprendiz com TDICs em três etapas: pré-avaliação, avaliação-durante e pós-avaliação.</p>
+  </header>
+
+  <section>
+    <h2>Missões por Etapa</h2>
+    <div class="fase-container">
+      <div class="fase">
+        <h3>Pré-avaliação</h3>
+        <div class="elemento">Autêntico</div>
+        <div class="elemento">Desejabilidade</div>
+        <div class="elemento">Habilidades</div>
+        <div class="elemento">Participação</div>
+        <div class="elemento">Usabilidade</div>
+        <div class="elemento">Valor</div>
+      </div>
+      <div class="fase">
+        <h3>Avaliação-Durante</h3>
+        <div class="elemento">Adaptabilidade</div>
+        <div class="elemento">Confortabilidade</div>
+        <div class="elemento">Desejabilidade</div>
+        <div class="elemento">Persistência</div>
+        <div class="elemento">Usabilidade</div>
+        <div class="elemento">Valor</div>
+      </div>
+      <div class="fase">
+        <h3>Pós-avaliação</h3>
+        <div class="elemento">Resultado</div>
+        <div class="elemento">Satisfação</div>
+        <div class="elemento">Valor</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Desenvolvido por Gabriela Corbari dos Santos • Pesquisa de mestrado UFPR
+  </footer>
+</body>
+</html>
