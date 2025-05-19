@@ -22,26 +22,40 @@ questions.forEach((q, i) => {
     <label for="q${i}"><strong>${(i+1).toString().padStart(2, '0')}.</strong> ${q}</label>
     <textarea id="q${i}" rows="3" maxlength="500" placeholder="Digite sua resposta (máx. 500 caracteres)"></textarea>
     <div class="char-limit" id="char${i}">0 / 500</div>
+
+    <div class="slider-box">
+      <label class="slider-labels">
+        😕 Não gostei
+        <input type="range" min="1" max="5" value="3" class="reaction-slider" id="slider${i}" />
+        😍 Adorei
+      </label>
+    </div>
+
     <div class="emoji-options">
       <div class="emoji">😕<span>Confuso</span></div>
       <div class="emoji">🤔<span>Pensativo</span></div>
       <div class="emoji">😊<span>Satisfeito</span></div>
       <div class="emoji">🤩<span>Inspirado</span></div>
     </div>
+    <div class="points-msg" id="points${i}"></div>
   `;
   div.addEventListener('click', () => {
     document.querySelectorAll('.question').forEach(el => el.classList.remove('active'));
     div.classList.add('active');
   });
+
   container.appendChild(div);
 
   const textarea = div.querySelector(`#q${i}`);
   const charDisplay = div.querySelector(`#char${i}`);
+  const pointsMsg = div.querySelector(`#points${i}`);
+
   textarea.addEventListener('input', () => {
     charDisplay.textContent = textarea.value.length + ' / 500';
+    if (textarea.value.length > 10) {
+      pointsMsg.innerHTML = '🎉 +15 pontos por compartilhar sua reflexão!';
+    } else {
+      pointsMsg.innerHTML = '';
+    }
   });
-});
-
-document.getElementById('submit-btn').addEventListener('click', () => {
-  alert('Missão concluída! Suas respostas foram registradas.');
 });
