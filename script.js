@@ -19,11 +19,14 @@ questions.forEach((q, i) => {
   const div = document.createElement('div');
   div.className = 'question';
   div.innerHTML = `
-    <label for="q${i}"><strong>${i + 1}.</strong> ${q}</label>
-    <textarea id="q${i}" rows="3" placeholder="Escreva sua resposta aqui..."></textarea>
-    <div class="slider-container">
-      <input type="range" min="1" max="5" value="3" id="slider${i}" />
-      <span class="emoji" id="emoji${i}">😐</span>
+    <label for="q${i}"><strong>${(i+1).toString().padStart(2, '0')}.</strong> ${q}</label>
+    <textarea id="q${i}" rows="3" maxlength="500" placeholder="Digite sua resposta (máx. 500 caracteres)"></textarea>
+    <div class="char-limit" id="char${i}">0 / 500</div>
+    <div class="emoji-options">
+      <div class="emoji">😕<span>Confuso</span></div>
+      <div class="emoji">🤔<span>Pensativo</span></div>
+      <div class="emoji">😊<span>Satisfeito</span></div>
+      <div class="emoji">🤩<span>Inspirado</span></div>
     </div>
   `;
   div.addEventListener('click', () => {
@@ -32,12 +35,10 @@ questions.forEach((q, i) => {
   });
   container.appendChild(div);
 
-  const slider = div.querySelector(`#slider${i}`);
-  const emoji = div.querySelector(`#emoji${i}`);
-  slider.addEventListener('input', () => {
-    const val = parseInt(slider.value);
-    const emojis = ['😠', '😕', '😐', '🙂', '😄'];
-    emoji.textContent = emojis[val - 1];
+  const textarea = div.querySelector(`#q${i}`);
+  const charDisplay = div.querySelector(`#char${i}`);
+  textarea.addEventListener('input', () => {
+    charDisplay.textContent = textarea.value.length + ' / 500';
   });
 });
 
