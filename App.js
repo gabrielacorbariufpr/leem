@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { ShieldCheck, Trophy, Star, BadgeCheck } from "lucide-react";
 
 const supabaseUrl = "https://gcnbnfslimduochpoynf.supabase.co";
-const supabaseKey = "YOUR-ANON-KEY"; // substitua pela sua anon key
+const supabaseKey = "F@milia123"; // substitua pela sua anon key
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function PostEvaluation() {
