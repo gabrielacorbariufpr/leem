@@ -1,6 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import PostEvaluation from "./App.js";
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App.js />);
+document.getElementById('root').innerHTML = `
+  <h1 style='font-family: sans-serif;'>🎓 Missão Final LEEM</h1>
+  <p>Bem-vindo à sua jornada de avaliação da experiência! Este é um exemplo publicado no GitHub Pages.</p>
+`;
