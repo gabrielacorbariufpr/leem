@@ -50,3 +50,53 @@ body {
 .linkavel:hover {
   background: #b3e6c2;
 }
+
+.leem-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: #f0f4ff;
+  padding: 1rem;
+  border-radius: 12px;
+}
+.logo-header {
+  width: 80px;
+}
+.leem-header-text h1 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.leem-header-text p {
+  font-size: 0.95rem;
+  color: #555;
+}
+.dashboard {
+  margin-top: 2rem;
+  background: #e7f5ff;
+  padding: 1rem;
+  border-radius: 12px;
+}
+.info-boxes {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+.info-box {
+  background: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-weight: bold;
+}
+.fase1 { background-color: #5b4da220; }
+.fase2 { background-color: #2e348720; }
+.fase3 { background-color: #329fa820; }
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  background: #f4f4f8;
+  color: #555;
+  margin-top: 3rem;
+  border-top: 1px solid #ddd;
+}
