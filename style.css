@@ -1,152 +1,71 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f1f5f9;
+  background-color: #f6f9fc;
   margin: 0;
   padding: 0;
 }
 
 header {
-  background-color: #004e6d;
-  color: white;
-  padding: 1rem;
+  background-color: #e6f0fa;
+  padding: 1rem 2rem;
   text-align: center;
-}
-
-.logo {
-  width: 40px;
-  vertical-align: middle;
-  margin-right: 0.5rem;
-}
-
-.leem-subtitle {
-  font-size: 1.5rem;
-  margin: 0.2rem 0;
-  color: #ffffff;
-}
-
-.leem-description {
-  font-size: 1rem;
-  margin: 0;
-  color: #d1e9f4;
-}
-
-.xp-container {
-  margin-top: 0.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  color: #fff6a9;
-}
-
-.xp-icon {
-  width: 28px;
-  height: 28px;
+  color: #123b68;
+  border-bottom: 1px solid #c9dff2;
 }
 
 main {
   padding: 2rem;
+  max-width: 760px;
+  margin: auto;
 }
 
-.question-card {
-  background: #ffffff;
-  padding: 1.5rem;
+.panel {
+  background: white;
+  padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  max-width: 700px;
-  margin: 0 auto 2rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
-textarea {
-  width: 100%;
-  height: 100px;
-  font-size: 1rem;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  resize: none;
+.panel h2 {
+  color: #1d3a5f;
 }
 
-.question-timer {
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-  color: #444;
+.metric {
+  margin-bottom: 2rem;
 }
 
-.char-counter {
+.medalha {
+  font-size: 2.5rem;
+}
+
+.valor {
+  font-size: 1.3rem;
+  font-weight: bold;
   margin-top: 0.5rem;
-  font-size: 0.9rem;
 }
 
-.navigation {
-  display: flex;
-  justify-content: space-between;
-  max-width: 700px;
-  margin: 0 auto 1rem;
-}
-
-button {
-  padding: 0.6rem 1rem;
-  background-color: #007bc2;
+.btn {
+  background: #007bc2;
   color: white;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 1rem;
 }
 
-button:hover {
-  background-color: #005b91;
-}
-
-.progress-wrapper {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 0.5rem 0;
-}
-
-.progress {
-  width: 100%;
-  height: 8px;
-  background-color: #ccc;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-#progressBar {
-  height: 100%;
-  background-color: #007bc2;
-  width: 0%;
-  transition: width 0.3s ease;
+.btn:hover {
+  background: #005a91;
 }
 
 footer {
-  background-color: #004e6d;
-  color: white;
+  background-color: #e6f0fa;
   text-align: center;
   padding: 1rem;
   font-size: 0.85rem;
-}
-
-#xp-notifier {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 10px 15px;
-  background-color: #28a745;
-  color: white;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  display: none;
-  z-index: 1000;
-}
-
-#xp-notifier.show {
-  display: block;
-  animation: fadeout 1.2s forwards;
-}
-
-@keyframes fadeout {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+  color: #123b68;
+  border-top: 1px solid #c9dff2;
+  margin-top: 2rem;
 }
