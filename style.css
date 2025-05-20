@@ -161,3 +161,28 @@ header {
   width: 28px;
   height: 28px;
 }
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+}
+.header-info {
+  display: flex;
+  flex-direction: column;
+}
+.leem-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.1rem;
+}
+.leem-subtitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.leem-description {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #555;
+}
