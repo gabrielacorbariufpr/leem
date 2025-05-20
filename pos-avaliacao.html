@@ -8,16 +8,13 @@
 </head>
 <body>
   <div id="xp-notifier"></div>
-  <header>
-    <div class="logo-container">
-      <img src="logo-leem.png" alt="Logo LEEM" class="logo"/>
-      <div class="header-info">
-        <h1 class="leem-title">LEEM - Modelo de Avaliação da Experiência do Aprendiz</h1>
-        <p class="leem-subtitle">Questionário de Pós-avaliação do LEEM</p>
-        <p class="leem-description">Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
-      </div>
+  <header class="header-centered">
+    <img src="logo-leem.png" alt="Logo LEEM" class="logo"/>
+    <div class="header-text-block">
+      <h1 class="leem-subtitle">Questionário de Pós-avaliação do LEEM</h1>
+      <p class="leem-description">Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
     </div>
-    <div class="xp-container">
+    <div class="xp-container" title="Você ganha +15 XP a cada 20 caracteres digitados. Os pontos são cumulativos!">
       <img src="pote-ouro.svg" alt="Pote de Ouro" class="xp-icon"/>
       <span>XP: <span id="xp">0</span></span>
     </div>
@@ -31,7 +28,7 @@
       <button id="nextBtn">Avançar</button>
     </div>
 
-    <div class="progress-wrapper">
+    <div class="progress-wrapper" title="A barra de progresso representa o avanço nas 11 perguntas do questionário.">
       <div class="progress"><div id="progressBar"></div></div>
     </div>
   </main>

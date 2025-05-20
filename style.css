@@ -186,3 +186,32 @@ header {
   font-weight: 400;
   color: #555;
 }
+
+.header-centered {
+  background-color: #f0f4f8;
+  color: #1b1b1b;
+  text-align: center;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.logo {
+  height: 60px;
+}
+.header-text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.leem-subtitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #4b4bbf;
+}
+.leem-description {
+  font-size: 1rem;
+  color: #444;
+  margin-top: 0.3rem;
+}
