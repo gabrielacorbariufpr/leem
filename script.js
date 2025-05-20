@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const charBlock = 20;
   const answers = Array(questions.length).fill("");
   const container = document.getElementById("question-container");
-  const charCount = document.getElementById("charCount");
   const progressBar = document.getElementById("progressBar");
   const xpDisplay = document.getElementById("xp");
   const nextBtn = document.getElementById("nextBtn");
@@ -28,37 +27,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function loadQuestion(index) {
     if (!container) return;
+    const currentAnswer = answers[index] || "";
+    const charCount = currentAnswer.length;
+    const charColor = charCount >= 300 ? "red" : "#333";
+
     container.innerHTML = `
       <div class="question-card">
         <h2>${questions[index]}</h2>
-        <textarea id="answer" maxlength="300" placeholder="Digite sua resposta aqui...">${answers[index]}</textarea>
+        <textarea id="answer" maxlength="300" placeholder="Digite sua resposta aqui...">${currentAnswer}</textarea>
+        <div id="charCount" class="char-counter" style="color: ${charColor};">${charCount}/300 caracteres</div>
       </div>
     `;
+
     const answerField = document.getElementById("answer");
     if (answerField) {
       answerField.addEventListener("input", (e) => {
         const newLength = e.target.value.length;
         const oldLength = answers[currentQuestion].length;
         answers[currentQuestion] = e.target.value;
-        updateCharCount(newLength);
 
         const oldBlocks = Math.floor(oldLength / charBlock);
         const newBlocks = Math.floor(newLength / charBlock);
         const diff = newBlocks - oldBlocks;
-        if (diff !== 0) {
-          updateXP(diff * xpPerBlock);
+        if (diff !== 0) updateXP(diff * xpPerBlock);
+
+        const charCounter = document.getElementById("charCount");
+        if (charCounter) {
+          charCounter.textContent = newLength + "/300 caracteres";
+          charCounter.style.color = newLength >= 300 ? "red" : "#333";
         }
       });
-      updateCharCount(answerField.value.length);
-      updateProgressBar();
-      updateXP(0);
     }
-  }
 
-  function updateCharCount(length) {
-    if (charCount) {
-      charCount.textContent = length + "/300 caracteres";
-    }
+    updateProgressBar();
+    updateXP(0);
+    prevBtn.style.display = index === 0 ? "none" : "inline-block";
   }
 
   function updateProgressBar() {
@@ -73,46 +76,41 @@ document.addEventListener("DOMContentLoaded", function () {
     if (xp < 0) xp = 0;
     if (xpDisplay) xpDisplay.textContent = xp;
     if (amount !== 0 && xpNotifier) {
-      xpNotifier.textContent = (amount > 0 ? "+" : "") + amount + " XP";
+      xpNotifier.textContent = amount > 0 ? `🎉 Você ganhou +${amount} XP!` : `⚠️ Você perdeu ${amount} XP!`;
+      xpNotifier.style.backgroundColor = amount > 0 ? "#28a745" : "#c0392b";
       xpNotifier.classList.add("show");
-      setTimeout(() => {
-        xpNotifier.classList.remove("show");
-      }, 1000);
+      setTimeout(() => xpNotifier.classList.remove("show"), 1200);
     }
   }
 
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      const answer = document.getElementById("answer");
-      if (answer) {
-        const response = answer.value.trim();
-        answers[currentQuestion] = response;
-        if (response.length > 0) {
-          if (currentQuestion < questions.length - 1) {
-            currentQuestion++;
-            loadQuestion(currentQuestion);
-          } else {
-            window.location.href = "leem-finalizacao-dinamica.html";
-          }
-        } else {
-          alert("Por favor, escreva uma resposta antes de continuar.");
-        }
-      }
-    });
-  }
-
-  if (prevBtn) {
-    prevBtn.addEventListener("click", () => {
-      const answer = document.getElementById("answer");
-      if (answer) {
-        answers[currentQuestion] = answer.value.trim();
-        if (currentQuestion > 0) {
-          currentQuestion--;
+  nextBtn.addEventListener("click", () => {
+    const answer = document.getElementById("answer");
+    if (answer) {
+      const response = answer.value.trim();
+      answers[currentQuestion] = response;
+      if (response.length > 0) {
+        if (currentQuestion < questions.length - 1) {
+          currentQuestion++;
           loadQuestion(currentQuestion);
+        } else {
+          window.location.href = "leem-finalizacao-dinamica.html";
         }
+      } else {
+        alert("Por favor, escreva uma resposta antes de continuar.");
       }
-    });
-  }
+    }
+  });
+
+  prevBtn.addEventListener("click", () => {
+    const answer = document.getElementById("answer");
+    if (answer) {
+      answers[currentQuestion] = answer.value.trim();
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        loadQuestion(currentQuestion);
+      }
+    }
+  });
 
   loadQuestion(currentQuestion);
 });
