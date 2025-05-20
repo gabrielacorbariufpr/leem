@@ -22,31 +22,52 @@ header {
 }
 main {
   flex: 1;
-  padding: 1rem;
+  padding: 2rem;
 }
 #question-container {
   margin-bottom: 1rem;
 }
 .question-card {
   background: white;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+.question-card h2 {
+  margin-bottom: 1rem;
 }
 textarea {
   width: 100%;
-  height: 100px;
-  margin-top: 0.5rem;
+  height: 120px;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: none;
 }
 .navigation {
   display: flex;
   justify-content: space-between;
   margin: 1rem 0;
 }
+.navigation button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  background-color: #007bc2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.navigation button:hover {
+  background-color: #005a91;
+}
 .info-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 0.9rem;
 }
 .progress {
   background-color: #ccc;
@@ -66,4 +87,5 @@ footer {
   color: white;
   text-align: center;
   padding: 0.5rem;
+  font-size: 0.9rem;
 }

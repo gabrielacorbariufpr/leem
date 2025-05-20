@@ -20,7 +20,6 @@ const container = document.getElementById("question-container");
 const charCount = document.getElementById("charCount");
 const progressBar = document.getElementById("progressBar");
 const xpDisplay = document.getElementById("xp");
-const answerTextArea = document.getElementById("answer");
 
 function loadQuestion(index) {
   container.innerHTML = `
@@ -58,7 +57,6 @@ document.getElementById("nextBtn").addEventListener("click", () => {
       currentQuestion++;
       loadQuestion(currentQuestion);
     } else {
-      // Simular envio ou redirecionar
       window.location.href = "leem-finalizacao-dinamica.html";
     }
   } else {
