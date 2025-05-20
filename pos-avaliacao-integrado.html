@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Missão Final LEEM
+  </title>
+  <link href="style.css" rel="stylesheet"/>
+  <script src="https://unpkg.com/framer-motion@10.12.16/dist/framer-motion.umd.js">
+  </script>
+ </head>
+ <body>
+  <div class="container">
+   <header>
+    <img alt="Logo LEEM" class="logo" src="logo-LEEM.png"/>
+    <h1>
+     Questionário de Pós-avaliação do LEEM
+    </h1>
+    <p class="leem-desc">
+    </p>
+    <p class="subdesc">
+     Compartilhe suas experiências enquanto ganha pontos e reflexões!
+    </p>
+    <div class="progress-bar">
+     <div class="progress-fill">
+     </div>
+    </div>
+    <div class="points">
+     + 0 XP acumulado
+    </div>
+   </header>
+   <main id="questions-container">
+   </main>
+   <button id="submit-btn">
+    Concluir Missão
+   </button>
+  </div>
+  <footer>
+   Desenvolvido por Gabriela Corbari dos Santos • O LEEM é oriundo de uma pesquisa de mestrado da Universidade Federal do Paraná (UFPR).
+  </footer>
+  <script src="script.js" type="module">
+  </script>
+  <script>
+   document.getElementById("submit-btn").addEventListener("click", function () {
+  const respostas = {
+    pre: ["Achei que seria difícil usar as TDICs", "Esperava colaborar com o grupo"],
+    durante: ["Achei fácil de usar", "Gostei das atividades realizadas"],
+    pos: ["Aprendi bastante", "TDICs foram úteis e práticas"]
+  };
+
+  const xp = 385;
+  const medalha = "Prata";
+  const ranking = "Top 20%";
+
+  localStorage.setItem("respostasLEEM", JSON.stringify(respostas));
+  localStorage.setItem("xpFinal", xp);
+  localStorage.setItem("medalha", medalha);
+  localStorage.setItem("ranking", ranking);
+
+  window.location.href = "leem-finalizacao-dinamica.html";
+});
+  </script>
+ </body>
+</html>
