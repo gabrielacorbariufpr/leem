@@ -15,15 +15,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let currentQuestion = 0;
   let xp = 0;
+  let timer = 0;
+  let interval = null;
   const xpPerBlock = 15;
   const charBlock = 20;
   const answers = Array(questions.length).fill("");
+  const tempos = Array(questions.length).fill(0);
   const container = document.getElementById("question-container");
   const progressBar = document.getElementById("progressBar");
   const xpDisplay = document.getElementById("xp");
   const nextBtn = document.getElementById("nextBtn");
   const prevBtn = document.getElementById("prevBtn");
   const xpNotifier = document.getElementById("xp-notifier");
+
+  function startTimer() {
+    timer = 0;
+    interval = setInterval(() => {
+      timer++;
+      const timerEl = document.getElementById("question-timer");
+      if (timerEl) {
+        timerEl.textContent = "⏱ Tempo: " + formatTime(timer);
+      }
+    }, 1000);
+  }
+
+  function stopTimer() {
+    clearInterval(interval);
+    tempos[currentQuestion] = timer;
+  }
+
+  function formatTime(seconds) {
+    const min = String(Math.floor(seconds / 60)).padStart(2, '0');
+    const sec = String(seconds % 60).padStart(2, '0');
+    return min + ":" + sec;
+  }
 
   function loadQuestion(index) {
     if (!container) return;
@@ -34,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
     container.innerHTML = `
       <div class="question-card">
         <h2>${questions[index]}</h2>
+        <div id="question-timer" class="question-timer">⏱ Tempo: 00:00</div>
         <textarea id="answer" maxlength="300" placeholder="Digite sua resposta aqui...">${currentAnswer}</textarea>
         <div id="charCount" class="char-counter" style="color: ${charColor};">${charCount}/300 caracteres</div>
       </div>
@@ -62,6 +88,8 @@ document.addEventListener("DOMContentLoaded", function () {
     updateProgressBar();
     updateXP(0);
     prevBtn.style.display = index === 0 ? "none" : "inline-block";
+
+    startTimer();
   }
 
   function updateProgressBar() {
@@ -89,10 +117,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const response = answer.value.trim();
       answers[currentQuestion] = response;
       if (response.length > 0) {
+        stopTimer();
         if (currentQuestion < questions.length - 1) {
           currentQuestion++;
           loadQuestion(currentQuestion);
         } else {
+          localStorage.setItem("leem_tempos", JSON.stringify(tempos));
+          localStorage.setItem("leem_xp", xp);
           window.location.href = "leem-finalizacao-dinamica.html";
         }
       } else {
@@ -105,6 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const answer = document.getElementById("answer");
     if (answer) {
       answers[currentQuestion] = answer.value.trim();
+      stopTimer();
       if (currentQuestion > 0) {
         currentQuestion--;
         loadQuestion(currentQuestion);
