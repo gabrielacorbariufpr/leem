@@ -21,58 +21,81 @@ document.addEventListener("DOMContentLoaded", function () {
   const charCount = document.getElementById("charCount");
   const progressBar = document.getElementById("progressBar");
   const xpDisplay = document.getElementById("xp");
+  const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
 
   function loadQuestion(index) {
+    if (!container) return;
     container.innerHTML = `
       <div class="question-card">
         <h2>${questions[index]}</h2>
         <textarea id="answer" maxlength="300" placeholder="Digite sua resposta aqui...">${answers[index]}</textarea>
       </div>
     `;
-    document.getElementById("answer").addEventListener("input", updateCharCount);
-    updateCharCount();
-    updateProgressBar();
-    updateXP();
+    const answerField = document.getElementById("answer");
+    if (answerField) {
+      answerField.addEventListener("input", updateCharCount);
+      updateCharCount();
+      updateProgressBar();
+      updateXP();
+    }
   }
 
   function updateCharCount() {
-    const length = document.getElementById("answer").value.length;
-    charCount.textContent = \`\${length}/300 caracteres\`;
+    const answer = document.getElementById("answer");
+    if (answer && charCount) {
+      const length = answer.value.length;
+      charCount.textContent = \`\${length}/300 caracteres\`;
+    }
   }
 
   function updateProgressBar() {
-    const percentage = ((currentQuestion + 1) / questions.length) * 100;
-    progressBar.style.width = \`\${percentage}%\`;
+    if (progressBar) {
+      const percentage = ((currentQuestion + 1) / questions.length) * 100;
+      progressBar.style.width = \`\${percentage}%\`;
+    }
   }
 
   function updateXP() {
-    xpDisplay.textContent = xp;
+    if (xpDisplay) {
+      xpDisplay.textContent = xp;
+    }
   }
 
-  document.getElementById("nextBtn").addEventListener("click", () => {
-    const response = document.getElementById("answer").value.trim();
-    answers[currentQuestion] = response;
-    if (response.length > 0) {
-      if (currentQuestion < questions.length - 1) {
-        xp += 10;
-        currentQuestion++;
-        loadQuestion(currentQuestion);
-      } else {
-        window.location.href = "leem-finalizacao-dinamica.html";
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      const answer = document.getElementById("answer");
+      if (answer) {
+        const response = answer.value.trim();
+        answers[currentQuestion] = response;
+        if (response.length > 0) {
+          if (currentQuestion < questions.length - 1) {
+            xp += 10;
+            currentQuestion++;
+            loadQuestion(currentQuestion);
+          } else {
+            window.location.href = "leem-finalizacao-dinamica.html";
+          }
+        } else {
+          alert("Por favor, escreva uma resposta antes de continuar.");
+        }
       }
-    } else {
-      alert("Por favor, escreva uma resposta antes de continuar.");
-    }
-  });
+    });
+  }
 
-  document.getElementById("prevBtn").addEventListener("click", () => {
-    const response = document.getElementById("answer").value.trim();
-    answers[currentQuestion] = response;
-    if (currentQuestion > 0) {
-      currentQuestion--;
-      loadQuestion(currentQuestion);
-    }
-  });
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      const answer = document.getElementById("answer");
+      if (answer) {
+        const response = answer.value.trim();
+        answers[currentQuestion] = response;
+        if (currentQuestion > 0) {
+          currentQuestion--;
+          loadQuestion(currentQuestion);
+        }
+      }
+    });
+  }
 
   loadQuestion(currentQuestion);
 });
