@@ -126,3 +126,38 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
+
+header {
+  background-color: #f0f4f8;
+  color: #1b1b1b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  flex-wrap: wrap;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.logo {
+  height: 50px;
+}
+.header-title {
+  flex: 1;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.xp-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
+}
+.xp-icon {
+  width: 28px;
+  height: 28px;
+}
