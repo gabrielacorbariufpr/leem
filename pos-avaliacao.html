@@ -12,7 +12,10 @@
     <img src="logo-leem.png" alt="Logo LEEM" class="logo"/>
     <h1>Questionário de Pós-avaliação do LEEM</h1>
     <p class="subtitle">Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
-    <p class="xp-status">+ <span id="xp">0</span> XP acumulado</p>
+    <div class="xp-container">
+      <img src="pote-ouro.svg" alt="Pote de Ouro" class="xp-icon"/>
+      <span>XP: <span id="xp">0</span></span>
+    </div>
   </header>
 
   <main>
@@ -23,8 +26,7 @@
       <button id="nextBtn">Avançar</button>
     </div>
 
-    <div class="info-bar">
-      <span id="charCount">0/300 caracteres</span>
+    <div class="progress-wrapper">
       <div class="progress"><div id="progressBar"></div></div>
     </div>
   </main>
