@@ -1,109 +1,74 @@
-
 const questions = [
-  "Todos os integrantes do grupo participaram ativamente? Comente.",
-  "Você já havia vivenciado alguma situação semelhante à atividade desenvolvida? Comente.",
-  "Qual foi a sua contribuição para a atividade? Comente.",
-  "Você contribuiu com ideias próprias (foi autêntico) na realização das atividades do projeto? Comente.",
-  "Você já fez alguma atividade como essa realizada? Se sim, dê exemplos.",
-  "Você se sentiu responsável/envolvido durante a realização da atividade? Comente.",
-  "Você sente que essa atividade incentivou o uso de TDICs em sua vida? Comente.",
-  "A atividade gerou novos desafios ou você permaneceu na sua zona de conforto? Comente.",
-  "Você acha que o aprendizado alcançado na atividade realizada te ajudará em situações de sua vida? Comente.",
-  "Você achou a atividade interessante, estimulante ou instigante? Comente.",
-  "Você sente que a atividade tem relação com os conceitos/assuntos que você já tinha aprendido? Comente."
+  "1. A tecnologia educacional utilizada proporcionou uma boa usabilidade?",
+  "2. Você se sentiu motivado(a) ao utilizar esta tecnologia?",
+  "3. As funcionalidades da tecnologia atenderam suas necessidades?",
+  "4. A navegação dentro da tecnologia foi clara e intuitiva?",
+  "5. Você encontrou barreiras ou dificuldades técnicas durante o uso?",
+  "6. O design da interface facilitou sua interação com a tecnologia?",
+  "7. A tecnologia contribuiu para o seu aprendizado?",
+  "8. A linguagem utilizada na tecnologia foi adequada e compreensível?",
+  "9. Você se sentiu engajado(a) ao utilizar essa tecnologia?",
+  "10. A tecnologia promoveu a sua autonomia no processo de aprendizagem?",
+  "11. Você indicaria essa tecnologia para outros estudantes?"
 ];
 
-let totalXP = 0;
-const answered = Array(questions.length).fill(false);
-const awarded = Array(questions.length).fill(0);
+let currentQuestion = 0;
+let xp = 0;
+const answers = [];
 
-const container = document.getElementById('questions-container');
-const progressFill = document.querySelector('.progress-fill');
-const pointsText = document.querySelector('.points');
+const container = document.getElementById("question-container");
+const charCount = document.getElementById("charCount");
+const progressBar = document.getElementById("progressBar");
+const xpDisplay = document.getElementById("xp");
 
-function showPopup(points) {
-  const popup = document.createElement('div');
-  popup.className = 'popup-points';
-  popup.innerHTML = `🎉 Você ganhou <strong>${points} pontos</strong>!`;
-
-  document.body.appendChild(popup);
-  setTimeout(() => popup.classList.add('show'), 10);
-  setTimeout(() => {
-    popup.classList.remove('show');
-    setTimeout(() => popup.remove(), 500);
-  }, 2500);
-}
-
-function updateProgress() {
-  const completed = answered.filter(x => x).length;
-  const percent = (completed / questions.length) * 100;
-  progressFill.style.width = percent + '%';
-  pointsText.innerHTML = `⭐ ${totalXP} XP acumulado`;
-}
-
-function checkFinalCompletion() {
-  if (answered.every(val => val)) {
-    setTimeout(() => {
-      let medal = '';
-      if (totalXP >= 500) medal = '🏆 Medalha Diamante';
-      else if (totalXP >= 400) medal = '🥇 Medalha Ouro';
-      else if (totalXP >= 300) medal = '🥈 Medalha Prata';
-      else if (totalXP >= 200) medal = '🥉 Medalha Bronze';
-      else medal = '🎖 Participação';
-
-      alert(`Parabéns! Você concluiu o questionário.
-${medal}
-Total de XP: ${totalXP}`);
-    }, 500);
-  }
-}
-
-questions.forEach((q, i) => {
-  const div = document.createElement('div');
-  div.className = 'question';
-  div.innerHTML = `
-    <label for="q${i}"><strong>${(i+1).toString().padStart(2, '0')}.</strong> ${q}</label>
-    <textarea id="q${i}" rows="3" maxlength="500" placeholder="Digite sua resposta (máx. 500 caracteres)"></textarea>
-    <div class="char-limit" id="char${i}">0 / 500</div>
+function loadQuestion(index) {
+  container.innerHTML = `
+    <div class="question-card">
+      <h2>${questions[index]}</h2>
+      <textarea id="answer" maxlength="300" placeholder="Digite sua resposta aqui..."></textarea>
+    </div>
   `;
-  div.addEventListener('click', () => {
-    document.querySelectorAll('.question').forEach(el => el.classList.remove('active'));
-    div.classList.add('active');
-  });
+  document.getElementById("answer").addEventListener("input", updateCharCount);
+  updateCharCount();
+  updateProgressBar();
+  updateXP();
+}
 
-  container.appendChild(div);
+function updateCharCount() {
+  const length = document.getElementById("answer").value.length;
+  charCount.textContent = \`\${length}/300 caracteres\`;
+}
 
-  const textarea = div.querySelector(`#q${i}`);
-  const charDisplay = div.querySelector(`#char${i}`);
+function updateProgressBar() {
+  const percentage = ((currentQuestion + 1) / questions.length) * 100;
+  progressBar.style.width = \`\${percentage}%\`;
+}
 
-  textarea.addEventListener('input', () => {
-    const length = textarea.value.length;
-    charDisplay.textContent = `${length} / 500`;
+function updateXP() {
+  xpDisplay.textContent = \`XP: \${xp}\`;
+}
 
-    let newPoints = 0;
-    if (length > 200) newPoints = 50;
-    else if (length > 100) newPoints = 40;
-    else if (length > 50) newPoints = 30;
-    else if (length > 20) newPoints = 15;
-
-    if (newPoints !== awarded[i]) {
-      const diff = newPoints - awarded[i];
-      totalXP += diff;
-      awarded[i] = newPoints;
-      answered[i] = newPoints > 0;
-      updateProgress();
-      if (diff > 0) showPopup(diff);
+document.getElementById("nextBtn").addEventListener("click", () => {
+  const response = document.getElementById("answer").value.trim();
+  if (response.length > 0) {
+    answers[currentQuestion] = response;
+    xp += 10;
+    if (currentQuestion < questions.length - 1) {
+      currentQuestion++;
+      loadQuestion(currentQuestion);
+    } else {
+      window.location.href = "leem-finalizacao-dinamica.html";
     }
-
-    if (length === 0 && awarded[i] > 0) {
-      totalXP -= awarded[i];
-      awarded[i] = 0;
-      answered[i] = false;
-      updateProgress();
-    }
-
-    checkFinalCompletion();
-  });
+  } else {
+    alert("Por favor, escreva uma resposta antes de continuar.");
+  }
 });
 
-updateProgress();
+document.getElementById("prevBtn").addEventListener("click", () => {
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    loadQuestion(currentQuestion);
+  }
+});
+
+loadQuestion(currentQuestion);
