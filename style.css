@@ -10,21 +10,22 @@ body {
 
 header {
   background-color: #e6f0fa;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
   text-align: center;
   color: #123b68;
   border-bottom: 1px solid #c9dff2;
 }
 
 .logo {
-  width: 40px;
-  margin-bottom: 0.3rem;
+  width: 100px;
+  height: auto;
+  margin-bottom: 0.5rem;
 }
 
 .leem-subtitle {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: bold;
-  margin: 0.2rem 0;
+  margin: 0.5rem 0 0.2rem;
   color: #1d3a5f;
 }
 
@@ -35,7 +36,7 @@ header {
 }
 
 .xp-container {
-  margin-top: 0.5rem;
+  margin-top: 0.7rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,10 +68,11 @@ textarea {
   width: 100%;
   height: 140px;
   font-size: 1rem;
-  padding: 0.5rem;
+  padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 8px;
   resize: none;
+  box-sizing: border-box;
 }
 
 .question-timer {
