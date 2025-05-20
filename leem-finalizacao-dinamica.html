@@ -1,102 +1,63 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel de Conquistas</title>
+  <title>Finalização da Pós-avaliação</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      background-color: #f8f9fa;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 2rem;
-    }
-    .panel {
-      background: white;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .panel h2 {
-      margin-bottom: 1rem;
-      color: #333;
-    }
-    .metric {
-      margin-bottom: 2rem;
-    }
-    .medalha {
-      font-size: 2.5rem;
-    }
-    .valor {
-      font-size: 1.3rem;
-      font-weight: bold;
-      margin-top: 0.5rem;
-    }
-    .btn {
-      background: #007bc2;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    .btn:hover {
-      background: #005a91;
-    }
-  </style>
 </head>
 <body>
-  <div class="panel">
-    <h2>🏅 Painel de Conquistas</h2>
+  <header>
+    <h1>Painel de Finalização</h1>
+  </header>
 
-    <div class="metric">
-      <h3>XP Acumulado</h3>
-      <div class="medalha" id="medalha-xp">🎖</div>
-      <div class="valor" id="xp-total">XP: 0</div>
-    </div>
+  <main>
+    <section class="panel">
+      <h2>Histórico de Respostas</h2>
+      <p>Veja abaixo suas respostas por missão em cada etapa:</p>
+      <ul>
+        <li><strong>Pré-avaliação:</strong> Desejabilidade - "Exemplo de resposta..."</li>
+        <li><strong>Durante:</strong> Confortabilidade - "Exemplo de resposta..."</li>
+        <li><strong>Pós:</strong> Satisfação - "Exemplo de resposta..."</li>
+      </ul>
+    </section>
 
-    <div class="metric">
-      <h3>Tempo Total</h3>
-      <div class="medalha" id="medalha-tempo">⏱</div>
-      <div class="valor" id="tempo-total">00:00</div>
-    </div>
+    <section class="panel">
+      <h2>Evolução da Experiência</h2>
+      <p>Com base nas suas respostas, percebemos evolução significativa em:</p>
+      <ul>
+        <li>Habilidades Técnicas</li>
+        <li>Percepção de Valor</li>
+        <li>Engajamento Pessoal</li>
+      </ul>
+    </section>
 
-    <button class="btn" onclick="window.location.href='index.html'">Voltar ao Início</button>
-  </div>
+    <section class="panel">
+      <h2>Painel de Conquistas</h2>
+      <p>Parabéns! Veja abaixo sua pontuação e conquistas:</p>
+      <div class="metric">
+        <span class="medalha">🏅</span>
+        <div class="valor">Medalha: Ouro</div>
+      </div>
+      <div class="valor">XP Final: 135</div>
+      <div class="valor">Ranking XP: 3º lugar</div>
+      <div class="ranking-tempo">
+        ⏱️ <strong>Tempo total:</strong> 02:34 minutos<br>
+        🥈 <strong>Ranking por tempo:</strong> 2º lugar
+      </div>
+    </section>
 
-  <script>
-    function formatTime(seconds) {
-      const min = String(Math.floor(seconds / 60)).padStart(2, '0');
-      const sec = String(seconds % 60).padStart(2, '0');
-      return min + ":" + sec;
-    }
+    <section class="panel">
+      <h2>Compartilhamento</h2>
+      <p>Deseja registrar ou compartilhar seus resultados?</p>
+      <button class="btn">📄 Gerar Relatório (PDF)</button>
+      <button class="btn">👨‍🏫 Enviar para Professor</button>
+      <button class="btn">🏠 Voltar ao Início</button>
+    </section>
+  </main>
 
-    function calcularMedalhaXP(xp) {
-      if (xp >= 225) return "💎 Diamante";
-      if (xp >= 150) return "🥇 Ouro";
-      if (xp >= 75) return "🥈 Prata";
-      return "🟫 Bronze";
-    }
-
-    function calcularMedalhaTempo(segundos) {
-      if (segundos < 120) return "💎 Diamante";
-      if (segundos < 240) return "🥇 Ouro";
-      if (segundos < 360) return "🥈 Prata";
-      return "🟫 Bronze";
-    }
-
-    const tempos = JSON.parse(localStorage.getItem("leem_tempos") || "[]");
-    const xp = parseInt(localStorage.getItem("leem_xp") || "0");
-    const tempoTotal = tempos.reduce((acc, t) => acc + t, 0);
-
-    document.getElementById("xp-total").textContent = "XP: " + xp;
-    document.getElementById("tempo-total").textContent = formatTime(tempoTotal);
-    document.getElementById("medalha-xp").textContent = calcularMedalhaXP(xp);
-    document.getElementById("medalha-tempo").textContent = calcularMedalhaTempo(tempoTotal);
-  </script>
+  <footer>
+    Desenvolvido por Gabriela Corbari dos Santos • LEEM é oriundo de uma pesquisa de mestrado da Universidade Federal do Paraná (UFPR).
+  </footer>
 </body>
 </html>
