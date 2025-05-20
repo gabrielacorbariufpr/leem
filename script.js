@@ -45,7 +45,7 @@ function updateProgressBar() {
 }
 
 function updateXP() {
-  xpDisplay.textContent = \`XP: \${xp}\`;
+  xpDisplay.textContent = xp;
 }
 
 document.getElementById("nextBtn").addEventListener("click", () => {

@@ -6,7 +6,6 @@
 }
 body {
   background-color: #f0f4f8;
-  color: #333;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -14,25 +13,31 @@ body {
 header {
   background-color: #005477;
   color: white;
-  padding: 1rem;
   text-align: center;
+  padding: 1rem;
 }
 .logo {
-  width: 80px;
+  width: 100px;
+  margin-bottom: 0.5rem;
+}
+.subtitle {
+  font-size: 1rem;
+  margin-top: 0.25rem;
+}
+.xp-status {
+  font-size: 0.9rem;
+  color: #d0f0ff;
 }
 main {
   flex: 1;
   padding: 2rem;
-}
-#question-container {
-  margin-bottom: 1rem;
 }
 .question-card {
   background: white;
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 .question-card h2 {
   margin-bottom: 1rem;
@@ -49,7 +54,7 @@ textarea {
 .navigation {
   display: flex;
   justify-content: space-between;
-  margin: 1rem 0;
+  margin-bottom: 1rem;
 }
 .navigation button {
   padding: 0.6rem 1.2rem;
@@ -86,6 +91,6 @@ footer {
   background-color: #005477;
   color: white;
   text-align: center;
-  padding: 0.5rem;
+  padding: 0.75rem;
   font-size: 0.9rem;
 }
