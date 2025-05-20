@@ -1,45 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Missão Final LEEM
-  </title>
-  <link href="style.css" rel="stylesheet"/>
-  <script src="https://unpkg.com/framer-motion@10.12.16/dist/framer-motion.umd.js">
-  </script>
- </head>
- <body>
-  <div class="container">
-   <header>
-    <img alt="Logo LEEM" class="logo" src="logo-LEEM.png"/>
-    <h1>
-     Questionário de Pós-avaliação do LEEM
-    </h1>
-    <p class="leem-desc">
-    </p>
-    <p class="subdesc">
-     Compartilhe suas experiências enquanto ganha pontos e reflexões!
-    </p>
-    <div class="progress-bar">
-     <div class="progress-fill">
-     </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>pos-avaliacao</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <img src="assets/logo-leem.png" alt="Logo LEEM" class="logo"/>
+    <h1>Pós-Avaliação</h1>
+  </header>
+
+  <main>
+    <section id="question-container">
+      <!-- Perguntas são inseridas via JavaScript -->
+    </section>
+
+    <div class="navigation">
+      <button id="prevBtn">Voltar</button>
+      <button id="nextBtn">Avançar</button>
     </div>
-    <div class="points">
-     + 0 XP acumulado
+
+    <div class="info-bar">
+      <span id="charCount">0/300 caracteres</span>
+      <div class="progress">
+        <div id="progressBar"></div>
+      </div>
+      <span id="xp">XP: 0</span>
     </div>
-   </header>
-   <main id="questions-container">
-   </main>
-   <button id="submit-btn">
-    Concluir Missão
-   </button>
-  </div>
+  </main>
+
   <footer>
-   Desenvolvido por Gabriela Corbari dos Santos • O LEEM é oriundo de uma pesquisa de mestrado da Universidade Federal do Paraná (UFPR).
+    <p>LEEM - Avaliação da Experiência do Aprendiz</p>
   </footer>
-  <script src="script.js" type="module">
-  </script>
- </body>
+
+  <script src="script.js"></script>
+</body>
 </html>

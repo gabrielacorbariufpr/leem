@@ -14,18 +14,19 @@ const questions = [
 
 let currentQuestion = 0;
 let xp = 0;
-const answers = [];
+const answers = Array(questions.length).fill("");
 
 const container = document.getElementById("question-container");
 const charCount = document.getElementById("charCount");
 const progressBar = document.getElementById("progressBar");
 const xpDisplay = document.getElementById("xp");
+const answerTextArea = document.getElementById("answer");
 
 function loadQuestion(index) {
   container.innerHTML = `
     <div class="question-card">
       <h2>${questions[index]}</h2>
-      <textarea id="answer" maxlength="300" placeholder="Digite sua resposta aqui..."></textarea>
+      <textarea id="answer" maxlength="300" placeholder="Digite sua resposta aqui...">${answers[index]}</textarea>
     </div>
   `;
   document.getElementById("answer").addEventListener("input", updateCharCount);
@@ -50,13 +51,14 @@ function updateXP() {
 
 document.getElementById("nextBtn").addEventListener("click", () => {
   const response = document.getElementById("answer").value.trim();
+  answers[currentQuestion] = response;
   if (response.length > 0) {
-    answers[currentQuestion] = response;
-    xp += 10;
     if (currentQuestion < questions.length - 1) {
+      xp += 10;
       currentQuestion++;
       loadQuestion(currentQuestion);
     } else {
+      // Simular envio ou redirecionar
       window.location.href = "leem-finalizacao-dinamica.html";
     }
   } else {
@@ -65,6 +67,8 @@ document.getElementById("nextBtn").addEventListener("click", () => {
 });
 
 document.getElementById("prevBtn").addEventListener("click", () => {
+  const response = document.getElementById("answer").value.trim();
+  answers[currentQuestion] = response;
   if (currentQuestion > 0) {
     currentQuestion--;
     loadQuestion(currentQuestion);
