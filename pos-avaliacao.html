@@ -41,5 +41,25 @@
   </footer>
   <script src="script.js" type="module">
   </script>
+  <script>
+   document.getElementById("submit-btn").addEventListener("click", function () {
+  const respostas = {
+    pre: ["Achei que seria difícil usar as TDICs", "Esperava colaborar com o grupo"],
+    durante: ["Achei fácil de usar", "Gostei das atividades realizadas"],
+    pos: ["Aprendi bastante", "TDICs foram úteis e práticas"]
+  };
+
+  const xp = 385;
+  const medalha = "Prata";
+  const ranking = "Top 20%";
+
+  localStorage.setItem("respostasLEEM", JSON.stringify(respostas));
+  localStorage.setItem("xpFinal", xp);
+  localStorage.setItem("medalha", medalha);
+  localStorage.setItem("ranking", ranking);
+
+  window.location.href = "leem-finalizacao-dinamica.html";
+});
+  </script>
  </body>
 </html>
