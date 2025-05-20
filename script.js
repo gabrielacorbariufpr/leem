@@ -45,14 +45,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const answer = document.getElementById("answer");
     if (answer && charCount) {
       const length = answer.value.length;
-      charCount.textContent = \`\${length}/300 caracteres\`;
+      charCount.textContent = length + "/300 caracteres";
     }
   }
 
   function updateProgressBar() {
     if (progressBar) {
       const percentage = ((currentQuestion + 1) / questions.length) * 100;
-      progressBar.style.width = \`\${percentage}%\`;
+      progressBar.style.width = percentage + "%";
     }
   }
 
