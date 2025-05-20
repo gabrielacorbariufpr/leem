@@ -135,3 +135,28 @@ footer {
   border-top: 1px solid #c9dff2;
   margin-top: auto;
 }
+
+
+#xp-notifier {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 10px 16px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  display: none;
+  z-index: 1000;
+  animation: fadeout 1.4s forwards;
+}
+
+#xp-notifier.show {
+  display: block;
+}
+
+@keyframes fadeout {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(20px); }
+}
