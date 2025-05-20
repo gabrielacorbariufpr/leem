@@ -1,158 +1,102 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Finalização - LEEM</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Conquistas</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
-      background-color: #f5f7fb;
-    }
-    .header {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
       text-align: center;
-      padding: 2rem 1rem;
-      background-color: #fff;
+      padding: 2rem;
+    }
+    .panel {
+      background: white;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
       border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .panel h2 {
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    .metric {
       margin-bottom: 2rem;
     }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
+    .medalha {
+      font-size: 2.5rem;
     }
-    .card {
-      background-color: #fff;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-    .xp-bar {
-      background-color: #e5e5e5;
-      border-radius: 1rem;
-      height: 1rem;
-      overflow: hidden;
+    .valor {
+      font-size: 1.3rem;
+      font-weight: bold;
       margin-top: 0.5rem;
     }
-    .xp-bar-inner {
-      height: 100%;
-      background-color: #4f46e5;
-      width: 0%;
-      transition: width 0.8s;
+    .btn {
+      background: #007bc2;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
     }
-    .btn-group {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 2rem;
-    }
-    .resposta-box {
-      font-size: 0.95rem;
-      background: #f0f0f0;
-      padding: 0.5rem;
-      margin: 0.3rem 0;
-      border-radius: 6px;
+    .btn:hover {
+      background: #005a91;
     }
   </style>
 </head>
 <body>
-  <main class="container">
-    <div class="header">
-      <h1>🎉 Parabéns por concluir sua jornada com o LEEM!</h1>
-      <p>Sua experiência foi registrada e analisada. Confira abaixo seu desempenho e evolução.</p>
+  <div class="panel">
+    <h2>🏅 Painel de Conquistas</h2>
+
+    <div class="metric">
+      <h3>XP Acumulado</h3>
+      <div class="medalha" id="medalha-xp">🎖</div>
+      <div class="valor" id="xp-total">XP: 0</div>
     </div>
 
-    <section>
-      <h2>📘 Histórico de Respostas</h2>
-      <div class="cards">
-        <div class="card">
-          <h3>Pré-avaliação</h3>
-          <div id="respostas-pre"></div>
-        </div>
-        <div class="card">
-          <h3>Avaliação-Durante</h3>
-          <div id="respostas-durante"></div>
-        </div>
-        <div class="card">
-          <h3>Pós-avaliação</h3>
-          <div id="respostas-pos"></div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>📈 Evolução da Experiência</h2>
-      <div class="card">
-        <p id="feedback-evolucao">Analisando sua evolução...</p>
-      </div>
-    </section>
-
-    <section>
-      <h2>🏅 Painel de Conquistas</h2>
-      <div class="cards">
-        <div class="card">
-          <h3>XP Final</h3>
-          <p><span id="xp-final">0</span> pontos</p>
-          <div class="xp-bar"><div class="xp-bar-inner" id="xp-barra"></div></div>
-        </div>
-        <div class="card">
-          <h3>Medalha</h3>
-          <p id="medalha">--</p>
-        </div>
-        <div class="card">
-          <h3>Ranking</h3>
-          <p id="ranking">--</p>
-        </div>
-      </div>
-    </section>
-
-    <div class="btn-group">
-      <button onclick="window.print()">Gerar Relatório PDF</button>
-      <button>Compartilhar com o professor</button>
-      <button onclick="window.location.href='index.html'">Voltar ao início</button>
+    <div class="metric">
+      <h3>Tempo Total</h3>
+      <div class="medalha" id="medalha-tempo">⏱</div>
+      <div class="valor" id="tempo-total">00:00</div>
     </div>
-  </main>
 
-<script>
-  // Função para carregar dados simulados ou salvos no localStorage
-  function carregarResultados() {
-    const respostas = JSON.parse(localStorage.getItem("respostasLEEM")) || {};
-    const xp = parseInt(localStorage.getItem("xpFinal")) || 0;
-    const medalha = localStorage.getItem("medalha") || "--";
-    const ranking = localStorage.getItem("ranking") || "--";
+    <button class="btn" onclick="window.location.href='index.html'">Voltar ao Início</button>
+  </div>
 
-    document.getElementById("xp-final").textContent = xp;
-    document.getElementById("medalha").textContent = medalha;
-    document.getElementById("ranking").textContent = ranking;
+  <script>
+    function formatTime(seconds) {
+      const min = String(Math.floor(seconds / 60)).padStart(2, '0');
+      const sec = String(seconds % 60).padStart(2, '0');
+      return min + ":" + sec;
+    }
 
-    document.getElementById("xp-barra").style.width = Math.min(xp / 5, 100) + "%";
+    function calcularMedalhaXP(xp) {
+      if (xp >= 225) return "💎 Diamante";
+      if (xp >= 150) return "🥇 Ouro";
+      if (xp >= 75) return "🥈 Prata";
+      return "🟫 Bronze";
+    }
 
-    // Mostrar respostas por etapa
-    ["pre", "durante", "pos"].forEach(etapa => {
-      const div = document.getElementById("respostas-" + etapa);
-      const blocos = respostas[etapa] || [];
-      if (blocos.length === 0) div.innerHTML = "<p>Nenhuma resposta salva.</p>";
-      else {
-        blocos.forEach(resp => {
-          const p = document.createElement("div");
-          p.className = "resposta-box";
-          p.textContent = resp;
-          div.appendChild(p);
-        });
-      }
-    });
+    function calcularMedalhaTempo(segundos) {
+      if (segundos < 120) return "💎 Diamante";
+      if (segundos < 240) return "🥇 Ouro";
+      if (segundos < 360) return "🥈 Prata";
+      return "🟫 Bronze";
+    }
 
-    // Feedback genérico de evolução
-    document.getElementById("feedback-evolucao").textContent =
-      xp >= 300 ? "Você demonstrou grande evolução na experiência e domínio do uso das TDICs!" :
-      xp >= 150 ? "Boa progressão! Sua experiência foi bem construída com TDICs." :
-      "Você completou a jornada! Continue explorando novas formas de aprender com TDICs.";
-  }
+    const tempos = JSON.parse(localStorage.getItem("leem_tempos") || "[]");
+    const xp = parseInt(localStorage.getItem("leem_xp") || "0");
+    const tempoTotal = tempos.reduce((acc, t) => acc + t, 0);
 
-  carregarResultados();
-</script>
+    document.getElementById("xp-total").textContent = "XP: " + xp;
+    document.getElementById("tempo-total").textContent = formatTime(tempoTotal);
+    document.getElementById("medalha-xp").textContent = calcularMedalhaXP(xp);
+    document.getElementById("medalha-tempo").textContent = calcularMedalhaTempo(tempoTotal);
+  </script>
 </body>
 </html>
