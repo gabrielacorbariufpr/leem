@@ -16,13 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentQuestion = 0;
   let xp = 0;
   const answers = Array(questions.length).fill("");
-
   const container = document.getElementById("question-container");
   const charCount = document.getElementById("charCount");
   const progressBar = document.getElementById("progressBar");
   const xpDisplay = document.getElementById("xp");
   const nextBtn = document.getElementById("nextBtn");
   const prevBtn = document.getElementById("prevBtn");
+  const xpNotifier = document.getElementById("xp-notifier");
 
   function loadQuestion(index) {
     if (!container) return;
@@ -34,17 +34,24 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
     const answerField = document.getElementById("answer");
     if (answerField) {
-      answerField.addEventListener("input", updateCharCount);
-      updateCharCount();
+      answerField.addEventListener("input", (e) => {
+        const length = e.target.value.length;
+        const oldLength = answers[currentQuestion].length;
+        answers[currentQuestion] = e.target.value;
+        updateCharCount(length);
+        if (length > oldLength) {
+          const xpGained = length - oldLength;
+          addXP(xpGained);
+        }
+      });
+      updateCharCount(answerField.value.length);
       updateProgressBar();
       updateXP();
     }
   }
 
-  function updateCharCount() {
-    const answer = document.getElementById("answer");
-    if (answer && charCount) {
-      const length = answer.value.length;
+  function updateCharCount(length) {
+    if (charCount) {
       charCount.textContent = length + "/300 caracteres";
     }
   }
@@ -62,6 +69,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  function addXP(amount) {
+    xp += amount;
+    updateXP();
+    if (xpNotifier) {
+      xpNotifier.textContent = "+" + amount + " XP!";
+      xpNotifier.classList.add("show");
+      setTimeout(() => {
+        xpNotifier.classList.remove("show");
+      }, 1000);
+    }
+  }
+
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
       const answer = document.getElementById("answer");
@@ -70,7 +89,6 @@ document.addEventListener("DOMContentLoaded", function () {
         answers[currentQuestion] = response;
         if (response.length > 0) {
           if (currentQuestion < questions.length - 1) {
-            xp += 10;
             currentQuestion++;
             loadQuestion(currentQuestion);
           } else {
@@ -87,8 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
     prevBtn.addEventListener("click", () => {
       const answer = document.getElementById("answer");
       if (answer) {
-        const response = answer.value.trim();
-        answers[currentQuestion] = response;
+        answers[currentQuestion] = answer.value.trim();
         if (currentQuestion > 0) {
           currentQuestion--;
           loadQuestion(currentQuestion);
