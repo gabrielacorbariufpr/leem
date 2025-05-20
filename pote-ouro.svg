@@ -1,3 +1,6 @@
-<svg class="xp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#f4c542">
-  <path d="M12 2C10.9 2 10 2.9 10 4s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 7c-3.3 0-6 2.7-6 6 0 1.6.6 3 1.6 4.1L12 22l4.4-2.9C17.4 18 18 16.6 18 15c0-3.3-2.7-6-6-6z"/>
+<svg xmlns="http://www.w3.org/2000/svg" class="xp-icon" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="12" r="10" fill="#f4c542"/>
+  <path d="M12 28c0-4 8-8 20-8s20 4 20 8-3 24-20 24S12 32 12 28z" fill="#f4c542" stroke="#c89b1f" stroke-width="2"/>
+  <circle cx="24" cy="24" r="3" fill="#fff"/>
+  <circle cx="40" cy="22" r="3" fill="#fff"/>
 </svg>
