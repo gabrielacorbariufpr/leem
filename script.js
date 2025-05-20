@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let currentQuestion = 0;
   let xp = 0;
+  const xpPerBlock = 15;
+  const charBlock = 20;
   const answers = Array(questions.length).fill("");
   const container = document.getElementById("question-container");
   const charCount = document.getElementById("charCount");
@@ -35,18 +37,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const answerField = document.getElementById("answer");
     if (answerField) {
       answerField.addEventListener("input", (e) => {
-        const length = e.target.value.length;
+        const newLength = e.target.value.length;
         const oldLength = answers[currentQuestion].length;
         answers[currentQuestion] = e.target.value;
-        updateCharCount(length);
-        if (length > oldLength) {
-          const xpGained = length - oldLength;
-          addXP(xpGained);
+        updateCharCount(newLength);
+
+        const oldBlocks = Math.floor(oldLength / charBlock);
+        const newBlocks = Math.floor(newLength / charBlock);
+        const diff = newBlocks - oldBlocks;
+        if (diff !== 0) {
+          updateXP(diff * xpPerBlock);
         }
       });
       updateCharCount(answerField.value.length);
       updateProgressBar();
-      updateXP();
+      updateXP(0);
     }
   }
 
@@ -63,17 +68,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function updateXP() {
-    if (xpDisplay) {
-      xpDisplay.textContent = xp;
-    }
-  }
-
-  function addXP(amount) {
+  function updateXP(amount) {
     xp += amount;
-    updateXP();
-    if (xpNotifier) {
-      xpNotifier.textContent = "+" + amount + " XP!";
+    if (xp < 0) xp = 0;
+    if (xpDisplay) xpDisplay.textContent = xp;
+    if (amount !== 0 && xpNotifier) {
+      xpNotifier.textContent = (amount > 0 ? "+" : "") + amount + " XP";
       xpNotifier.classList.add("show");
       setTimeout(() => {
         xpNotifier.classList.remove("show");

@@ -94,3 +94,32 @@ footer {
   padding: 0.75rem;
   font-size: 0.9rem;
 }
+
+
+.question-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin: 0 auto 1.5rem;
+  max-width: 800px;
+}
+#xp-notifier {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background-color: #007bc2;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 1000;
+}
+#xp-notifier.show {
+  opacity: 1;
+  transform: translateY(0);
+}
