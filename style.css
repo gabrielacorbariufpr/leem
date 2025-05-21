@@ -1,79 +1,139 @@
+/* ======= RESET ======= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ======= BODY ======= */
 body {
   font-family: Arial, sans-serif;
-  background: #f7f9fb;
-  margin: 0;
+  background-color: #f7f9fb;
 }
+
+/* ======= HEADER ======= */
 .header {
-  background: #e3f0fb;
+  background-color: #e3f0fb;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 30px;
 }
+
 .logo {
   height: 60px;
 }
+
 .titulo {
   text-align: center;
 }
+
+.titulo h1 {
+  font-size: 28px;
+}
+
+.titulo p {
+  font-size: 14px;
+  color: #333;
+}
+
 .info-xp-tempo {
   text-align: right;
 }
+
+.info-xp-tempo div {
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+/* ======= NOTIFICAÇÃO ======= */
 .xp-notifier {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #4caf50;
-  color: white;
   padding: 10px 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  color: white;
   display: none;
   opacity: 1;
   font-weight: bold;
   z-index: 9999;
 }
+
 .ganho {
   background-color: #4caf50;
 }
+
 .perda {
   background-color: #f44336;
 }
+
+/* ======= MAIN CARD ======= */
 main {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
+
 .card {
-  background: white;
+  background-color: white;
   padding: 20px;
   width: 800px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   border-radius: 8px;
 }
+
+.card h2 {
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin-bottom: 10px;
+}
+
 textarea {
   width: 100%;
   resize: none;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: Arial;
 }
+
+textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* ======= CONTADOR ======= */
+.contador {
+  margin-top: 5px;
+  color: gray;
+  text-align: right;
+  font-size: 14px;
+}
+
+/* ======= BOTÃO ======= */
 button {
-  background: #007bff;
+  background-color: #007bff;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  margin-top: 10px;
 }
+
 button:hover {
-  background: #0056b3;
+  background-color: #0056b3;
 }
-.contador {
-  margin-top: 5px;
-  color: gray;
-  text-align: right;
-}
+
+/* ======= FOOTER ======= */
 footer {
-  background: #e3f0fb;
+  background-color: #e3f0fb;
   padding: 10px;
   text-align: center;
   margin-top: 30px;
+  font-size: 14px;
 }
