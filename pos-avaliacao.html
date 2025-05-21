@@ -1,42 +1,33 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>pos-avaliacao</title>
-  <link rel="stylesheet" href="style.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pós-Avaliação - LEEM</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-  <div id="xp-notifier"></div>
-  <header class="header-centered">
-    <img src="logo-LEEM.png" alt="Logo LEEM" class="logo"/>
-    <div class="header-text-block">
-      <h1 class="leem-subtitle">Pós-avaliação do LEEM</h1>
-      <p class="leem-description">Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
-    </div>
-    <div class="xp-container" title="Você ganha +15 XP a cada 20 caracteres digitados. Os pontos são cumulativos!">
-      <img src="pote-ouro.svg" alt="Pote de Ouro" class="xp-icon"/>
-      <span>XP: <span id="xp">0</span></span>
-    </div>
-  </header>
+    <header>
+        <h1>Pós-Avaliação - LEEM</h1>
+    </header>
 
-  <main>
-    <section id="question-container"></section>
+    <main>
+        <div id="question-container"></div>
 
-    <div class="navigation">
-      <button id="prevBtn">Voltar</button>
-      <button id="nextBtn">Avançar</button>
-    </div>
+        <div id="progress-screen" class="hidden">
+            <h2>Etapa Concluída ✅</h2>
+            <p id="xp-display">XP acumulado: 0</p>
+            <div class="progress-bar">
+                <div id="progress-fill"></div>
+            </div>
+            <button id="next-stage">Próxima Etapa ▶</button>
+        </div>
+    </main>
 
-    <div class="progress-wrapper" title="A barra de progresso representa o avanço nas 11 perguntas do questionário.">
-      <div class="progress"><div id="progressBar"></div></div>
-    </div>
-  </main>
-
-  <footer>
-    <p>Desenvolvido por Gabriela Corbari dos Santos • O LEEM é oriundo de uma pesquisa de mestrado da Universidade Federal do Paraná (UFPR).</p>
-  </footer>
-
-  <script src="script.js"></script>
+    <footer>
+        <p>Desenvolvido por Gabriela Corbari • Pesquisa de Mestrado UFPR</p>
+    </footer>
 </body>
 </html>
