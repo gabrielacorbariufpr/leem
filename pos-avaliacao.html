@@ -1,51 +1,42 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pós-Avaliação - LEEM</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>pos-avaliacao</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <header>
-    <img src="logo-LEEM.png" alt="Logo LEEM" class="logo">
-    <h1>Pós-Avaliação - LEEM</h1>
-    <div class="xp-display">
-      <img src="pote-ouro.svg" alt="Pote de moedas" class="pote">
-      <span id="xp">0 XP</span>
+  <div id="xp-notifier"></div>
+  <header class="header-centered">
+    <img src="logo-LEEM.png" alt="Logo LEEM" class="logo"/>
+    <div class="header-text-block">
+      <h1 class="leem-subtitle">Pós-avaliação do LEEM</h1>
+      <p class="leem-description">Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
+    </div>
+    <div class="xp-container" title="Você ganha +15 XP a cada 20 caracteres digitados. Os pontos são cumulativos!">
+      <img src="pote-ouro.svg" alt="Pote de Ouro" class="xp-icon"/>
+      <span>XP: <span id="xp">0</span></span>
     </div>
   </header>
 
   <main>
-    <div class="ovo-container">
-      <img id="ovo-img" src="ovo1.png" alt="Ovo">
+    <section id="question-container"></section>
+
+    <div class="navigation">
+      <button id="prevBtn">Voltar</button>
+      <button id="nextBtn">Avançar</button>
     </div>
 
-    <div id="questionario" class="question-card">
-      <!-- Pergunta aparece aqui -->
-    </div>
-
-    <div class="progress-bar">
-      <div id="progress-inner"></div>
-    </div>
-
-    <div class="botoes">
-      <button id="voltar">◀ Voltar</button>
-      <button id="avancar">Avançar ▶</button>
-    </div>
-
-    <div id="xp-popup" class="xp-popup">+15 XP 🪙</div>
-
-    <div id="etapa-concluida" class="etapa-popup hidden">
-      <p>✅ Etapa concluída!</p>
-      <p><span id="etapa-xp">XP:</span></p>
-      <div class="progress-bar-mini">
-        <div id="progress-inner-mini"></div>
-      </div>
-      <button id="proxima-etapa">Próxima Etapa ▶</button>
+    <div class="progress-wrapper" title="A barra de progresso representa o avanço nas 11 perguntas do questionário.">
+      <div class="progress"><div id="progressBar"></div></div>
     </div>
   </main>
+
+  <footer>
+    <p>Desenvolvido por Gabriela Corbari dos Santos • O LEEM é oriundo de uma pesquisa de mestrado da Universidade Federal do Paraná (UFPR).</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
