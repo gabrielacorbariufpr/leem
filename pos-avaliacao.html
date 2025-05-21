@@ -1,50 +1,45 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pós-Avaliação - LEEM</title>
+    <title>Missão: Pós-avaliação - LEEM</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
 </head>
-
 <body>
-    <header class="header">
-        <div class="header-left">
-            <img src="logo-LEEM.png" alt="Logo LEEM" class="logo">
-            <h1>Missão: Pós-avaliação</h1>
-        </div>
-        <div class="header-right">
-            ⏳ <span id="tempo">00:00</span>
-            ⭐ <span id="xpTotal">0 XP</span>
+    <header>
+        <img src="logo-LEEM.png" alt="Logo LEEM" class="logo">
+        <h1>Missão: Pós-avaliação</h1>
+        <div class="status-box">
+            <span id="tempo">⏳ 00:00</span>
+            <span id="xpTotal">⭐ 0 XP</span>
         </div>
     </header>
 
     <main>
-        <p class="objetivo">Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
+        <p class="objetivo">Refletir sobre os resultados da experiência após sua finalização.</p>
 
-        <div class="card-pergunta">
-            <h2>01. Todos os integrantes do grupo participaram ativamente? Comente.</h2>
-            
-            <textarea id="resposta" rows="6" placeholder="Digite sua resposta..."></textarea>
-            
-            <div class="progresso-container">
-                <div id="barra-progresso"></div>
+        <div class="etapa-box">
+            <div id="pergunta-box"></div>
+            <textarea id="resposta" maxlength="500" placeholder="Digite sua resposta..."></textarea>
+            <div class="contador"><span id="contador-caracteres">0</span> / 500</div>
+            <div class="barra-missao">
+                <div id="progresso-missao"></div>
             </div>
-
-            <div class="contador">
-                <span id="contador-caracteres">0 / 500</span>
-            </div>
-
             <div class="botoes">
-                <button id="btnVoltar" disabled>◀ Voltar</button>
+                <button id="btnVoltar">◀ Voltar</button>
                 <button id="btnAvancar">Avançar ▶</button>
             </div>
         </div>
     </main>
 
+    <div id="notificacao"></div>
+
     <footer>
-            Desenvolvido por Gabriela Corbari dos Santos • O LEEM é oriundo de uma pesquisa de mestrado da Universidade Federal do Paraná (UFPR).
+        Desenvolvido por Gabriela Corbari • Pesquisa de Mestrado UFPR
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
