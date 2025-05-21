@@ -2,46 +2,48 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Missão: Pós-avaliação</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 
 <body>
 
   <header class="header">
-    <img src="logo-LEEM.png" alt="Logo LEEM" class="logo" />
-    <h1>Missão: Pós-avaliação</h1>
-    <p>Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
-
-    <div class="xp-container" title="Você ganha +15 XP a cada 20 caracteres digitados.">
-      <img src="pote-ouro.svg" alt="Pote de ouro" class="pote-ouro" />
-      <span>XP: <span id="xp">0</span></span>
+    <div class="header-left">
+      <img src="logo-LEEM.png" alt="Logo LEEM" class="logo"/>
+    </div>
+    <div class="header-center">
+      <h1>Missão: Pós-avaliação</h1>
+      <p>Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
+    </div>
+    <div class="header-right">
+      <div class="xp-box">
+        ⭐ XP: <span id="xp">0</span>
+      </div>
+      <div class="tempo-box">
+        ⏱️ <span id="timer">00:00</span>
+      </div>
     </div>
   </header>
 
   <main>
 
     <section id="question-container">
-      <!-- Aqui entram as perguntas dinamicamente -->
+      <!-- Pergunta renderizada aqui -->
     </section>
 
     <div class="status">
-      <div class="tempo">
-        ⏱️ Tempo: <span id="timer">00:00</span>
-      </div>
       <div class="contador">
-        <span id="charCount">0</span>/300 caracteres
+        <span id="charCount">0</span> caracteres
       </div>
     </div>
 
     <div class="navigation">
-      <button id="prevBtn">Voltar</button>
-      <button id="nextBtn">Avançar</button>
+      <button id="nextBtn">Concluir etapa!</button>
     </div>
 
-    <div class="progress-wrapper" title="Progresso baseado na quantidade de perguntas">
+    <div class="progress-wrapper">
       <div class="progress-bar">
         <div id="progressBar"></div>
       </div>
