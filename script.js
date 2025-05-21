@@ -1,148 +1,82 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const questions = [
-    "1. A tecnologia educacional utilizada proporcionou uma boa usabilidade?",
-    "2. Você se sentiu motivado(a) ao utilizar esta tecnologia?",
-    "3. As funcionalidades da tecnologia atenderam suas necessidades?",
-    "4. A navegação dentro da tecnologia foi clara e intuitiva?",
-    "5. Você encontrou barreiras ou dificuldades técnicas durante o uso?",
-    "6. O design da interface facilitou sua interação com a tecnologia?",
-    "7. A tecnologia contribuiu para o seu aprendizado?",
-    "8. A linguagem utilizada na tecnologia foi adequada e compreensível?",
-    "9. Você se sentiu engajado(a) ao utilizar essa tecnologia?",
-    "10. A tecnologia promoveu a sua autonomia no processo de aprendizagem?",
-    "11. Você indicaria essa tecnologia para outros estudantes?"
-  ];
 
-  let currentQuestion = 0;
-  let xp = 0;
-  let timer = 0;
-  let interval = null;
-  const xpPerBlock = 15;
-  const charBlock = 20;
-  const answers = Array(questions.length).fill("");
-  const tempos = Array(questions.length).fill(0);
-  const container = document.getElementById("question-container");
-  const progressBar = document.getElementById("progressBar");
-  const xpDisplay = document.getElementById("xp");
-  const nextBtn = document.getElementById("nextBtn");
-  const prevBtn = document.getElementById("prevBtn");
-  const xpNotifier = document.getElementById("xp-notifier");
+const perguntas = [
+  "01. Todos os integrantes do grupo participaram ativamente? Comente.",
+  "02. Você já havia vivenciado alguma situação semelhante? Comente.",
+  "03. Qual foi a sua contribuição para a atividade? Comente.",
+  "04. Você contribuiu com ideias próprias? Comente.",
+  "05. Você já fez atividade como essa? Comente.",
+  "06. Você se sentiu responsável durante a atividade? Comente.",
+  "07. A atividade incentivou o uso de TDICs? Comente.",
+  "08. Gerou novos desafios ou ficou na zona de conforto? Comente.",
+  "09. O aprendizado te ajudará no futuro? Comente.",
+  "10. A atividade foi interessante e instigante? Comente.",
+  "11. A atividade se relaciona com seus conhecimentos prévios? Comente."
+];
 
-  function startTimer() {
-    timer = 0;
-    interval = setInterval(() => {
-      timer++;
-      const timerEl = document.getElementById("question-timer");
-      if (timerEl) {
-        timerEl.textContent = "⏱ Tempo: " + formatTime(timer);
-      }
-    }, 1000);
-  }
+let perguntaAtual = 0;
+let xp = 0;
+const xpPorPergunta = 15;
 
-  function stopTimer() {
-    clearInterval(interval);
-    tempos[currentQuestion] = timer;
-  }
+const questionario = document.getElementById('questionario');
+const xpPopup = document.getElementById('xp-popup');
+const xpDisplay = document.getElementById('xp');
+const progressInner = document.getElementById('progress-inner');
+const etapaPopup = document.getElementById('etapa-concluida');
+const ovoImg = document.getElementById('ovo-img');
 
-  function formatTime(seconds) {
-    const min = String(Math.floor(seconds / 60)).padStart(2, '0');
-    const sec = String(seconds % 60).padStart(2, '0');
-    return min + ":" + sec;
-  }
+function atualizarPergunta() {
+  questionario.innerHTML = `
+    <div>
+      <p><strong>${perguntas[perguntaAtual]}</strong></p>
+      <textarea placeholder="Digite sua resposta..."></textarea>
+    </div>
+  `;
+}
 
-  function loadQuestion(index) {
-    if (!container) return;
-    const currentAnswer = answers[index] || "";
-    const charCount = currentAnswer.length;
-    const charColor = charCount >= 300 ? "red" : "#333";
+function mostrarPopupXP() {
+  xpPopup.style.display = 'block';
+  setTimeout(() => {
+    xpPopup.style.display = 'none';
+  }, 20000);
+}
 
-    container.innerHTML = `
-      <div class="question-card">
-        <h2>${questions[index]}</h2>
-        <div id="question-timer" class="question-timer">⏱ Tempo: 00:00</div>
-        <textarea id="answer" maxlength="300" placeholder="Digite sua resposta aqui...">${currentAnswer}</textarea>
-        <div id="charCount" class="char-counter" style="color: ${charColor};">${charCount}/300 caracteres</div>
-      </div>
-    `;
+function atualizarProgresso() {
+  const progresso = ((perguntaAtual + 1) / perguntas.length) * 100;
+  progressInner.style.width = progresso + '%';
 
-    const answerField = document.getElementById("answer");
-    if (answerField) {
-      answerField.addEventListener("input", (e) => {
-        const newLength = e.target.value.length;
-        const oldLength = answers[currentQuestion].length;
-        answers[currentQuestion] = e.target.value;
+  if (xp < 60) ovoImg.src = 'ovo1.png';
+  else if (xp < 150) ovoImg.src = 'ovo2.png';
+  else if (xp < 250) ovoImg.src = 'ovo3.png';
+  else ovoImg.src = 'dino.png';
+}
 
-        const oldBlocks = Math.floor(oldLength / charBlock);
-        const newBlocks = Math.floor(newLength / charBlock);
-        const diff = newBlocks - oldBlocks;
-        if (diff !== 0) updateXP(diff * xpPerBlock);
-
-        const charCounter = document.getElementById("charCount");
-        if (charCounter) {
-          charCounter.textContent = newLength + "/300 caracteres";
-          charCounter.style.color = newLength >= 300 ? "red" : "#333";
-        }
-      });
-    }
-
-    updateProgressBar();
-    updateXP(0);
-    prevBtn.style.display = index === 0 ? "none" : "inline-block";
-
-    startTimer();
-  }
-
-  function updateProgressBar() {
-    if (progressBar) {
-      const percentage = ((currentQuestion + 1) / questions.length) * 100;
-      progressBar.style.width = percentage + "%";
-    }
-  }
-
-  function updateXP(amount) {
-    xp += amount;
-    if (xp < 0) xp = 0;
-    if (xpDisplay) xpDisplay.textContent = xp;
-    if (amount !== 0 && xpNotifier) {
-      xpNotifier.textContent = amount > 0 ? `🎉 Você ganhou +${amount} XP!` : `⚠️ Você perdeu ${amount} XP!`;
-      xpNotifier.style.backgroundColor = amount > 0 ? "#28a745" : "#c0392b";
-      xpNotifier.classList.add("show");
-      setTimeout(() => xpNotifier.classList.remove("show"), 1200);
-    }
-  }
-
-  nextBtn.addEventListener("click", () => {
-    const answer = document.getElementById("answer");
-    if (answer) {
-      const response = answer.value.trim();
-      answers[currentQuestion] = response;
-      if (response.length > 0) {
-        stopTimer();
-        if (currentQuestion < questions.length - 1) {
-          currentQuestion++;
-          loadQuestion(currentQuestion);
-        } else {
-          localStorage.setItem("leem_tempos", JSON.stringify(tempos));
-          localStorage.setItem("leem_xp", xp);
-          window.location.href = "leem-finalizacao-dinamica.html";
-        }
-      } else {
-        alert("Por favor, escreva uma resposta antes de continuar.");
-      }
-    }
-  });
-
-  prevBtn.addEventListener("click", () => {
-    const answer = document.getElementById("answer");
-    if (answer) {
-      answers[currentQuestion] = answer.value.trim();
-      stopTimer();
-      if (currentQuestion > 0) {
-        currentQuestion--;
-        loadQuestion(currentQuestion);
-      }
-    }
-  });
-
-  loadQuestion(currentQuestion);
+document.getElementById('avancar').addEventListener('click', () => {
+  xp += xpPorPergunta;
+  xpDisplay.textContent = xp + ' XP';
+  mostrarPopupXP();
+  etapaPopup.classList.remove('hidden');
 });
+
+document.getElementById('proxima-etapa').addEventListener('click', () => {
+  perguntaAtual++;
+  etapaPopup.classList.add('hidden');
+
+  if (perguntaAtual >= perguntas.length) {
+    window.location.href = 'leem-finalizacao-dinamica.html';
+  } else {
+    atualizarPergunta();
+    atualizarProgresso();
+  }
+});
+
+document.getElementById('voltar').addEventListener('click', () => {
+  if (perguntaAtual > 0) {
+    perguntaAtual--;
+    atualizarPergunta();
+    atualizarProgresso();
+  }
+});
+
+// Inicializar
+atualizarPergunta();
+atualizarProgresso();
