@@ -1,52 +1,41 @@
 
 let xp = 0;
-let seconds = 0;
-let timerInterval;
+let segundos = 0;
+let minutos = 0;
 
-window.onload = function() {
-    startTimer();
-    document.getElementById("answer").addEventListener("input", handleInput);
-}
+const resposta = document.getElementById('resposta');
+const charCount = document.getElementById('charCount');
+const xpDisplay = document.getElementById('xp');
+const tempoDisplay = document.getElementById('tempo');
+const notifier = document.getElementById('xp-notifier');
 
-function handleInput(e) {
-    const texto = e.target.value;
-    const charCount = texto.length;
-    const charLimit = 300;
-
-    document.getElementById("charCount").innerText = charCount;
-
-    const xpAtual = Math.floor(charCount / 20) * 15;
-    if (xpAtual !== xp) {
-        if (xpAtual > xp) {
-            showXpNotification(`🎉 Parabéns! Você ganhou +${xpAtual - xp} XP!`);
-        } else {
-            showXpNotification(`💔 Que triste! Você perdeu ${xp - xpAtual} XP.`);
-        }
-        xp = xpAtual;
-        document.getElementById("xp").innerText = xp;
+resposta.addEventListener('input', () => {
+    const length = resposta.value.length;
+    charCount.textContent = length;
+    const novoXP = Math.floor(length / 20) * 15;
+    if (novoXP > xp) {
+        showNotifier(`🎉 Parabéns! Você ganhou ${novoXP - xp} XP!`, 'ganho');
+    } else if (novoXP < xp) {
+        showNotifier(`💔 Que triste! Você perdeu ${xp - novoXP} XP.`, 'perda');
     }
-}
+    xp = novoXP;
+    xpDisplay.textContent = xp;
+});
 
-function showXpNotification(msg) {
-    const notifier = document.getElementById("xp-notifier");
-    notifier.innerText = msg;
+setInterval(() => {
+    segundos++;
+    if (segundos === 60) {
+        minutos++;
+        segundos = 0;
+    }
+    tempoDisplay.textContent = (minutos < 10 ? "0" : "") + minutos + ":" + (segundos < 10 ? "0" : "") + segundos;
+}, 1000);
+
+function showNotifier(msg, tipo) {
+    notifier.textContent = msg;
+    notifier.className = 'notifier ' + (tipo === 'perda' ? 'perda' : '');
     notifier.style.display = 'block';
-    notifier.style.opacity = '1';
     setTimeout(() => {
-        notifier.style.opacity = '0';
-        setTimeout(() => notifier.style.display = 'none', 500);
-    }, 1500);
-}
-
-function startTimer() {
-    timerInterval = setInterval(() => {
-        seconds++;
-        const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
-        const secs = String(seconds % 60).padStart(2, '0');
-        document.getElementById('timer').innerText = `${mins}:${secs}`;
-    }, 1000);
-}
-
-function nextStep() {
-    alert("Etapa concluída!");
+        notifier.style.display = 'none';
+    }, 2000);
 }
