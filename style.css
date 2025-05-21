@@ -95,17 +95,19 @@ textarea {
   margin-bottom: 20px;
 }
 
-button {
-  padding: 10px 20px;
-  background-color: #0077cc;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+.botao {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
-button:hover {
-  background-color: #005fa3;
+.botao:hover {
+    background-color: #0056b3;
 }
 
 /* XP Notifier */
