@@ -1,1 +1,50 @@
-// Conteúdo do arquivo pos-avaliacao.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pós-Avaliação - LEEM</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-left">
+            <img src="logo-LEEM.png" alt="Logo LEEM" class="logo">
+            <h1>Missão: Pós-avaliação</h1>
+        </div>
+        <div class="header-right">
+            ⏳ <span id="tempo">00:00</span>
+            ⭐ <span id="xpTotal">0 XP</span>
+        </div>
+    </header>
+
+    <main>
+        <p class="objetivo">Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
+
+        <div class="card-pergunta">
+            <h2>01. Todos os integrantes do grupo participaram ativamente? Comente.</h2>
+            
+            <textarea id="resposta" rows="6" placeholder="Digite sua resposta..."></textarea>
+            
+            <div class="progresso-container">
+                <div id="barra-progresso"></div>
+            </div>
+
+            <div class="contador">
+                <span id="contador-caracteres">0 / 500</span>
+            </div>
+
+            <div class="botoes">
+                <button id="btnVoltar" disabled>◀ Voltar</button>
+                <button id="btnAvancar">Avançar ▶</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        Desenvolvido por Gabriela Corbari • Pesquisa de Mestrado UFPR
+    </footer>
+</body>
+</html>
