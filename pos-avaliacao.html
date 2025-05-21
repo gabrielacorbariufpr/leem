@@ -6,42 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Missão: Pós-avaliação - LEEM</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
     <header class="header">
         <img src="logo-LEEM.png" alt="Logo LEEM" class="logo">
-        <div>
+        <div class="header-text">
             <h1>Missão: Pós-avaliação</h1>
-            <p>Refletir sobre os resultados da experiência após sua finalização.</p>
+            <p>Compartilhe suas experiências e reflexões enquanto ganha pontos e reflexões!</p>
+        </div>
+        <div class="status-box">
+            <div>⏳ <span id="timer">00:00</span></div>
+            <div>⭐ <span id="xp">0 XP</span></div>
         </div>
     </header>
 
     <main>
-        <div class="status">
-            <div>⏱️ <span id="cronometro">00:00</span></div>
-            <div>⭐ XP acumulado: <span id="xp">0</span> XP</div>
-            <div class="barra-progresso">
-                <div id="barra-preenchida"></div>
-            </div>
-            <div id="etapa-indicador">Etapa 1 de 11</div>
-        </div>
-
-        <div class="card-pergunta">
+        <div class="question-box">
             <h2>01. Todos os integrantes do grupo participaram ativamente? Comente.</h2>
-            <textarea id="resposta" maxlength="500" placeholder="Digite sua resposta..."></textarea>
-            <div class="contador">
-                <span id="contador-caracteres">0</span>/500 caracteres
-            </div>
-            <div class="botoes">
-                <button id="voltar" disabled>◀ Voltar</button>
-                <button id="avancar">Avançar ▶</button>
+            <textarea id="answer" placeholder="Digite sua resposta..."></textarea>
+            <div class="char-counter"><span id="charCount">0</span> / 500</div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
             </div>
         </div>
     </main>
 
-    <footer>
-        Desenvolvido por Gabriela Corbari • Pesquisa de Mestrado UFPR
-    </footer>
+    <div class="notification" id="notification"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
