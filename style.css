@@ -46,28 +46,31 @@ body {
   font-weight: bold;
 }
 
-/* ======= NOTIFICAÇÃO ======= */
+/* ======= NOTIFICAÇÃO DE XP ======= */
 .xp-notifier {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  padding: 12px 20px;
+  border-radius: 8px;
+  background-color: #4caf50;
   color: white;
   display: none;
   opacity: 1;
   font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   z-index: 9999;
+  max-width: 280px;
 }
 
-.ganho {
+.xp-notifier.ganho {
   background-color: #4caf50;
 }
 
-.perda {
+.xp-notifier.perda {
   background-color: #f44336;
 }
+
 
 /* ======= MAIN CARD ======= */
 main {
