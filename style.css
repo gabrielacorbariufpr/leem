@@ -137,6 +137,7 @@ button:hover {
   text-align: center;
   position: fixed;
   bottom: 0;
+  left: 0;
   width: 100%;
   color: #002b5c;
 }
