@@ -4,30 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pós-Avaliação - LEEM</title>
+    <title>Missão: Pós-avaliação - LEEM</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Pós-Avaliação - LEEM</h1>
+    <header class="header">
+        <img src="logo-LEEM.png" alt="Logo LEEM" class="logo">
+        <div>
+            <h1>Missão: Pós-avaliação</h1>
+            <p>Refletir sobre os resultados da experiência após sua finalização.</p>
+        </div>
     </header>
 
     <main>
-        <div id="question-container"></div>
-
-        <div id="progress-screen" class="hidden">
-            <h2>Etapa Concluída ✅</h2>
-            <p id="xp-display">XP acumulado: 0</p>
-            <div class="progress-bar">
-                <div id="progress-fill"></div>
+        <div class="status">
+            <div>⏱️ <span id="cronometro">00:00</span></div>
+            <div>⭐ XP acumulado: <span id="xp">0</span> XP</div>
+            <div class="barra-progresso">
+                <div id="barra-preenchida"></div>
             </div>
-            <button id="next-stage">Próxima Etapa ▶</button>
+            <div id="etapa-indicador">Etapa 1 de 11</div>
+        </div>
+
+        <div class="card-pergunta">
+            <h2>01. Todos os integrantes do grupo participaram ativamente? Comente.</h2>
+            <textarea id="resposta" maxlength="500" placeholder="Digite sua resposta..."></textarea>
+            <div class="contador">
+                <span id="contador-caracteres">0</span>/500 caracteres
+            </div>
+            <div class="botoes">
+                <button id="voltar" disabled>◀ Voltar</button>
+                <button id="avancar">Avançar ▶</button>
+            </div>
         </div>
     </main>
 
     <footer>
-        <p>Desenvolvido por Gabriela Corbari • Pesquisa de Mestrado UFPR</p>
+        Desenvolvido por Gabriela Corbari • Pesquisa de Mestrado UFPR
     </footer>
 </body>
 </html>
