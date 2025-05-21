@@ -1,9 +1,15 @@
-// Perguntas
 const questions = [
-  "A tecnologia educacional utilizada proporcionou uma boa usabilidade?",
-  "Quais pontos você considera positivos nesta experiência?",
-  "O que poderia ser melhorado?",
-  // [... até a 11ª pergunta]
+  "Descreva sua percepção sobre a usabilidade da tecnologia utilizada.",
+  "Quais foram os pontos positivos dessa experiência?",
+  "O que você acha que poderia ser melhorado?",
+  "A experiência contribuiu para seu aprendizado?",
+  "Quão satisfeito você ficou com a atividade realizada?",
+  "Você encontrou alguma dificuldade durante a atividade?",
+  "A proposta foi atrativa e motivadora?",
+  "Quais sugestões você deixaria para melhorar a experiência?",
+  "Se você pudesse resumir essa experiência em uma palavra, qual seria?",
+  "O quanto essa tecnologia favoreceu seu desenvolvimento?",
+  "Deixe um comentário final sobre sua experiência."
 ];
 
 let currentQuestion = 0;
@@ -36,22 +42,28 @@ function renderQuestion() {
   updateProgress();
 }
 
+// Input XP
 function handleInput(e) {
   const texto = e.target.value;
   document.getElementById("charCount").innerText = texto.length;
 
   const xpAtual = Math.floor(texto.length / 20) * 15;
   if (xpAtual !== xp) {
-    showXpNotification(xpAtual > xp ? `+${xpAtual - xp} XP` : `-${xp - xpAtual} XP`);
+    if (xpAtual > xp) {
+      showXpNotification(`+${xpAtual - xp} XP`, 'ganho');
+    } else {
+      showXpNotification(`Que triste! Você perdeu ${xp - xpAtual} XP`, 'perda');
+    }
     xp = xpAtual;
     document.getElementById("xp").innerText = xp;
   }
 }
 
-// Notificação de XP
-function showXpNotification(msg) {
+// XP Notifier
+function showXpNotification(msg, tipo) {
   const notifier = document.getElementById("xp-notifier");
-  notifier.innerText = `Você ganhou ${msg}!`;
+  notifier.innerText = msg;
+  notifier.className = tipo;
   notifier.style.display = 'block';
   notifier.style.opacity = '1';
   setTimeout(() => {
@@ -71,13 +83,6 @@ document.getElementById("nextBtn").addEventListener("click", () => {
   }
 });
 
-document.getElementById("prevBtn").addEventListener("click", () => {
-  if (currentQuestion > 0) {
-    currentQuestion--;
-    renderQuestion();
-  }
-});
-
 // Barra de progresso
 function updateProgress() {
   const progress = ((currentQuestion + 1) / questions.length) * 100;
@@ -86,4 +91,4 @@ function updateProgress() {
 
 // Inicializar
 renderQuestion();
-startTimer();// JavaScript atualizado
+startTimer();
