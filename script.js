@@ -39,15 +39,18 @@ function renderQuestion() {
   `;
 
   document.getElementById("resposta").addEventListener("input", handleInput);
-  updateProgress();
 }
 
 // Input XP
 function handleInput(e) {
   const texto = e.target.value;
-  document.getElementById("charCount").innerText = texto.length;
+  const charCount = texto.length;
+  const charLimit = 300;
 
-  const xpAtual = Math.floor(texto.length / 20) * 15;
+  document.getElementById("charCount").innerText = charCount;
+  document.getElementById("charLimit").innerText = charLimit;
+
+  const xpAtual = Math.floor(charCount / 20) * 15;
   if (xpAtual !== xp) {
     if (xpAtual > xp) {
       showXpNotification(`+${xpAtual - xp} XP`, 'ganho');
@@ -82,12 +85,6 @@ document.getElementById("nextBtn").addEventListener("click", () => {
     window.location.href = 'leem-finalizacao-dinamica.html';
   }
 });
-
-// Barra de progresso
-function updateProgress() {
-  const progress = ((currentQuestion + 1) / questions.length) * 100;
-  document.getElementById("progressBar").style.width = `${progress}%`;
-}
 
 // Inicializar
 renderQuestion();
