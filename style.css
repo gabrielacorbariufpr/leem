@@ -1,4 +1,3 @@
-/* CSS atualizado *//* Reset básico */
 * {
   margin: 0;
   padding: 0;
@@ -16,35 +15,41 @@ body {
 /* Cabeçalho */
 .header {
   background-color: #e6f0fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.header-left .logo {
+  width: 80px;
+}
+
+.header-center {
   text-align: center;
-  padding: 20px;
 }
 
-.logo {
-  width: 100px;
-}
-
-.header h1 {
-  margin-top: 10px;
-  font-size: 26px;
+.header-center h1 {
+  font-size: 22px;
   color: #003366;
 }
 
-.header p {
-  margin-top: 5px;
-  font-size: 16px;
+.header-center p {
+  font-size: 14px;
 }
 
-.xp-container {
-  margin-top: 10px;
+.header-right {
+  text-align: right;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.pote-ouro {
-  width: 20px;
+.xp-box, .tempo-box {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 4px 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
 
 /* Pergunta */
@@ -63,17 +68,17 @@ body {
 
 textarea {
   width: 100%;
-  min-height: 120px;
+  min-height: 140px;
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
   resize: vertical;
 }
 
-/* Tempo e contador */
+/* Contador */
 .status {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-bottom: 10px;
   font-size: 14px;
 }
@@ -81,7 +86,7 @@ textarea {
 /* Navegação */
 .navigation {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-bottom: 20px;
 }
 
@@ -117,13 +122,21 @@ button:hover {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #0077cc;
-  color: white;
-  padding: 8px 15px;
+  padding: 10px 15px;
   border-radius: 8px;
   display: none;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  font-weight: bold;
+}
+
+#xp-notifier.ganho {
+  background-color: #28a745;
+  color: white;
+}
+
+#xp-notifier.perda {
+  background-color: #d93025;
+  color: white;
 }
 
 /* Rodapé */
