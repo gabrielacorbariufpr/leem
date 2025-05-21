@@ -1,28 +1,30 @@
+<header>
+  <img src="logo-LEEM.png" alt="Logo do LEEM" class="logo">
+  <h1 class="leem-subtitle">Missão: Pós-avaliação</h1>
+  <p class="leem-description">Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
+  <div class="xp-container" title="Você ganha +15 XP a cada 20 caracteres digitados.">
+    <img src="pote-ouro.svg" alt="Pote de Ouro" class="xp-icon">
+    <span>XP: <span id="xp">0</span></span>
+  </div>
+</header>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LEEM - Pós-avaliação</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-</head>
-<body>
-    <div class="header">
-        <img src="logo-LEEM.png" alt="Logo LEEM" class="logo">
-        <h1>Questionário de Pós-avaliação do LEEM</h1>
+<main>
+  <section id="question-container"></section>
+
+  <div class="navigation">
+    <button id="prevBtn">Voltar</button>
+    <button id="nextBtn">Avançar</button>
+  </div>
+
+  <div class="progress-wrapper" title="A barra representa seu avanço nas 11 perguntas">
+    <div class="progress">
+      <div id="progressBar"></div>
     </div>
-    <div class="content">
-        <div id="question-container"></div>
-        <div class="navigation">
-            <button id="backBtn">◀ Voltar</button>
-            <button id="nextBtn">Avançar ▶</button>
-        </div>
-        <div class="progress-container">
-            <div id="progress-bar"></div>
-        </div>
-        <div id="xp-display">⭐ 0 XP acumulado</div>
-    </div>
-</body>
-</html>
+  </div>
+</main>
+
+<footer>
+  <p>Desenvolvido por Gabriela Corbari dos Santos • LEEM é oriundo de uma pesquisa de mestrado da UFPR.</p>
+</footer>
+
+<div id="xp-notifier"></div>
