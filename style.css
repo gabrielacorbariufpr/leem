@@ -1,89 +1,77 @@
-
-* {
-    box-sizing: border-box;
-}
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f9fbfd;
+  font-family: Arial, sans-serif;
+  background: #f7f9fb;
+  margin: 0;
 }
-header {
-    background-color: #e6f0fa;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
+.header {
+  background: #e3f0fb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
 }
-header .logo {
-    width: 60px;
+.logo {
+  height: 60px;
 }
-header .titulo {
-    text-align: center;
+.titulo {
+  text-align: center;
 }
-header .info {
-    text-align: right;
+.info-xp-tempo {
+  text-align: right;
 }
-main {
-    padding: 20px;
-}
-.card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 1000px;
-    margin: 0 auto;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-textarea {
-    width: 100%;
-    height: 150px;
-    padding: 10px;
-    margin-top: 10px;
-}
-.contador {
-    margin-top: 5px;
-    color: #555;
-}
-button {
-    display: block;
-    margin: 20px auto 0 auto;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-}
-footer {
-    background-color: #e6f0fa;
-    text-align: center;
-    padding: 10px;
-    position: relative;
-}
-.notifier {
-    display: none;
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-}
-.notifier.perda {
-    background-color: #e74c3c;
-}
-
 .xp-notifier {
   position: fixed;
-  bottom: 30px; /* ou top: 30px; se preferir em cima */
-  right: 30px;
+  bottom: 20px;
+  right: 20px;
   padding: 10px 20px;
   border-radius: 10px;
-  background-color: #4caf50;
-  color: white;
   display: none;
   opacity: 1;
-  font-weight: bold;
-  z-index: 999;
+  z-index: 9999;
+}
+.ganho {
+  background-color: #4caf50;
+  color: white;
+}
+.perda {
+  background-color: #f44336;
+  color: white;
+}
+main {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.card {
+  background: white;
+  padding: 20px;
+  width: 800px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+textarea {
+  width: 100%;
+  resize: none;
+}
+button {
+  background: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover {
+  background: #0056b3;
+}
+.contador {
+  margin-top: 5px;
+  color: gray;
+  text-align: right;
+}
+footer {
+  background: #e3f0fb;
+  padding: 10px;
+  text-align: center;
+  margin-top: 30px;
 }
