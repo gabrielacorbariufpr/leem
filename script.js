@@ -1,41 +1,65 @@
-
 let xp = 0;
+let charCount = 0;
+
+// Cronômetro
 let segundos = 0;
-let minutos = 0;
-
-const resposta = document.getElementById('resposta');
-const charCount = document.getElementById('charCount');
-const xpDisplay = document.getElementById('xp');
-const tempoDisplay = document.getElementById('tempo');
-const notifier = document.getElementById('xp-notifier');
-
-resposta.addEventListener('input', () => {
-    const length = resposta.value.length;
-    charCount.textContent = length;
-    const novoXP = Math.floor(length / 20) * 15;
-    if (novoXP > xp) {
-        showNotifier(`🎉 Parabéns! Você ganhou ${novoXP - xp} XP!`, 'ganho');
-    } else if (novoXP < xp) {
-        showNotifier(`💔 Que triste! Você perdeu ${xp - novoXP} XP.`, 'perda');
-    }
-    xp = novoXP;
-    xpDisplay.textContent = xp;
-});
-
+const cronometro = document.getElementById('cronometro');
 setInterval(() => {
     segundos++;
-    if (segundos === 60) {
-        minutos++;
-        segundos = 0;
-    }
-    tempoDisplay.textContent = (minutos < 10 ? "0" : "") + minutos + ":" + (segundos < 10 ? "0" : "") + segundos;
+    const min = String(Math.floor(segundos / 60)).padStart(2, '0');
+    const seg = String(segundos % 60).padStart(2, '0');
+    cronometro.textContent = `${min}:${seg}`;
 }, 1000);
 
-function showNotifier(msg, tipo) {
-    notifier.textContent = msg;
-    notifier.className = 'notifier ' + (tipo === 'perda' ? 'perda' : '');
+// Função para mostrar notificação de XP
+function showXpNotification(mensagem, tipo) {
+    let notifier = document.getElementById('xp-notifier');
+    if (!notifier) {
+        notifier = document.createElement('div');
+        notifier.id = 'xp-notifier';
+        notifier.style.position = 'fixed';
+        notifier.style.top = '20px';
+        notifier.style.left = '50%';
+        notifier.style.transform = 'translateX(-50%)';
+        notifier.style.padding = '10px 20px';
+        notifier.style.color = 'white';
+        notifier.style.borderRadius = '10px';
+        notifier.style.fontWeight = 'bold';
+        notifier.style.zIndex = '9999';
+        document.body.appendChild(notifier);
+    }
+
+    notifier.innerText = mensagem;
+    notifier.style.backgroundColor = tipo === 'ganho' ? '#28a745' : '#dc3545';
     notifier.style.display = 'block';
+    notifier.style.opacity = '1';
+
     setTimeout(() => {
-        notifier.style.display = 'none';
-    }, 2000);
+        notifier.style.opacity = '0';
+        setTimeout(() => notifier.style.display = 'none', 500);
+    }, 1500);
 }
+
+// Função para calcular XP
+const textarea = document.getElementById('resposta');
+const charCountSpan = document.getElementById('charCount');
+const xpSpan = document.getElementById('xp');
+
+textarea.addEventListener('input', () => {
+    const texto = textarea.value;
+    const count = texto.length;
+    charCountSpan.innerText = count;
+
+    const novoXp = Math.floor(count / 20) * 15;
+
+    if (novoXp !== xp) {
+        if (novoXp > xp) {
+            showXpNotification(`🎉 Parabéns! Você ganhou +${novoXp - xp} XP!`, 'ganho');
+        } else {
+            showXpNotification(`💔 Que triste! Você perdeu ${xp - novoXp} XP.`, 'perda');
+        }
+
+        xp = novoXp;
+        xpSpan.innerText = xp;
+    }
+});
