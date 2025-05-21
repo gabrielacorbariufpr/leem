@@ -1,53 +1,215 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Missão: Pós-avaliação</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Missão: Pós-avaliação</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- Cabeçalho -->
-    <header class="header">
-        <div class="logo">
-            <img src="assets/logo-leem.png" alt="Logo LEEM">
-        </div>
-        <div class="titulo">
-            <h1>Missão: Pós-avaliação</h1>
-            <p>Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
-        </div>
-        <div class="info-xp-tempo">
-            <div class="xp" title="Você ganha +15 XP a cada 20 caracteres digitados. Os pontos são cumulativos.">
-                ⭐ XP: <span id="xp">0</span>
-            </div>
-            <div class="tempo">
-                ⏱️ <span id="cronometro">00:00</span>
-            </div>
-        </div>
-    </header>
 
-    <!-- Conteúdo principal -->
-    <main>
-        <div class="card">
-            <div class="pergunta">
-                <h2>1. Descreva sua percepção sobre a usabilidade da tecnologia utilizada.</h2>
-                <textarea id="resposta" rows="5" placeholder="Digite sua resposta aqui..."></textarea>
-                <div class="contador-caracteres">
-                    <span id="charCount">0</span>/300 caracteres
-                </div>
-                <div class="botoes">
-                    <button id="btn-concluir">Concluir etapa!</button>
-                </div>
-            </div>
-        </div>
-    </main>
+  <!-- Cabeçalho -->
+  <header class="header">
+    <img src="logo-leem.png" alt="Logo LEEM" class="logo">
+    <div class="titulo">
+      <h1>Missão: Pós-avaliação</h1>
+      <p>Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
+    </div>
+    <div class="info-xp-tempo">
+      <div class="xp" title="Você ganha +15 XP a cada 20 caracteres digitados. Os pontos são cumulativos.">
+        ⭐ XP: <span id="xp">0</span>
+      </div>
+      <div class="tempo">
+        ⏱️ <span id="tempo">00:00</span>
+      </div>
+    </div>
+  </header>
 
-    <!-- Rodapé -->
-    <footer>
-        <p>Desenvolvido por Gabriela Corbari dos Santos • LEEM é oriundo de uma pesquisa de mestrado da UFPR.</p>
-    </footer>
+  <div id="xp-notifier"></div>
 
-    <script src="script.js"></script>
+  <!-- Conteúdo principal -->
+  <main>
+    <div class="card">
+      <h2 id="perguntaNumero"></h2>
+      <p id="perguntaTexto"></p>
+      <textarea id="resposta" rows="5" placeholder="Digite sua resposta aqui..."></textarea>
+      <div class="contador">
+        <span id="contadorCaracteres">0</span>/300 caracteres
+      </div>
+      <button onclick="proximaPergunta()">Concluir etapa!</button>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>Desenvolvido por Gabriela Corbari dos Santos • LEEM é oriundo de uma pesquisa de mestrado da UFPR.</p>
+  </footer>
+
+<script>
+const perguntas = [
+  "Todos os integrantes do grupo participaram ativamente? Comente.",
+  "Você já havia vivenciado alguma situação semelhante à atividade desenvolvida? Comente.",
+  "Qual foi a sua contribuição para a atividade? Comente.",
+  "Você contribuiu com ideias próprias (foi autêntico) na realização das atividades do projeto? Comente.",
+  "Você já fez alguma atividade como essa realizada? Se sim, dê exemplos.",
+  "Você se sentiu responsável/envolvido durante a realização da atividade? Comente.",
+  "Você sente que essa atividade incentivou o uso de TDICs em sua vida? Comente.",
+  "A atividade gerou novos desafios ou você permaneceu na sua zona de conforto? Comente.",
+  "Você acha que o aprendizado alcançado na atividade realizada te ajudará em situações de sua vida? Comente.",
+  "Você achou a atividade interessante, estimulante ou instigante? Comente.",
+  "Você sente que a atividade tem relação com os conceitos/assuntos que você já tinha aprendido? Comente."
+];
+
+let perguntaAtual = 0;
+let xp = 0;
+let tempo = 0;
+let timer;
+const respostas = [];
+
+function iniciar() {
+  carregarPergunta();
+  timer = setInterval(() => {
+    tempo++;
+    document.getElementById('tempo').innerText = formatarTempo(tempo);
+  }, 1000);
+}
+
+function carregarPergunta() {
+  document.getElementById('perguntaNumero').innerText = `Etapa ${perguntaAtual + 1}:`;
+  document.getElementById('perguntaTexto').innerText = perguntas[perguntaAtual];
+  document.getElementById('resposta').value = '';
+  document.getElementById('contadorCaracteres').innerText = '0';
+}
+
+document.getElementById('resposta').addEventListener('input', (e) => {
+  const texto = e.target.value;
+  const count = texto.length;
+  document.getElementById('contadorCaracteres').innerText = count;
+
+  const xpCalculado = Math.floor(count / 20) * 15;
+  if (xpCalculado > xp) {
+    mostrarNotificacao(`🎉 Parabéns! Você ganhou +${xpCalculado - xp} XP!`, 'ganho');
+  } else if (xpCalculado < xp) {
+    mostrarNotificacao(`💔 Que triste! Você perdeu ${xp - xpCalculado} XP.`, 'perda');
+  }
+  xp = xpCalculado;
+  document.getElementById('xp').innerText = xp;
+});
+
+function proximaPergunta() {
+  const resposta = document.getElementById('resposta').value.trim();
+  respostas.push(resposta);
+
+  if (perguntaAtual < perguntas.length - 1) {
+    perguntaAtual++;
+    carregarPergunta();
+  } else {
+    clearInterval(timer);
+    alert(`Missão concluída!\nXP final: ${xp}\nTempo: ${formatarTempo(tempo)}`);
+    window.location.href = "leem-finalizacao-dinamica.html";
+  }
+}
+
+function formatarTempo(segundos) {
+  const m = String(Math.floor(segundos / 60)).padStart(2, '0');
+  const s = String(segundos % 60).padStart(2, '0');
+  return `${m}:${s}`;
+}
+
+function mostrarNotificacao(texto, tipo) {
+  const notifier = document.getElementById('xp-notifier');
+  notifier.innerText = texto;
+  notifier.className = tipo;
+  notifier.style.display = 'block';
+  notifier.style.opacity = '1';
+
+  setTimeout(() => {
+    notifier.style.opacity = '0';
+    setTimeout(() => notifier.style.display = 'none', 500);
+  }, 2000);
+}
+
+window.onload = iniciar;
+</script>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f9fb;
+  margin: 0;
+}
+.header {
+  background: #e3f0fb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+}
+.logo {
+  height: 60px;
+}
+.titulo {
+  text-align: center;
+}
+.info-xp-tempo {
+  text-align: right;
+}
+.xp-notifier {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: none;
+}
+.ganho {
+  background-color: #4caf50;
+  color: white;
+}
+.perda {
+  background-color: #f44336;
+  color: white;
+}
+main {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.card {
+  background: white;
+  padding: 20px;
+  width: 800px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+textarea {
+  width: 100%;
+  resize: none;
+}
+button {
+  background: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover {
+  background: #0056b3;
+}
+.contador {
+  margin-top: 5px;
+  color: gray;
+  text-align: right;
+}
+.footer {
+  background: #e3f0fb;
+  padding: 10px;
+  text-align: center;
+  margin-top: 30px;
+}
+</style>
+
 </body>
 </html>
