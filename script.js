@@ -65,10 +65,18 @@ function handleInput(e) {
 // XP Notifier
 function showXpNotification(msg, tipo) {
   const notifier = document.getElementById("xp-notifier");
-  notifier.innerText = msg;
-  notifier.className = tipo;
+  
+  if (tipo === 'ganho') {
+    notifier.innerText = `🎉 Parabéns! Você ganhou +${msg} XP!`;
+    notifier.className = 'ganho';
+  } else {
+    notifier.innerText = `💔 Que triste! Você perdeu ${msg} XP.`;
+    notifier.className = 'perda';
+  }
+
   notifier.style.display = 'block';
   notifier.style.opacity = '1';
+
   setTimeout(() => {
     notifier.style.opacity = '0';
     setTimeout(() => notifier.style.display = 'none', 500);
