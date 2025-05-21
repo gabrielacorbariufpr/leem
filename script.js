@@ -52,25 +52,28 @@ function handleInput(e) {
 
   const xpAtual = Math.floor(charCount / 20) * 15;
   if (xpAtual !== xp) {
+    const diff = Math.abs(xpAtual - xp);
+
     if (xpAtual > xp) {
-      showXpNotification(`+${xpAtual - xp} XP`, 'ganho');
+      showXpNotification(diff, 'ganho');
     } else {
-      showXpNotification(`Que triste! Você perdeu ${xp - xpAtual} XP`, 'perda');
+      showXpNotification(diff, 'perda');
     }
+
     xp = xpAtual;
     document.getElementById("xp").innerText = xp;
   }
 }
 
 // XP Notifier
-function showXpNotification(msg, tipo) {
+function showXpNotification(valor, tipo) {
   const notifier = document.getElementById("xp-notifier");
-  
+
   if (tipo === 'ganho') {
-    notifier.innerText = `🎉 Parabéns! Você ganhou +${msg} XP!`;
+    notifier.innerText = `🎉 Parabéns! Você ganhou +${valor} XP!`;
     notifier.className = 'ganho';
   } else {
-    notifier.innerText = `💔 Que triste! Você perdeu ${msg} XP.`;
+    notifier.innerText = `💔 Que triste! Você perdeu ${valor} XP.`;
     notifier.className = 'perda';
   }
 
@@ -82,6 +85,7 @@ function showXpNotification(msg, tipo) {
     setTimeout(() => notifier.style.display = 'none', 500);
   }, 1500);
 }
+
 
 // Navegação
 document.getElementById("nextBtn").addEventListener("click", () => {
