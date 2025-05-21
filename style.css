@@ -1,59 +1,85 @@
 
 body {
+    background: #f6fafd;
     font-family: Arial, sans-serif;
-    background: #f4fbfb;
     margin: 0;
-    padding: 1rem;
 }
-
-header, footer {
-    text-align: center;
-}
-
-.question-card {
-    background: #e4f5f5;
-    padding: 1.5rem;
+.header {
+    background: white;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    gap: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin-bottom: 1rem;
+    margin: 20px;
 }
-
+.logo {
+    height: 60px;
+}
+h1 {
+    margin: 0;
+    color: #203090;
+}
+.status {
+    margin: 20px;
+    padding: 10px;
+    background: #eef4fc;
+    border-radius: 10px;
+}
+.barra-progresso {
+    width: 100%;
+    height: 10px;
+    background: #ccc;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+#barra-preenchida {
+    height: 100%;
+    background: #547de6;
+    width: 10%;
+    border-radius: 5px;
+}
+.card-pergunta {
+    background: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+}
 textarea {
     width: 100%;
     height: 100px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    padding: 0.75rem;
-    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    resize: none;
 }
-
+.contador {
+    margin-top: 5px;
+    text-align: right;
+    color: #555;
+}
+.botoes {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
 button {
-    background: #5ec2b7;
-    color: white;
-    padding: 0.5rem 1rem;
+    padding: 10px 20px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
 }
-
-button:hover {
-    background: #45a59c;
+#avancar {
+    background: #547de6;
+    color: white;
 }
-
-.progress-bar {
-    background: #ddd;
-    height: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 1rem 0;
+#voltar {
+    background: #aaa;
+    color: white;
 }
-
-#progress-fill {
-    background-color: #5ec2b7;
-    height: 100%;
-    width: 0%;
-}
-
-.hidden {
-    display: none;
+footer {
+    text-align: center;
+    margin: 20px;
+    color: #777;
 }
