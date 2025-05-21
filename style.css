@@ -1,1 +1,138 @@
-/* CSS atualizado */
+/* CSS atualizado *//* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9fbfd;
+  color: #002b5c;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Cabeçalho */
+.header {
+  background-color: #e6f0fa;
+  text-align: center;
+  padding: 20px;
+}
+
+.logo {
+  width: 100px;
+}
+
+.header h1 {
+  margin-top: 10px;
+  font-size: 26px;
+  color: #003366;
+}
+
+.header p {
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+.xp-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.pote-ouro {
+  width: 20px;
+}
+
+/* Pergunta */
+#question-container {
+  background: white;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.pergunta {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+/* Tempo e contador */
+.status {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+/* Navegação */
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
+
+/* Barra de progresso */
+.progress-wrapper {
+  background-color: #ccc;
+  border-radius: 8px;
+  height: 10px;
+}
+
+.progress-bar {
+  background-color: #0077cc;
+  height: 10px;
+  border-radius: 8px;
+  width: 0;
+}
+
+/* XP Notifier */
+#xp-notifier {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #0077cc;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 8px;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Rodapé */
+.footer {
+  background-color: #e6f0fa;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: #002b5c;
+}
