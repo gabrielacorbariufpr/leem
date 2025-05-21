@@ -95,6 +95,14 @@ textarea {
   margin-bottom: 20px;
 }
 
+.contador-caracteres {
+    font-size: 0.9rem;
+    color: #555;
+    text-align: right;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
 .botao {
     display: block;
     margin: 20px auto;
