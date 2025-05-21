@@ -1,3 +1,4 @@
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -8,11 +9,11 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #f9fbfd;
   color: #002b5c;
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
-/* Cabeçalho */
+/* Header */
 .header {
   background-color: #e6f0fa;
   display: flex;
@@ -22,7 +23,7 @@ body {
 }
 
 .header-left .logo {
-  width: 80px;
+  width: 70px;
 }
 
 .header-center {
@@ -50,9 +51,10 @@ body {
   border-radius: 8px;
   padding: 4px 10px;
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  cursor: pointer;
 }
 
-/* Pergunta */
+/* Question Container */
 #question-container {
   background: white;
   padding: 20px;
@@ -64,6 +66,7 @@ body {
 .pergunta {
   font-weight: bold;
   margin-bottom: 10px;
+  color: #003366;
 }
 
 textarea {
@@ -73,17 +76,19 @@ textarea {
   border-radius: 8px;
   border: 1px solid #ccc;
   resize: vertical;
+  font-size: 14px;
 }
 
-/* Contador */
+/* Status */
 .status {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 10px;
   font-size: 14px;
+  color: #003366;
 }
 
-/* Navegação */
+/* Navigation */
 .navigation {
   display: flex;
   justify-content: flex-end;
@@ -101,20 +106,6 @@ button {
 
 button:hover {
   background-color: #005fa3;
-}
-
-/* Barra de progresso */
-.progress-wrapper {
-  background-color: #ccc;
-  border-radius: 8px;
-  height: 10px;
-}
-
-.progress-bar {
-  background-color: #0077cc;
-  height: 10px;
-  border-radius: 8px;
-  width: 0;
 }
 
 /* XP Notifier */
@@ -139,7 +130,7 @@ button:hover {
   color: white;
 }
 
-/* Rodapé */
+/* Footer */
 .footer {
   background-color: #e6f0fa;
   padding: 10px;
