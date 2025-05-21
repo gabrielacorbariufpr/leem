@@ -73,3 +73,17 @@ footer {
 .notifier.perda {
     background-color: #e74c3c;
 }
+
+.xp-notifier {
+  position: fixed;
+  bottom: 30px; /* ou top: 30px; se preferir em cima */
+  right: 30px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #4caf50;
+  color: white;
+  display: none;
+  opacity: 1;
+  font-weight: bold;
+  z-index: 999;
+}
