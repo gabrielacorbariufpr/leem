@@ -1,52 +1,15 @@
 
-/* Estilos para popup de XP */
-.xp-popup {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: gold;
-  padding: 10px 20px;
-  border-radius: 20px;
-  display: none;
-  font-weight: bold;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-}
-
-/* Tela de etapa concluída */
-.etapa-concluida {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  display: none;
-  text-align: center;
-}
-
-/* Ovo e progresso */
-.ovo-container {
-  text-align: center;
-  margin: 1rem 0;
-}
-
-.ovo-container img {
-  height: 120px;
-}
-
-.progress-bar {
-  background: #ccc;
-  width: 100%;
-  height: 16px;
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 0.5rem 0;
-}
-
-.progress-fill {
-  height: 100%;
-  background-color: #5EC2B7;
-  width: 0%;
-}
+body { font-family: Arial; background: #f7fbfd; margin: 0; padding: 0;}
+header { display: flex; justify-content: space-between; align-items: center; background: white; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+header img { height: 50px;}
+header h1 { margin: 0; font-size: 24px;}
+.status { display: flex; gap: 20px; font-size: 14px;}
+.pergunta-container { background: white; padding: 20px; margin: 40px auto; width: 600px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);}
+textarea { width: 100%; height: 120px; margin-top: 10px;}
+.contador { text-align: right; font-size: 12px;}
+.barra-progresso { height: 8px; background: #ddd; border-radius: 5px; margin: 10px 0;}
+.botoes { display: flex; justify-content: space-between;}
+button { padding: 8px 16px;}
+footer { background: white; padding: 10px; text-align: center; position: fixed; bottom: 0; width: 100%; box-shadow: 0 -2px 5px rgba(0,0,0,0.1);}
+#notificacao { position: fixed; top: 20px; right: 20px; background: #0f0; padding: 10px; border-radius: 5px;}
+.oculto { display: none;}

@@ -5,41 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Missão: Pós-avaliação - LEEM</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="complemento-style.css">
 </head>
 <body>
     <header>
-        <img src="logo-LEEM.png" alt="Logo LEEM" class="logo">
+        <img src="logo-LEEM.png" alt="Logo LEEM">
         <h1>Missão: Pós-avaliação</h1>
-        <div class="status-box">
-            <span id="tempo">⏳ 00:00</span>
-            <span id="xpTotal">⭐ 0 XP</span>
+        <p>Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
+        <div class="status">
+            <span title="A cada 20 caracteres você ganha 15 XP!">⭐ <span id="xp">0 XP</span></span>
+            <span>⏳ <span id="tempo">00:00</span></span>
         </div>
     </header>
-
     <main>
-        <p class="objetivo">Refletir sobre os resultados da experiência após sua finalização.</p>
-
-        <div class="etapa-box">
-            <div id="pergunta-box"></div>
+        <div class="pergunta-container">
+            <h2>01. Todos os integrantes do grupo participaram ativamente? Comente.</h2>
             <textarea id="resposta" maxlength="500" placeholder="Digite sua resposta..."></textarea>
-            <div class="contador"><span id="contador-caracteres">0</span> / 500</div>
-            <div class="barra-missao">
-                <div id="progresso-missao"></div>
-            </div>
+            <div class="contador">0/500</div>
+            <div class="barra-progresso"></div>
             <div class="botoes">
-                <button id="btnVoltar">◀ Voltar</button>
-                <button id="btnAvancar">Avançar ▶</button>
+                <button id="btn-voltar" class="oculto">◀ Voltar</button>
+                <button id="btn-avancar">Finalizar Etapa ▶</button>
             </div>
         </div>
     </main>
-
-    <div id="notificacao"></div>
-
-    <footer>
-        Desenvolvido por Gabriela Corbari • Pesquisa de Mestrado UFPR
-    </footer>
-
-    <script src="script.js"></script>
+    <footer>Desenvolvido por Gabriela Corbari • Pesquisa de Mestrado UFPR</footer>
+    <div id="notificacao" class="oculto"></div>
+    <script src="complemento-script.js"></script>
 </body>
 </html>
