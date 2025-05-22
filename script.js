@@ -49,7 +49,7 @@ function concluirEtapa() {
     mostrarTelaPercurso();
   } else {
     clearInterval(intervaloTempo);
-    alert('Parabéns! Você concluiu todas as etapas.');
+    window.location.href = "leem-finalizacao-dinamica.html";
   }
 }
 
