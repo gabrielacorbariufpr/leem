@@ -53,6 +53,24 @@
   <!-- Notificação -->
   <div id="notificacao" class="notificacao"></div>
 
+  <script>
+  // Recupera os dados do localStorage
+  const xp = localStorage.getItem('xpFinal') || 0;
+  const tempo = localStorage.getItem('tempoFinal') || '00:00';
+  const rankingXP = localStorage.getItem('rankingXP') || 'N/A';
+  const rankingTempo = localStorage.getItem('rankingTempo') || 'N/A';
+  const medalha = localStorage.getItem('medalha') || 'Sem medalha';
+
+  // Atualiza os elementos HTML dinamicamente
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById('medalha').textContent = `🏅 Medalha: ${medalha}`;
+    document.getElementById('xp').textContent = `⭐ XP Final: ${xp}`;
+    document.getElementById('rankingXP').textContent = `🏆 Ranking XP: ${rankingXP}`;
+    document.getElementById('tempo').textContent = `⏱️ Tempo: ${tempo}`;
+    document.getElementById('rankingTempo').textContent = `🥈 Ranking Tempo: ${rankingTempo}`;
+  });
+</script>
+
   <footer>
     Desenvolvido por Gabriela Corbari dos Santos • LEEM é oriundo de uma pesquisa de mestrado da UFPR.
   </footer>
