@@ -74,17 +74,14 @@ function formatarTempo(segundos) {
   return `${m}:${s}`;
 }
 
-function mostrarNotificacao(texto, tipo) {
-  const notifier = document.getElementById('xp-notifier');
-  notifier.innerText = texto;
-  notifier.className = tipo;
-  notifier.style.display = 'block';
-  notifier.style.opacity = '1';
+function mostrarNotificacao(mensagem) {
+    const notificacao = document.getElementById('notificacao');
+    notificacao.textContent = mensagem;
+    notificacao.classList.add('ativo');
 
-  setTimeout(() => {
-    notifier.style.opacity = '0';
-    setTimeout(() => notifier.style.display = 'none', 500);
-  }, 2000);
+    setTimeout(() => {
+        notificacao.classList.remove('ativo');
+    }, 4000); // Notificação desaparece após 4 segundos
 }
 
 window.onload = iniciar;
