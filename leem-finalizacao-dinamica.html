@@ -96,6 +96,15 @@
       <p>🔍 Resumo da sua evolução com base nas respostas.</p>
     </div>
 
+    <div class="info">
+  <p>🏆 <strong>Painel de Conquistas:</strong></p>
+  <p id="medalha"></p>
+  <p id="xp"></p>
+  <p id="rankingXP"></p>
+  <p id="tempo"></p>
+  <p id="rankingTempo"></p>
+</div>
+    
   <div class="info">
     <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -106,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const rankingTempo = localStorage.getItem('rankingTempo') || 'N/A';
 
   // Atualiza os elementos no HTML
-    <p>🏆 <strong>Painel de Conquistas:</strong></p>
+  <p>🏆 <strong>Painel de Conquistas:</strong></p>
   document.getElementById('medalha').innerText = `🥇 Medalha: ${medalha}`;
   document.getElementById('xp').innerText = `⭐ XP Final: ${xp}`;
   document.getElementById('rankingXP').innerText = `🏆 Ranking XP: ${rankingXP}`;
