@@ -97,12 +97,23 @@
     </div>
 
   <div class="info">
-  <p>🏆 <strong>Painel de Conquistas:</strong></p>
-  <p>🏅 Medalha:</p><p id="medalha"></p>
-  <p>⭐ XP Final:</p> <p id="xp"></p>
-  <p>🏆 Ranking XP:</p> <p id="rankingXP"></p>
-  <p>⏱️ Tempo:</p> <p id="tempo"></p>
-   <p>🥈 Ranking Tempo:</p> <p id="rankingTempo"></p>
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const medalha = localStorage.getItem('medalha') || 'Sem medalha';
+  const xp = localStorage.getItem('xpFinal') || 0;
+  const rankingXP = localStorage.getItem('rankingXP') || 'N/A';
+  const tempo = localStorage.getItem('tempoFinal') || '00:00';
+  const rankingTempo = localStorage.getItem('rankingTempo') || 'N/A';
+
+  // Atualiza os elementos no HTML
+    <p>🏆 <strong>Painel de Conquistas:</strong></p>
+  document.getElementById('medalha').innerText = `🥇 Medalha: ${medalha}`;
+  document.getElementById('xp').innerText = `⭐ XP Final: ${xp}`;
+  document.getElementById('rankingXP').innerText = `🏆 Ranking XP: ${rankingXP}`;
+  document.getElementById('tempo').innerText = `⏱️ Tempo: ${tempo}`;
+  document.getElementById('rankingTempo').innerText = `🥈 Ranking Tempo: ${rankingTempo}`;
+});
+</script>
 </div>
 
     <div class="progress-bar">
