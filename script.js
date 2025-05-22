@@ -1,3 +1,4 @@
+
 const perguntas = [
   "Todos os integrantes do grupo participaram ativamente? Comente.",
   "Você já havia vivenciado alguma situação semelhante à atividade desenvolvida? Comente.",
@@ -5,83 +6,94 @@ const perguntas = [
   "Você contribuiu com ideias próprias (foi autêntico) na realização das atividades do projeto? Comente.",
   "Você já fez alguma atividade como essa realizada? Se sim, dê exemplos.",
   "Você se sentiu responsável/envolvido durante a realização da atividade? Comente.",
-  "Você sente que essa atividade incentivou o uso de TDICs em sua vida? Comente.",
-  "A atividade gerou novos desafios ou você permaneceu na sua zona de conforto? Comente.",
-  "Você acha que o aprendizado alcançado na atividade realizada te ajudará em situações de sua vida? Comente.",
-  "Você achou a atividade interessante, estimulante ou instigante? Comente.",
-  "Você sente que a atividade tem relação com os conceitos/assuntos que você já tinha aprendido? Comente."
+  "O grupo enfrentou desafios? Quais?",
+  "O que você aprendeu durante essa atividade?",
+  "Quais sugestões você daria para melhorar essa atividade?",
+  "Deixe um comentário geral sobre sua experiência."
 ];
 
-let perguntaAtual = 0;
+let etapaAtual = 0;
 let xp = 0;
 let tempo = 0;
-let timer;
-const respostas = [];
-const xpPorPergunta = [];
+let intervaloTempo;
+
+const xpSpan = document.getElementById('xp');
+const tempoSpan = document.getElementById('tempo');
 
 function iniciar() {
   carregarPergunta();
-  timer = setInterval(() => {
+  intervaloTempo = setInterval(() => {
     tempo++;
-    document.getElementById('tempo').innerText = formatarTempo(tempo);
+    const minutos = String(Math.floor(tempo / 60)).padStart(2, '0');
+    const segundos = String(tempo % 60).padStart(2, '0');
+    tempoSpan.textContent = `${minutos}:${segundos}`;
   }, 1000);
 }
 
 function carregarPergunta() {
-  document.getElementById('perguntaNumero').innerText = `Etapa ${perguntaAtual + 1}:`;
-  document.getElementById('perguntaTexto').innerText = perguntas[perguntaAtual];
+  document.getElementById('telaPergunta').style.display = 'block';
+  document.getElementById('telaPercurso').style.display = 'none';
+
+  const perguntaTexto = perguntas[etapaAtual];
+  document.getElementById('perguntaNumero').textContent = `Etapa ${etapaAtual + 1}:`;
+  document.getElementById('perguntaTexto').textContent = perguntaTexto;
   document.getElementById('resposta').value = '';
-  document.getElementById('contadorCaracteres').innerText = '0';
+  atualizarContador();
 }
 
-document.getElementById('resposta').addEventListener('input', (e) => {
-  const texto = e.target.value;
-  const count = texto.length;
-  document.getElementById('contadorCaracteres').innerText = count;
+function concluirEtapa() {
+  const resposta = document.getElementById('resposta').value;
+  const caracteres = resposta.length;
+  const xpGanhos = Math.floor(caracteres / 20) * 15;
 
-  const xpDigitado = Math.floor(count / 20) * 15;
-  const xpAnterior = xpPorPergunta[perguntaAtual] || 0;
-  const diff = xpDigitado - xpAnterior;
+  xp += xpGanhos;
+  xpSpan.textContent = xp;
 
-  if (diff > 0) {
-    mostrarNotificacao(`🎉 Parabéns! Você ganhou +${diff} XP!`, 'ganho');
-  } else if (diff < 0) {
-    mostrarNotificacao(`💔 Que triste! Você perdeu ${-diff} XP.`, 'perda');
+  mostrarNotificacao(`🎉 Você ganhou +${xpGanhos} XP!`);
+
+  etapaAtual++;
+
+  if (etapaAtual < perguntas.length) {
+    mostrarTelaPercurso();
+  } else {
+    clearInterval(intervaloTempo);
+    alert('Parabéns! Você concluiu todas as etapas.');
   }
+}
 
-  xp += diff;
-  xpPorPergunta[perguntaAtual] = xpDigitado;
-  document.getElementById('xp').innerText = xp;
+function atualizarContador() {
+  const resposta = document.getElementById('resposta').value;
+  document.getElementById('contadorCaracteres').textContent = `${resposta.length}/300 caracteres`;
+}
+
+document.getElementById('resposta').addEventListener('input', atualizarContador);
+
+function mostrarTelaPercurso() {
+  document.getElementById('telaPergunta').style.display = 'none';
+  document.getElementById('telaPercurso').style.display = 'block';
+
+  const minutos = String(Math.floor(tempo / 60)).padStart(2, '0');
+  const segundos = String(tempo % 60).padStart(2, '0');
+  document.getElementById('tempoPercurso').textContent = `${minutos}:${segundos}`;
+  document.getElementById('xpPercurso').textContent = xp;
+  document.getElementById('etapaAtualPercurso').textContent = etapaAtual;
+  document.getElementById('totalEtapasPercurso').textContent = perguntas.length;
+
+  const percentual = (etapaAtual / perguntas.length) * 100;
+  document.getElementById('progressoPreenchido').style.width = percentual + '%';
+}
+
+document.getElementById('botaoAvancar').addEventListener('click', () => {
+  carregarPergunta();
 });
 
-function proximaPergunta() {
-  const resposta = document.getElementById('resposta').value.trim();
-  respostas.push(resposta);
-
-  if (perguntaAtual < perguntas.length - 1) {
-    perguntaAtual++;
-    carregarPergunta();
-  } else {
-    clearInterval(timer);
-    alert(`Missão concluída!\nXP final: ${xp}\nTempo: ${formatarTempo(tempo)}`);
-    window.location.href = "leem-finalizacao-dinamica.html";
-  }
-}
-
-function formatarTempo(segundos) {
-  const m = String(Math.floor(segundos / 60)).padStart(2, '0');
-  const s = String(segundos % 60).padStart(2, '0');
-  return `${m}:${s}`;
-}
-
 function mostrarNotificacao(mensagem) {
-    const notificacao = document.getElementById('notificacao');
-    notificacao.textContent = mensagem;
-    notificacao.classList.add('ativo');
-
-    setTimeout(() => {
-        notificacao.classList.remove('ativo');
-    }, 4000); // Notificação desaparece após 4 segundos
+  const notificacao = document.getElementById('notificacao');
+  notificacao.textContent = mensagem;
+  notificacao.classList.add('ativo');
+  setTimeout(() => {
+    notificacao.classList.remove('ativo');
+  }, 4000);
 }
 
 window.onload = iniciar;

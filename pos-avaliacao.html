@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,37 +17,43 @@
       <p>Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
     </div>
     <div class="info-xp-tempo">
-      <div class="xp" title="Você ganha +15 XP a cada 20 caracteres digitados. Os pontos são cumulativos.">
-        ⭐ XP: <span id="xp">0</span>
-      </div>
-      <div class="tempo">
-        ⏱️ <span id="tempo">00:00</span>
-      </div>
+      <div class="xp">⭐ XP: <span id="xp">0</span></div>
+      <div class="tempo">⏱️ <span id="tempo">00:00</span></div>
     </div>
   </header>
 
-<div id="notificacao" class="notificacao"></div>
-
-  <!-- Conteúdo principal -->
-  <main>
+  <!-- Tela da pergunta -->
+  <main id="telaPergunta">
     <div class="card">
       <h2 id="perguntaNumero"></h2>
       <p id="perguntaTexto"></p>
-      <textarea id="resposta" rows="5" placeholder="Digite sua resposta aqui..."></textarea>
-      <div class="contador">
-        <span id="contadorCaracteres">0</span>/300 caracteres
-      </div>
-      <button onclick="proximaPergunta()">Concluir etapa!</button>
+      <textarea id="resposta" rows="5"></textarea>
+      <div class="contador" id="contadorCaracteres">0/300 caracteres</div>
+      <button onclick="concluirEtapa()">Concluir etapa!</button>
     </div>
   </main>
 
-  <!-- Rodapé -->
+  <!-- Tela de percurso -->
+  <div id="telaPercurso" class="tela-percurso" style="display: none;">
+    <h2>🚀 Percurso da Missão</h2>
+    <div class="status-percurso">
+      <div>🕓 Tempo: <span id="tempoPercurso">00:00</span></div>
+      <div>⭐ XP acumulado: <span id="xpPercurso">0</span></div>
+      <div>📊 Etapa <span id="etapaAtualPercurso">1</span> de <span id="totalEtapasPercurso">10</span></div>
+      <div class="barra-progresso">
+        <div id="progressoPreenchido"></div>
+      </div>
+    </div>
+    <button id="botaoAvancar">Avançar para a próxima etapa</button>
+  </div>
+
+  <!-- Notificação XP -->
+  <div id="notificacao" class="notificacao"></div>
+
   <footer>
-    <p>Desenvolvido por Gabriela Corbari dos Santos • LEEM é oriundo de uma pesquisa de mestrado da UFPR.</p>
+    Desenvolvido por Gabriela Corbari dos Santos • LEEM é oriundo de uma pesquisa de mestrado da UFPR.
   </footer>
 
   <script src="script.js"></script>
-
-  <div id="notificacao" class="notificacao"></div>
 </body>
 </html>
