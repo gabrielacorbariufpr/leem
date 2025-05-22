@@ -7,143 +7,127 @@
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #f4faff;
+      background-color: #f5f5f5;
       margin: 0;
       padding: 0;
-    }
-    header {
-      background-color: #d0e8ff;
-      padding: 30px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      color: #004d7a;
-      font-size: 2.5em;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
     .card {
-      background-color: white;
-      border-radius: 20px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      background-color: #e8f6ff;
       padding: 30px;
-      margin-bottom: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      max-width: 600px;
+      width: 90%;
     }
-    .card h2 {
-      color: #0077b6;
-      border-bottom: 3px solid #caf0f8;
-      padding-bottom: 12px;
+    .card h1 {
+      text-align: center;
+      color: #004d7a;
       margin-bottom: 20px;
-      font-size: 1.8em;
     }
-    .respostas, .evolucao, .conquistas, .acoes {
+    .info {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 8px;
+      margin-bottom: 20px;
+      font-size: 1.1em;
     }
-    .conquista-item {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      background-color: #f1f9ff;
-      padding: 15px;
-      border-radius: 12px;
-      font-size: 1.2em;
+    .info p {
+      margin: 0;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 20px;
+      background-color: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .progress {
+      height: 100%;
+      width: 100%;
+      background-color: #4caf50;
+      border-radius: 10px;
+      transition: width 0.3s ease;
     }
     .acoes {
       display: flex;
       justify-content: space-around;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 10px;
     }
     .acoes button {
       background-color: #0077b6;
       color: white;
       border: none;
-      padding: 15px 30px;
-      border-radius: 10px;
+      padding: 12px 20px;
+      border-radius: 8px;
       cursor: pointer;
-      font-size: 1.1em;
       transition: background-color 0.3s;
+      font-size: 1em;
     }
     .acoes button:hover {
       background-color: #005f8a;
     }
     footer {
+      margin-top: 15px;
       text-align: center;
-      background-color: #d0e8ff;
-      padding: 15px;
-      font-size: 0.95em;
+      font-size: 0.9em;
+      color: #555;
     }
   </style>
 </head>
 <body>
 
-  <header>
+  <div class="card" id="conteudo-pdf">
     <h1>🎯 Painel de Finalização</h1>
-  </header>
 
-  <div class="container" id="conteudo-pdf">
-
-    <!-- Histórico de Respostas -->
-    <div class="card">
-      <h2>📑 Histórico de Respostas</h2>
-      <div class="respostas">
-        <p>📝 Resposta 1...</p>
-        <p>📝 Resposta 2...</p>
-      </div>
+    <div class="info">
+      <p>📑 <strong>Histórico de Respostas:</strong></p>
+      <p>📝 Resposta 1...</p>
+      <p>📝 Resposta 2...</p>
     </div>
 
-    <!-- Evolução da Experiência -->
-    <div class="card">
-      <h2>📈 Evolução da Experiência</h2>
-      <div class="evolucao">
-        <p>🔍 Resumo da sua evolução com base nas respostas.</p>
-      </div>
+    <div class="info">
+      <p>📈 <strong>Evolução da Experiência:</strong></p>
+      <p>🔍 Resumo da sua evolução com base nas respostas.</p>
     </div>
 
-    <!-- Painel de Conquistas -->
-    <div class="card">
-      <h2>🏆 Painel de Conquistas</h2>
-      <div class="conquistas">
-        <div class="conquista-item">🏅 <strong>Medalha:</strong> Ouro</div>
-        <div class="conquista-item">⭐ <strong>XP Final:</strong> 135</div>
-        <div class="conquista-item">🏆 <strong>Ranking XP:</strong> 2º lugar</div>
-        <div class="conquista-item">⏱️ <strong>Tempo:</strong> 02:34 minutos</div>
-        <div class="conquista-item">🥈 <strong>Ranking Tempo:</strong> 2º lugar</div>
-      </div>
+    <div class="info">
+      <p>🏆 <strong>Painel de Conquistas:</strong></p>
+      <p>🏅 Medalha: Ouro</p>
+      <p>⭐ XP Final: 135</p>
+      <p>🏆 Ranking XP: 2º lugar</p>
+      <p>⏱️ Tempo: 02:34 minutos</p>
+      <p>🥈 Ranking Tempo: 2º lugar</p>
     </div>
 
-    <!-- Ações -->
-    <div class="card">
-      <h2>📤 Compartilhar ou Salvar</h2>
-      <div class="acoes">
-        <button onclick="gerarPDF()">📄 Gerar PDF</button>
-        <button onclick="compartilhar()">📧 Enviar ao Professor</button>
-        <button onclick="voltar()">🔁 Voltar ao Início</button>
-      </div>
+    <div class="progress-bar">
+      <div class="progress" style="width: 100%;"></div>
     </div>
 
+    <div class="acoes">
+      <button onclick="gerarPDF()">📄 Gerar PDF</button>
+      <button onclick="compartilhar()">📧 Enviar ao Professor</button>
+      <button onclick="voltar()">🔁 Voltar ao Início</button>
+    </div>
+
+    <footer>
+      Desenvolvido por Gabriela Corbari dos Santos • LEEM é oriundo de uma pesquisa de mestrado da UFPR.
+    </footer>
   </div>
 
-  <footer>
-    Desenvolvido por Gabriela Corbari dos Santos • LEEM é oriundo de uma pesquisa de mestrado da UFPR.
-  </footer>
-
-  <!-- Biblioteca para gerar PDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <script>
-    // Função para gerar PDF
     function gerarPDF() {
       const elemento = document.getElementById('conteudo-pdf');
       const opt = {
-        margin: 0.5,
-        filename: 'Painel-de-Finalizacao-LEEM.pdf',
+        margin: 0.3,
+        filename: 'Painel-Finalizacao-LEEM.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2 },
         jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
@@ -151,16 +135,14 @@
       html2pdf().set(opt).from(elemento).save();
     }
 
-    // Função de Compartilhar (simples)
     function compartilhar() {
       const texto = encodeURIComponent("Confira meu painel de finalização da missão no LEEM! ⭐🏆");
       const url = window.location.href;
       window.open(`mailto:?subject=Meu Painel LEEM&body=${texto}%0A${url}`);
     }
 
-    // Função para voltar
     function voltar() {
-      window.location.href = "index.html"; // Coloque aqui o link da sua página inicial
+      window.location.href = "index.html"; // Altere para o nome do seu arquivo inicial
     }
   </script>
 
