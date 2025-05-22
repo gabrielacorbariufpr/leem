@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -26,14 +25,14 @@
     </div>
   </header>
 
-  <!-- Tela da pergunta -->
+  <!-- Tela de pergunta -->
   <main id="telaPergunta">
     <div class="card">
       <h2 id="perguntaNumero"></h2>
       <p id="perguntaTexto"></p>
       <textarea id="resposta" rows="5"></textarea>
       <div class="contador" id="contadorCaracteres">0/300 caracteres</div>
-      <button onclick="concluirEtapa()">Concluir etapa!</button>
+      <button id="botaoConcluir">Concluir etapa!</button>
     </div>
   </main>
 
@@ -51,7 +50,7 @@
     <button id="botaoAvancar">Avançar para a próxima etapa</button>
   </div>
 
-  <!-- Notificação XP -->
+  <!-- Notificação -->
   <div id="notificacao" class="notificacao"></div>
 
   <footer>
