@@ -1,41 +1,136 @@
-<div class="container">
-  <h1>Painel de Finalização</h1>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
 
-  <div class="card">
-    <h2>Histórico de Respostas</h2>
-    <p>Suas respostas nas missões:</p>
-    <ul>
-      <li>Resposta 1...</li>
-      <li>Resposta 2...</li>
-    </ul>
-  </div>
+ <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Finalização - LEEM</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4faff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #d0e8ff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      color: #004d7a;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+    .card {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .card h2 {
+      color: #0077b6;
+      border-bottom: 2px solid #caf0f8;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+    }
+    .respostas, .evolucao, .conquistas, .acoes {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .conquista-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #f1f9ff;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .acoes {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .acoes button {
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .acoes button:hover {
+      background-color: #005f8a;
+    }
+    footer {
+      text-align: center;
+      background-color: #d0e8ff;
+      padding: 10px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
 
-  <div class="card">
-    <h2>Evolução da Experiência</h2>
-    <p>Resumo da sua evolução com base nas respostas.</p>
-  </div>
+  <header>
+    <h1>🎯 Painel de Finalização</h1>
+  </header>
 
-  <div class="card">
-    <h2>Painel de Conquistas</h2>
-    <div class="painel-conquistas">
-      <p>🏅 <strong>Medalha:</strong> Ouro</p>
-      <p>⭐ <strong>XP Final:</strong> 135</p>
-      <p>🏆 <strong>Ranking XP:</strong> 2º lugar</p>
-      <p>⏱️ <strong>Tempo:</strong> 02:34 minutos</p>
-      <p>🥈 <strong>Ranking Tempo:</strong> 2º lugar</p>
+  <div class="container">
+
+    <!-- Histórico de Respostas -->
+    <div class="card">
+      <h2>📑 Histórico de Respostas</h2>
+      <div class="respostas">
+        <p>📝 Resposta 1...</p>
+        <p>📝 Resposta 2...</p>
+      </div>
     </div>
-  </div>
 
-  <div class="card">
-    <h2>Compartilhar ou Salvar</h2>
-    <div class="botoes">
-      <button>📄 Gerar PDF</button>
-      <button>📧 Enviar ao Professor</button>
-      <button>🔁 Voltar ao Início</button>
+    <!-- Evolução da Experiência -->
+    <div class="card">
+      <h2>📈 Evolução da Experiência</h2>
+      <div class="evolucao">
+        <p>🔍 Resumo da sua evolução com base nas respostas.</p>
+      </div>
     </div>
-  </div>
-</div>
 
-<footer>
-  Desenvolvido por Gabriela Corbari dos Santos • LEEM é oriundo de uma pesquisa de mestrado da UFPR.
-</footer>
+    <!-- Painel de Conquistas -->
+    <div class="card">
+      <h2>🏆 Painel de Conquistas</h2>
+      <div class="conquistas">
+        <div class="conquista-item">🏅 <strong>Medalha:</strong> Ouro</div>
+        <div class="conquista-item">⭐ <strong>XP Final:</strong> 135</div>
+        <div class="conquista-item">🏆 <strong>Ranking XP:</strong> 2º lugar</div>
+        <div class="conquista-item">⏱️ <strong>Tempo:</strong> 02:34 minutos</div>
+        <div class="conquista-item">🥈 <strong>Ranking Tempo:</strong> 2º lugar</div>
+      </div>
+    </div>
+
+    <!-- Ações -->
+    <div class="card">
+      <h2>📤 Compartilhar ou Salvar</h2>
+      <div class="acoes">
+        <button>📄 Gerar PDF</button>
+        <button>📧 Enviar ao Professor</button>
+        <button>🔁 Voltar ao Início</button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    Desenvolvido por Gabriela Corbari dos Santos • LEEM é oriundo de uma pesquisa de mestrado da UFPR.
+  </footer>
+
+</body>
+</html>
