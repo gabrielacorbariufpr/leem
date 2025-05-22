@@ -126,3 +126,64 @@ footer {
 .notificacao.ativo {
   opacity: 1;
 }
+
+/* --------- Tela de Finalização --------- */
+
+.container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.card-finalizacao {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+h1.titulo-finalizacao {
+  text-align: center;
+  color: #004d99;
+  margin-bottom: 20px;
+}
+
+.card-finalizacao h2 {
+  color: #007bff;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.painel-conquistas {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 16px;
+}
+
+.painel-conquistas p {
+  margin: 5px 0;
+}
+
+.botoes-finalizacao {
+  text-align: center;
+}
+
+.botoes-finalizacao button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 8px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.botoes-finalizacao button:hover {
+  background-color: #0056b3;
+}
+
