@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Missão: Pós-avaliação</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header class="header">
+    <img src="logo-leem.png" alt="Logo LEEM" class="logo">
+    <div class="titulo">
+      <h1>Missão: Pós-avaliação</h1>
+      <p>Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
+    </div>
+    <div class="info-xp-tempo">
+      <div class="xp" title="Você ganha +15 XP a cada 20 caracteres digitados. Os pontos são cumulativos.">
+        ⭐ XP: <span id="xp">0</span>
+      </div>
+      <div class="tempo">
+        ⏱️ <span id="tempo">00:00</span>
+      </div>
+    </div>
+  </header>
+
+  <div id="xp-notifier" class="xp-notifier"></div>
+
+  <!-- Conteúdo principal -->
+  <main>
+    <div class="card">
+      <h2 id="perguntaNumero"></h2>
+      <p id="perguntaTexto"></p>
+      <textarea id="resposta" rows="5" placeholder="Digite sua resposta aqui..."></textarea>
+      <div class="contador">
+        <span id="contadorCaracteres">0</span>/300 caracteres
+      </div>
+      <button onclick="proximaPergunta()">Concluir etapa!</button>
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>Desenvolvido por Gabriela Corbari dos Santos • LEEM é oriundo de uma pesquisa de mestrado da UFPR.</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <div id="notificacao" class="notificacao"></div>
+</body>
+</html>
