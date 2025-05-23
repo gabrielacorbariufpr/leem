@@ -68,6 +68,47 @@ button:hover {
   background-color: #0056b3;
 }
 
+.card-apresentacao {
+  background-color: #e8f9f0;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.card-apresentacao h2 {
+  color: #004d40;
+  margin-bottom: 15px;
+}
+
+.card-apresentacao p {
+  margin: 8px 0;
+  color: #333;
+  font-size: 1.05em;
+}
+
+.card-apresentacao b {
+  color: #00796b;
+}
+
+.card-apresentacao button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  transition: background-color 0.3s;
+}
+
+.card-apresentacao button:hover {
+  background-color: #0056b3;
+}
+
 .titulo h1 {
     margin: 0;
 }
@@ -165,45 +206,4 @@ button:hover {
 
 .tela-percurso {
     text-align: center;
-}
-
-.card-apresentacao {
-  background-color: #e8f9f0;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  max-width: 600px;
-  margin: 40px auto;
-  text-align: center;
-}
-
-.card-apresentacao h2 {
-  color: #004d40;
-  margin-bottom: 15px;
-}
-
-.card-apresentacao p {
-  margin: 8px 0;
-  color: #333;
-  font-size: 1.05em;
-}
-
-.card-apresentacao b {
-  color: #00796b;
-}
-
-.card-apresentacao button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 25px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 20px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-  transition: background-color 0.3s;
-}
-
-.card-apresentacao button:hover {
-  background-color: #0056b3;
 }
