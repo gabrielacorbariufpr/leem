@@ -1,109 +1,13 @@
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
-}
-
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #cef1e4;
-    padding: 15px 30px;
-}
-
-.logo {
-    height: 50px;
-}
-
-.titulo h1 {
-    margin: 0;
-}
-
-main {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    margin-bottom: 20px;
-}
-
-.filtros {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.filtros input {
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-}
-
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.top3-cards {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
-
-.card-top {
-    background-color: #e8f6ff;
-    border-radius: 12px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-    padding: 15px 25px;
-    min-width: 250px;
-    text-align: center;
-}
-
-.card-top h3 {
-    margin-top: 0;
-    font-size: 1.4em;
-}
-
-.card-top p {
-    margin: 5px 0;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table thead {
-    background-color: #007bff;
-    color: white;
-}
-
-table th, table td {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ddd;
-}
-
-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
+body { font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; padding: 0; }
+.header { display: flex; align-items: center; justify-content: space-between; background-color: #cef1e4; padding: 10px 20px; }
+.logo { height: 50px; }
+.titulo h1 { margin: 0; }
+.info-xp-tempo { display: flex; gap: 20px; align-items: center; }
+main, .tela-percurso { padding: 20px; }
+.card { background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 600px; margin: 20px auto; }
+textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; }
+button { margin-top: 10px; padding: 10px 20px; border: none; background-color: #007bff; color: white; border-radius: 5px; cursor: pointer; }
+button:hover { background-color: #0056b3; }
+.tela-percurso { text-align: center; }
+.contador { margin-top: 10px; }
