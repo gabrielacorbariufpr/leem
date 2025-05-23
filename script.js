@@ -54,7 +54,7 @@ function iniciarTempo() {
 }
 
 function carregarPergunta() {
-    document.getElementById('perguntaNumero').textContent = `Pergunta ${etapaAtual + 1}`;
+    document.getElementById('perguntaNumero').textContent = `Etapa ${etapaAtual + 1}`;
     document.getElementById('perguntaTexto').textContent = perguntas[etapaAtual];
     document.getElementById('resposta').value = '';
     caracteresAnteriores = 0;
@@ -73,25 +73,30 @@ function atualizarContadorCaracteres() {
     contador.textContent = `${texto.length}/500 caracteres`;
 }
 
-const resposta = document.getElementById('resposta');
-if (resposta) {
-    resposta.addEventListener('input', () => {
-        const caracteres = resposta.value.length;
-        atualizarContadorCaracteres();
+function configurarResposta() {
+    const resposta = document.getElementById('resposta');
+    if (resposta) {
+        resposta.addEventListener('input', () => {
+            const caracteres = resposta.value.length;
+            atualizarContadorCaracteres();
 
-        const diff = caracteres - caracteresAnteriores;
-        if (diff >= 20) {
-            xp += 15;
-            caracteresAnteriores += 20;
-            mostrarNotificacao('ganho');
-        } else if (diff <= -20) {
-            xp = Math.max(0, xp - 15);
-            caracteresAnteriores -= 20;
-            mostrarNotificacao('perda');
-        }
-        document.getElementById('xp').textContent = xp;
-    });
+            const diff = caracteres - caracteresAnteriores;
+            if (diff >= 20) {
+                xp += 15;
+                caracteresAnteriores += 20;
+                mostrarNotificacao('ganho');
+            } else if (diff <= -20) {
+                xp = Math.max(0, xp - 15);
+                caracteresAnteriores -= 20;
+                mostrarNotificacao('perda');
+            }
+            document.getElementById('xp').textContent = xp;
+        });
+    }
 }
+
+// Inicializa o listener apenas uma vez
+document.addEventListener('DOMContentLoaded', configurarResposta);
 
 document.getElementById('botaoConcluir').addEventListener('click', () => {
     etapaAtual++;
@@ -107,7 +112,7 @@ function mostrarTelaPercurso() {
     document.getElementById('telaPercurso').style.display = 'block';
     document.getElementById('xpPercurso').textContent = xp;
     document.getElementById('tempoPercurso').textContent = document.getElementById('tempo').textContent;
-    document.getElementById('etapaAtualPercurso').textContent = etapaAtual + 1;
+    document.getElementById('etapaAtualPercurso').textContent = etapaAtual;
     document.getElementById('totalEtapas').textContent = perguntas.length;
 }
 
