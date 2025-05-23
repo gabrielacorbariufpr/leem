@@ -1,13 +1,1 @@
-
-body { font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; padding: 0; }
-.header { display: flex; align-items: center; justify-content: space-between; background-color: #cef1e4; padding: 10px 20px; }
-.logo { height: 50px; }
-.titulo h1 { margin: 0; }
-.info-xp-tempo { display: flex; gap: 20px; align-items: center; }
-main, .tela-percurso { padding: 20px; }
-.card { background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 600px; margin: 20px auto; }
-textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; }
-button { margin-top: 10px; padding: 10px 20px; border: none; background-color: #007bff; color: white; border-radius: 5px; cursor: pointer; }
-button:hover { background-color: #0056b3; }
-.tela-percurso { text-align: center; }
-.contador { margin-top: 10px; }
+body { background: #fff; }
