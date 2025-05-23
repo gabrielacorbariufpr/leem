@@ -1,4 +1,4 @@
-aconst perguntas = [
+const perguntas = [
     "Todos os integrantes do grupo participaram ativamente? Comente.",
     "Você já havia vivenciado alguma situação semelhante à atividade desenvolvida? Comente.",
     "Qual foi a sua contribuição para a atividade? Comente.",
