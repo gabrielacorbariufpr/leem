@@ -19,15 +19,22 @@
     <input type="text" id="inputProfessor" placeholder="Digite o nome do(a) professor(a)">
     <label>Disciplina:</label>
     <input type="text" id="inputDisciplina" placeholder="Digite a disciplina">
+    <button onclick="abrirTelaIntermediaria()">Avançar 🚀</button>
+</div>
+
+<!-- Tela Intermediária -->
+<div id="telaIntermediaria" class="card" style="display:none;">
+    <h2>🚀 Missão configurada!</h2>
+    <p id="mensagemIntermediaria"></p>
     <button onclick="iniciarMissao()">Iniciar Missão 🚀</button>
 </div>
 
-<!-- Tela Principal -->
+<!-- Cabeçalho da Missão -->
 <header class="header" style="display:none;">
     <img src="assets/logo-LEEM.png" alt="Logo LEEM" class="logo">
     <div class="titulo">
         <h1>Missão: Pós-avaliação</h1>
-        <p>Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
+        <p>Aluno: <span id="alunoCabecalho"></span> | Professor(a): <span id="profCabecalho"></span> | Disciplina: <span id="discCabecalho"></span></p>
     </div>
     <div class="info-xp-tempo">
         <div class="xp">⭐ XP: <span id="xp">0</span></div>
@@ -35,6 +42,7 @@
     </div>
 </header>
 
+<!-- Tela de Perguntas -->
 <main id="telaPergunta" style="display:none;">
     <div class="card">
         <h2 id="perguntaNumero"></h2>
@@ -45,6 +53,7 @@
     </div>
 </main>
 
+<!-- Tela de Percurso -->
 <div id="telaPercurso" class="tela-percurso" style="display: none;">
     <h2>🚀 Percurso da Missão</h2>
     <div class="status-percurso">
