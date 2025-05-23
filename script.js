@@ -114,3 +114,42 @@ async function salvarResposta(usuario, etapa, respostaTexto, xp, tempo) {
 }
 
 iniciar();
+
+
+let usuarioInfo = {
+    nome: '',
+    professor: '',
+    disciplina: ''
+};
+
+function iniciarMissao() {
+    const nome = document.getElementById('inputNome').value.trim();
+    const professor = document.getElementById('inputProfessor').value.trim();
+    const disciplina = document.getElementById('inputDisciplina').value.trim();
+
+    if (!nome || !professor || !disciplina) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+    }
+
+    usuarioInfo = { nome, professor, disciplina };
+
+    document.getElementById('telaFormulario').style.display = 'none';
+    document.querySelector('.header').style.display = 'flex';
+    document.getElementById('telaPergunta').style.display = 'block';
+
+    iniciar();
+}
+
+async function salvarResposta(usuario, etapa, respostaTexto, xp, tempo) {
+    const { data, error } = await supabase
+        .from('respostas')
+        .insert([
+            { usuario: usuarioInfo.nome, professor: usuarioInfo.professor, disciplina: usuarioInfo.disciplina, etapa, resposta: respostaTexto, xp, tempo }
+        ]);
+    if (error) {
+        console.error('Erro ao salvar:', error);
+    } else {
+        console.log('Resposta salva:', data);
+    }
+}

@@ -10,23 +10,32 @@
 </head>
 <body>
 
-<header class="header">
+<!-- Tela de Formulário Inicial -->
+<div id="telaFormulario" class="card">
+    <h2>🎯 Identificação da Missão</h2>
+    <label>Seu Nome:</label>
+    <input type="text" id="inputNome" placeholder="Digite seu nome">
+    <label>Professor(a):</label>
+    <input type="text" id="inputProfessor" placeholder="Digite o nome do(a) professor(a)">
+    <label>Disciplina:</label>
+    <input type="text" id="inputDisciplina" placeholder="Digite a disciplina">
+    <button onclick="iniciarMissao()">Iniciar Missão 🚀</button>
+</div>
+
+<!-- Tela Principal -->
+<header class="header" style="display:none;">
     <img src="assets/logo-LEEM.png" alt="Logo LEEM" class="logo">
     <div class="titulo">
         <h1>Missão: Pós-avaliação</h1>
         <p>Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
     </div>
     <div class="info-xp-tempo">
-        <div class="xp">
-            ⭐ XP: <span id="xp">0</span>
-        </div>
-        <div class="tempo">
-            ⏱️ <span id="tempo">00:00</span>
-        </div>
+        <div class="xp">⭐ XP: <span id="xp">0</span></div>
+        <div class="tempo">⏱️ <span id="tempo">00:00</span></div>
     </div>
 </header>
 
-<main id="telaPergunta">
+<main id="telaPergunta" style="display:none;">
     <div class="card">
         <h2 id="perguntaNumero"></h2>
         <p id="perguntaTexto"></p>
