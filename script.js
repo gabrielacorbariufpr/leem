@@ -40,21 +40,25 @@ function iniciarMissao() {
     document.querySelector('header').style.display = 'flex';
     document.getElementById('telaApresentacao').style.display = 'none';
     document.getElementById('telaPergunta').style.display = 'block';
+    etapaAtual = 0;
     carregarPergunta();
-    intervaloTempo = setInterval(atualizarTempo, 1000);
+    iniciarTempo();
 }
 
-function atualizarTempo() {
-    tempo++;
-    const minutos = String(Math.floor(tempo / 60)).padStart(2, '0');
-    const segundos = String(tempo % 60).padStart(2, '0');
-    document.getElementById('tempo').textContent = `${minutos}:${segundos}`;
+function iniciarTempo() {
+    intervaloTempo = setInterval(() => {
+        tempo++;
+        const minutos = String(Math.floor(tempo / 60)).padStart(2, '0');
+        const segundos = String(tempo % 60).padStart(2, '0');
+        document.getElementById('tempo').textContent = `${minutos}:${segundos}`;
+    }, 1000);
 }
 
 function carregarPergunta() {
     document.getElementById('perguntaNumero').textContent = `Pergunta ${etapaAtual + 1}`;
     document.getElementById('perguntaTexto').textContent = perguntas[etapaAtual];
     document.getElementById('resposta').value = '';
+    caracteresAnteriores = 0;
     atualizarProgresso();
     atualizarContadorCaracteres();
 }
@@ -92,8 +96,7 @@ document.getElementById('botaoConcluir').addEventListener('click', () => {
     if (etapaAtual < perguntas.length) {
         mostrarTelaPercurso();
     } else {
-        clearInterval(intervaloTempo);
-        alert('Missão concluída!');
+        finalizarMissao();
     }
 });
 
@@ -102,13 +105,20 @@ function mostrarTelaPercurso() {
     document.getElementById('telaPercurso').style.display = 'block';
     document.getElementById('xpPercurso').textContent = xp;
     document.getElementById('tempoPercurso').textContent = document.getElementById('tempo').textContent;
-    document.getElementById('etapaAtualPercurso').textContent = etapaAtual;
+    document.getElementById('etapaAtualPercurso').textContent = etapaAtual + 1;
+    document.getElementById('totalEtapas').textContent = perguntas.length;
 }
 
 function proximaPergunta() {
     document.getElementById('telaPercurso').style.display = 'none';
     document.getElementById('telaPergunta').style.display = 'block';
     carregarPergunta();
+}
+
+function finalizarMissao() {
+    clearInterval(intervaloTempo);
+    alert('Missão concluída! 🚀');
+    // Aqui você pode redirecionar, mostrar uma tela final ou salvar os dados no Supabase.
 }
 
 function mostrarNotificacao(mensagem) {
@@ -120,5 +130,5 @@ function mostrarNotificacao(mensagem) {
     notificacao.style.display = 'block';
     setTimeout(() => {
         notificacao.remove();
-    }, 2000);
+    }, 1500);
 }
