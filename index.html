@@ -1,56 +1,873 @@
-
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LEEM - Dashboard e Progresso</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-</head>
-<body>
+<html lang="pt-BR">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   LEEM - Início
+  </title>
+  <style>
+   body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #f4f6fc;
+      color: #2b2b2b;
+    }
+    .intro-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 1rem;
+    }
+    .leem-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+    .leem-header img {
+      width: 80px;
+    }
+    .leem-header-text h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #2c3e50;
+    }
+    .leem-header-text p {
+      font-size: 1rem;
+      color: #555;
+    }
+    .fase-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: space-between;
+    }
+    .fase {
+      background: #fff;
+      flex: 1;
+      padding: 1rem;
+      min-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .fase h3 {
+      color: #2b3a67;
+      margin-top: 0;
+    }
+    .objetivo-etapa {
+      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
+      color: #555;
+    }
+    .elemento {
+      margin: 0.4rem 0;
+      padding: 0.5rem 0.75rem;
+      background: #eef2ff;
+      border-radius: 6px;
+      transition: 0.2s ease;
+      display: block;
+      text-decoration: none;
+      color: #1c2e63;
+    }
+    .elemento:hover {
+      background: #dbe4ff;
+    }
+    .dashboard {
+      background: #f0f3ff;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+    .info-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .info-box {
+      background: #ffffff;
+      flex: 1;
+      padding: 0.75rem;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1.2rem;
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid #ddd;
+    }
+  
+.tema-participacao {
+  background-color: #f4f4f4;
+}
+.tema-bronze {
+  background-color: #f5e0d3;
+}
+.tema-prata {
+  background-color: #e2e2f3;
+}
+.tema-ouro {
+  background-color: #fff4c2;
+}
+.tema-diamante {
+  background-color: #d2f4f4;
+}
+  
+.medalha-destaque {
+  box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.15);
+  border: 2px solid #333;
+  transform: scale(1.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+  
+#conquista-msg {
+  background: #fffbe0;
+  border: 2px solid #ffd700;
+  padding: 1rem;
+  margin: 2rem auto;
+  max-width: 500px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  display: none;
+}
+#conquista-msg.show {
+  display: block;
+  animation: popFade 1s ease-out;
+}
+@keyframes popFade {
+  0% { transform: scale(0.8); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+  
+.layout-leem {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+.menu-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.menu-lateral button {
+  padding: 0.8rem;
+  font-size: 1rem;
+  background-color: #eeeeee;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+}
+.menu-lateral button.ativo {
+  background-color: #cce5ff;
+  font-weight: bold;
+}
+#secao-missoes, #secao-progresso {
+  flex: 1;
+}
+  
+.bloco-sobre {
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.bloco-roxo {
+  background: #f2edfb;
+}
+.bloco-azul {
+  background: #e8f4fc;
+}
+.bloco-verde {
+  background: #e6f8f0;
+}
+  
+.layout-leem {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.menu-lateral {
+  flex-shrink: 0;
+  margin-right: 1rem;
+}
+.menu-lateral button {
+  width: 150px;
+}
+.conteudo-leem {
+  flex-grow: 1;
+  width: 100%;
+}
+  
+.fase {
+  max-width: 600px;
+  width: 100%;
+  margin: auto;
+}
+  </style>
+  <style>
+   .fase h3 {
+  text-align: center;
+}
+  </style>
+  <style>
+   .historia-medalhas {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #444;
+}
+.historia-medalhas ul {
+  list-style: none;
+  padding-left: 0;
+}
+.historia-medalhas li {
+  margin: 0.3rem 0;
+}
+  </style>
+  <style>
+   .barra-xp {
+  width: 100%;
+  height: 25px;
+  background: #e6e9f0;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 1rem 0;
+  position: relative;
+}
+.xp-preenchido {
+  background: linear-gradient(to right, #4d79ff, #8aa8ff);
+  height: 100%;
+  color: #fff;
+  text-align: right;
+  padding-right: 0.5rem;
+  line-height: 25px;
+  font-weight: bold;
+}
+.medalhas-lista {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.medalha {
+  background: #fff;
+  padding: 0.5rem;
+  border-radius: 10px;
+  text-align: center;
+  flex: 1;
+  margin: 0.3rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.medalha span {
+  font-size: 1.5rem;
+  display: block;
+}
+.medalha p {
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+}
+.medalha small {
+  color: #777;
+}
+  </style>
+  <style>
+   .progresso-etapas {
+  margin-bottom: 1rem;
+}
+.barra-conjunto {
+  margin-bottom: 1rem;
+}
+.barra-conjunto label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.barra-conjunto.geral label {
+  margin-top: 1rem;
+  color: #2b3a67;
+}
+  </style>
+  <style>
+   .xp-preenchido {
+  transition: width 1.5s ease-in-out;
+}
+  </style>
+  <style>
+   .seletor-perfil {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+.modo-professor .fase:nth-child(1) .elemento {
+  background: #ffe6e6 !important;
+}
+.modo-professor .fase:nth-child(2) .elemento {
+  background: #fff2cc !important;
+}
+.modo-professor .fase:nth-child(3) .elemento {
+  background: #e6f7ff !important;
+}
+  </style>
+  <style>
+   .painel-xp {
+  background: #ffffff;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  margin: 1rem 0;
+  font-size: 1rem;
+  display: inline-block;
+}
+.elemento.respondido {
+  pointer-events: none;
+  opacity: 0.6;
+}
+  </style>
+  <style>
+   #container-fases.centralizar {
+  justify-content: center !important;
+}
+.barra-pre, .barra-pos {
+  display: none;
+}
+  </style>
+  <style>
+   #container-fases.centralizar {
+  justify-content: center;
+}
 
-<header class="header">
-    <img src="assets/logo-LEEM.png" alt="Logo LEEM" class="logo">
-    <div class="titulo">
-        <h1>LEEM - Painel de Progresso</h1>
-        <p>Acompanhe seu desempenho e o ranking geral</p>
+#container-fases.centralizar .fase {
+  max-width: 600px;
+  width: 100%;
+}
+  </style>
+  <style>
+   .fase-pre {
+  background-color: #f0eaff;
+}
+.fase-durante {
+  background-color: #e0f3ff;
+}
+.fase-pos {
+  background-color: #e1f7ef;
+}
+.fase-pre .elemento {
+  background-color: #d8cfff;
+}
+.fase-durante .elemento {
+  background-color: #c2e6ff;
+}
+.fase-pos .elemento {
+  background-color: #b9f1db;
+}
+  </style>
+ </head>
+ <body>
+  <div class="intro-container">
+   <div class="seletor-perfil">
+    <label for="perfil-toggle">
+     Visualizar como:
+    </label>
+    <select id="perfil-toggle">
+     <option value="aprendiz">
+      👩‍🎓 Aprendiz
+     </option>
+     <option value="professor">
+      👨‍🏫 Professor
+     </option>
+    </select>
+   </div>
+   <header class="leem-header" style="display: flex; align-items: center; justify-content: center; gap: 1rem; padding: 1rem 0;">
+    <img alt="Logo LEEM" src="logo-LEEM.png" style="height: 60px;"/>
+    <h1 style="font-size: 1.8rem; font-weight: bold; margin: 0;">
+     LEEM - Modelo de Avaliação da Experiência do Aprendiz
+    </h1>
+   </header>
+   <div class="conquista-oculta" id="conquista-msg">
+    🏅 Parabéns! Você conquistou a medalha
+    <strong id="nome-medalha">
+     Bronze
+    </strong>
+    !
+   </div>
+   <div class="layout-leem">
+    <div class="menu-lateral">
+     <button class="ativo" onclick="mostrarSecao('sobre')">
+      ℹ️ Sobre
+     </button>
+     <button class="ativo" onclick="mostrarSecao('missoes')">
+      🗺️ Missões
+     </button>
+     <button onclick="mostrarSecao('progresso')">
+      📈 Progresso
+     </button>
     </div>
-</header>
-
-<main class="card">
-    <h2>🏆 Dashboard de Ranking</h2>
-
-    <!-- Filtros -->
-    <div class="filtros">
-        <label>Disciplina:
-            <input type="text" id="filtroDisciplina" placeholder="Digite a disciplina">
-        </label>
-        <label>Professor(a):
-            <input type="text" id="filtroProfessor" placeholder="Digite o nome do(a) professor(a)">
-        </label>
-        <button onclick="aplicarFiltros()">Aplicar Filtros</button>
+    <div class="conteudo-leem">
+     <section id="secao-sobre">
+      <div class="bloco-sobre bloco-card">
+       <h3>
+        Objetivo do LEEM
+       </h3>
+       <div>
+        O LEEM foi desenvolvido para avaliar e aprimorar a experiência do aprendiz no uso de Tecnologias Digitais de Informação e Comunicação (TDIC).
+       </div>
+      </div>
+      <div class="bloco-sobre bloco-card">
+       <h3>
+        Etapas do Modelo LEEM
+       </h3>
+       <div>
+        <div style="display: flex; flex-direction: row; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+         <div style="background:#e6e0f8;padding:1rem;border-radius:8px;width:200px;">
+          <strong>
+           Pré-avaliação
+          </strong>
+          <br/>
+          <small>
+           Identificar perfil e expectativas do aprendiz.
+          </small>
+         </div>
+         <div style="background:#d0e8ff;padding:1rem;border-radius:8px;width:200px;">
+          <strong>
+           Avaliação-Durante
+          </strong>
+          <br/>
+          <small>
+           Captar a experiência enquanto ela acontece.
+          </small>
+         </div>
+         <div style="background:#d3f4e3;padding:1rem;border-radius:8px;width:200px;">
+          <strong>
+           Pós-avaliação
+          </strong>
+          <br/>
+          <small>
+           Refletir sobre resultados e percepções finais.
+          </small>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="bloco-sobre bloco-card">
+       <h3>
+        Elementos da Experiência do Aprendiz (LX)
+       </h3>
+       <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+        <div style="flex: 1 1 160px; background: #f9f9f9; border-radius: 8px; padding: 0.75rem; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05);" title="Capacidade de personalizar ou ajustar a tecnologia.">
+         ⚙️ Adaptabilidade
+        </div>
+        <div style="flex: 1 1 160px; background: #f9f9f9; border-radius: 8px; padding: 0.75rem; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05);" title="O quão realista e significativo é o uso da tecnologia.">
+         🔍 Autenticidade
+        </div>
+        <div style="flex: 1 1 160px; background: #f9f9f9; border-radius: 8px; padding: 0.75rem; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05);" title="Sensação de conforto ao usar a tecnologia.">
+         🪑 Confortabilidade
+        </div>
+        <div style="flex: 1 1 160px; background: #f9f9f9; border-radius: 8px; padding: 0.75rem; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05);" title="O quão agradável e satisfatória é a experiência.">
+         😊 Desejabilidade
+        </div>
+        <div style="flex: 1 1 160px; background: #f9f9f9; border-radius: 8px; padding: 0.75rem; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05);" title="Competências prévias e adquiridas com o uso da tecnologia.">
+         📚 Habilidades
+        </div>
+        <div style="flex: 1 1 160px; background: #f9f9f9; border-radius: 8px; padding: 0.75rem; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05);" title="Grau de envolvimento e colaboração do aprendiz.">
+         🙋 Participação
+        </div>
+        <div style="flex: 1 1 160px; background: #f9f9f9; border-radius: 8px; padding: 0.75rem; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05);" title="Continuidade e engajamento mantido ao longo do tempo.">
+         💪 Persistência
+        </div>
+        <div style="flex: 1 1 160px; background: #f9f9f9; border-radius: 8px; padding: 0.75rem; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05);" title="Aprendizagens ou conquistas obtidas após a experiência.">
+         📈 Resultado
+        </div>
+        <div style="flex: 1 1 160px; background: #f9f9f9; border-radius: 8px; padding: 0.75rem; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05);" title="Sentimento geral após o uso da tecnologia.">
+         🗣️ Satisfação
+        </div>
+        <div style="flex: 1 1 160px; background: #f9f9f9; border-radius: 8px; padding: 0.75rem; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05);" title="Facilidade de uso da tecnologia.">
+         🔧 Usabilidade
+        </div>
+        <div style="flex: 1 1 160px; background: #f9f9f9; border-radius: 8px; padding: 0.75rem; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05);" title="Importância e utilidade percebida da atividade.">
+         🧭 Valor
+        </div>
+       </div>
+      </div>
+      <div class="bloco-sobre bloco-card">
+       <h3>
+        Quem pode usar?
+       </h3>
+       <div>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content:center">
+         <div>
+          👩‍🏫
+          <strong>
+           Professores
+          </strong>
+          <br/>
+          <small>
+           avaliam a aprendizagem
+          </small>
+         </div>
+         <div>
+          🎓
+          <strong>
+           Estudantes
+          </strong>
+          <br/>
+          <small>
+           refletem sobre sua experiência
+          </small>
+         </div>
+         <div>
+          🔬
+          <strong>
+           Pesquisadores
+          </strong>
+          <br/>
+          <small>
+           investigam o uso de TDICs
+          </small>
+         </div>
+         <div>
+          🏫
+          <strong>
+           Instituições
+          </strong>
+          <br/>
+          <small>
+           analisam indicadores educacionais
+          </small>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="bloco-sobre bloco-card">
+       <h3>
+        Aplicações práticas
+       </h3>
+       <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
+        <div style="text-align:center;width:160px;">
+         <img height="72" src="https://img.icons8.com/color/96/classroom.png" style="margin-bottom:0.5rem;" width="72"/>
+         <div>
+          Sala de aula
+         </div>
+         <small>
+          avaliar atividades com TDICs
+         </small>
+        </div>
+        <div style="text-align:center;width:160px;">
+         <img height="72" src="https://img.icons8.com/color/96/organization.png" style="margin-bottom:0.5rem;" width="72"/>
+         <div>
+          Instituições
+         </div>
+         <small>
+          diagnosticar experiências
+         </small>
+        </div>
+        <div style="text-align:center;width:160px;">
+         <img height="72" src="https://img.icons8.com/color/96/microscope.png" style="margin-bottom:0.5rem;" width="72"/>
+         <div>
+          Pesquisa
+         </div>
+         <small>
+          coletar dados de aprendizagem
+         </small>
+        </div>
+       </div>
+      </div>
+     </section>
+     <section id="secao-missoes" style="display:none">
+      <h2>
+       Missões por Etapa
+      </h2>
+      <div class="fase-container" id="container-fases" style="justify-content: center;">
+       <div class="fase fase-pre" id="fase-pre">
+        <h3>
+         Pré-avaliação
+        </h3>
+        <p class="objetivo-etapa">
+         Identificar o perfil dos aprendizes, considerando dificuldades e expectativas.
+        </p>
+        <div class="elemento" title="Verifica se a atividade parece significativa e autêntica para o aprendiz.">
+         Autêntico
+        </div>
+        <div class="elemento" title="Avalia o quão interessante ou atrativa a atividade parece antes de começar.">
+         Desejabilidade
+        </div>
+        <div class="elemento" title="Reflete sobre o preparo ou conhecimento prévio do aprendiz com a TDIC.">
+         Habilidades
+        </div>
+        <div class="elemento" title="Mede o quanto o aprendiz se sente motivado a participar da atividade.">
+         Participação
+        </div>
+        <div class="elemento" title="Antecipação da facilidade ou dificuldade esperada no uso da TDIC.">
+         Usabilidade
+        </div>
+        <div class="elemento" title="Percepção de importância e utilidade esperada antes da experiência.">
+         Valor
+        </div>
+       </div>
+       <div class="fase fase-durante" id="fase-durante">
+        <h3>
+         Avaliação-Durante
+        </h3>
+        <p class="objetivo-etapa">
+         Observar a experiência em tempo real durante a realização da atividade com TDICs.
+        </p>
+        <div class="elemento" title="Capacidade da tecnologia se ajustar ao estilo e às preferências do aprendiz.">
+         Adaptabilidade
+        </div>
+        <div class="elemento" title="Sensação de fluidez, conforto e tranquilidade durante a realização.">
+         Confortabilidade
+        </div>
+        <div class="elemento" title="Interesse e envolvimento que o aprendiz sente durante a atividade.">
+         Desejabilidade
+        </div>
+        <div class="elemento" title="Desejo de continuar e superar obstáculos ao longo da tarefa.">
+         Persistência
+        </div>
+        <div class="elemento" title="Facilidade real de uso percebida na prática com a tecnologia.">
+         Usabilidade
+        </div>
+        <div class="elemento" title="Utilidade percebida no momento da realização da atividade.">
+         Valor
+        </div>
+       </div>
+       <div class="fase fase-pos" id="fase-pos">
+        <h3>
+         Pós-avaliação
+        </h3>
+        <p class="objetivo-etapa">
+         Refletir sobre os resultados e a satisfação com a experiência concluída.
+        </p>
+        <a class="elemento" href="pos-avaliacao.html" title="Percepção de aprendizagem, conquistas ou mudanças obtidas.">
+         Resultado
+        </a>
+        <a class="elemento" href="pos-avaliacao.html" title="Sentimento geral em relação à experiência vivida.">
+         Satisfação
+        </a>
+        <a class="elemento" href="pos-avaliacao.html" title="Avaliação posterior sobre o impacto e relevância da atividade.">
+         Valor
+        </a>
+       </div>
+      </div>
+     </section>
+     <section class="dashboard" id="secao-progresso" style="display:none">
+      <h2>
+       Seu Progresso
+      </h2>
+      <div class="historia-medalhas">
+       <div class="progresso-etapas">
+        <p>
+         Seu progresso por etapa:
+        </p>
+        <div class="barra-conjunto b a r r a - p r e barra-pre" id="barra-pre">
+         <label>
+          Pré-avaliação (3/6)
+         </label>
+         <div class="barra-xp">
+          <div class="xp-preenchido" style="width: 50%;">
+           50%
+          </div>
+         </div>
+        </div>
+        <div class="barra-conjunto b a r r a - d u r a n t e barra-durante" id="barra-durante">
+         <label>
+          Avaliação-Durante (4/6)
+         </label>
+         <div class="barra-xp">
+          <div class="xp-preenchido" style="width: 66%;">
+           66%
+          </div>
+         </div>
+        </div>
+        <div class="barra-conjunto b a r r a - p o s barra-pos" id="barra-pos">
+         <label>
+          Pós-avaliação (3/3)
+         </label>
+         <div class="barra-xp">
+          <div class="xp-preenchido" style="width: 100%;">
+           100%
+          </div>
+         </div>
+        </div>
+        <div class="barra-conjunto geral b a r r a - g e r a l barra-geral" id="barra-geral">
+         <label>
+          Progresso Geral (10/15)
+         </label>
+         <div class="barra-xp">
+          <div class="xp-preenchido" style="width: 67%;">
+           67%
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="historia-medalhas">
+        <p>
+         Quanto mais informações e reflexões o aprendiz inserir, mais pontos irá acumular e avançar na trilha de conquistas:
+        </p>
+        <div class="barra-xp">
+         <div class="xp-preenchido" style="width: 57%;">
+          285 XP
+         </div>
+        </div>
+        <div class="medalhas-lista">
+         <div class="medalha">
+          <span>
+           🎖
+          </span>
+          <p>
+           Participação
+           <br/>
+           <small>
+            0–199
+           </small>
+          </p>
+         </div>
+         <div class="medalha">
+          <span>
+           🥉
+          </span>
+          <p>
+           Bronze
+           <br/>
+           <small>
+            200–299
+           </small>
+          </p>
+         </div>
+         <div class="medalha">
+          <span>
+           🥈
+          </span>
+          <p>
+           Prata
+           <br/>
+           <small>
+            300–399
+           </small>
+          </p>
+         </div>
+         <div class="medalha">
+          <span>
+           🥇
+          </span>
+          <p>
+           Ouro
+           <br/>
+           <small>
+            400–499
+           </small>
+          </p>
+         </div>
+         <div class="medalha">
+          <span>
+           💎
+          </span>
+          <p>
+           Diamante
+           <br/>
+           <small>
+            500+
+           </small>
+          </p>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="info-boxes">
+       <div class="info-box">
+        ⭐ XP Acumulado:
+        <strong>
+         285
+        </strong>
+       </div>
+       <div class="info-box">
+        🏆 Medalha Atual:
+        <strong>
+         Prata
+        </strong>
+       </div>
+       <div class="info-box">
+        🥇 Ranking:
+        <strong>
+         Top 15%
+        </strong>
+       </div>
+      </div>
+     </section>
     </div>
+   </div>
+   <footer>
+    Desenvolvido por Gabriela Corbari dos Santos • O LEEM é oriundo de uma pesquisa de mestrado da Universidade Federal do Paraná (UFPR).
+   </footer>
+  </div>
+  <script>
+   document.addEventListener("DOMContentLoaded", function () {
+  const perfilToggle = document.getElementById("perfil-toggle");
 
-    <!-- Cards TOP 3 -->
-    <div id="top3" class="top3-cards"></div>
+  function atualizarLayout() {
+    const fasePre = document.getElementById("fase-pre");
+    const faseDurante = document.getElementById("fase-durante");
+    const fasePos = document.getElementById("fase-pos");
 
-    <!-- Tabela Completa -->
-    <table>
-        <thead>
-            <tr>
-                <th>Posição</th>
-                <th>Nome</th>
-                <th>Professor(a)</th>
-                <th>Disciplina</th>
-                <th>XP</th>
-                <th>Tempo</th>
-            </tr>
-        </thead>
-        <tbody id="tabelaRanking"></tbody>
-    </table>
-</main>
+    const barraPre = document.getElementById("barra-pre");
+    const barraDurante = document.getElementById("barra-durante");
+    const barraPos = document.getElementById("barra-pos");
+    const barraGeral = document.getElementById("barra-geral");
 
-<script src="dashboard.js"></script>
-</body>
+    if (perfilToggle.value === "professor") {
+      if (fasePre) fasePre.style.display = "none";
+      if (fasePos) fasePos.style.display = "none";
+      if (faseDurante) faseDurante.style.display = "block";
+
+      if (barraPre) barraPre.style.display = "none";
+      if (barraPos) barraPos.style.display = "none";
+      if (barraDurante) barraDurante.style.display = "block";
+      if (barraGeral) barraGeral.style.display = "block";
+    } else {
+      if (fasePre) fasePre.style.display = "block";
+      if (faseDurante) faseDurante.style.display = "block";
+      if (fasePos) fasePos.style.display = "block";
+
+      if (barraPre) barraPre.style.display = "block";
+      if (barraDurante) barraDurante.style.display = "block";
+      if (barraPos) barraPos.style.display = "block";
+      if (barraGeral) barraGeral.style.display = "block";
+    }
+  }
+
+  function mostrarSecao(secao) {
+    const secoes = {
+      sobre: document.getElementById("secao-sobre"),
+      missoes: document.getElementById("secao-missoes"),
+      progresso: document.getElementById("secao-progresso")
+    };
+
+    for (const key in secoes) {
+      secoes[key].style.display = key === secao ? "block" : "none";
+    }
+
+    const botoes = document.querySelectorAll(".menu-lateral button");
+    botoes.forEach(btn => btn.classList.remove("ativo"));
+    if (secao === "sobre") botoes[0].classList.add("ativo");
+    else if (secao === "missoes") botoes[1].classList.add("ativo");
+    else if (secao === "progresso") botoes[2].classList.add("ativo");
+
+    atualizarLayout();
+  }
+
+  perfilToggle.addEventListener("change", atualizarLayout);
+  atualizarLayout();
+  window.mostrarSecao = mostrarSecao;
+});
+  </script>
+ </body>
 </html>
