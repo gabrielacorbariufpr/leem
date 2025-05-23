@@ -1,4 +1,8 @@
 
+const supabaseUrl = 'https://wuwdkyfcugmmofziuqmo.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1d2RreWZjdWdtbW9meml1cW1vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwMDgwMDksImV4cCI6MjA2MzU4NDAwOX0.ZEBr1OKGW_rPD9tUeAucx3Ugj4R5kfxcfzZg9iEmdr4';
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
 const perguntas = [
     "Todos os integrantes do grupo participaram ativamente? Comente.",
     "Você já havia vivenciado alguma situação semelhante à atividade desenvolvida? Comente.",
@@ -40,12 +44,12 @@ function iniciar() {
         tempo++;
         const minutos = String(Math.floor(tempo / 60)).padStart(2, '0');
         const segundos = String(tempo % 60).padStart(2, '0');
-        tempoSpan.textContent = \`\${minutos}:\${segundos}\`;
+        tempoSpan.textContent = `${minutos}:${segundos}`;
     }, 1000);
 }
 
 function carregarPergunta() {
-    perguntaNumero.textContent = \`Pergunta \${etapaAtual + 1}\`;
+    perguntaNumero.textContent = `Pergunta ${etapaAtual + 1}`;
     perguntaTexto.textContent = perguntas[etapaAtual];
     resposta.value = '';
     contador.textContent = '0/500 caracteres';
@@ -53,7 +57,7 @@ function carregarPergunta() {
 
 resposta.addEventListener('input', () => {
     const caracteres = resposta.value.length;
-    contador.textContent = \`\${caracteres}/500 caracteres\`;
+    contador.textContent = `${caracteres}/500 caracteres`;
 
     const diff = caracteres - caracteresAnteriores;
     if (diff >= 20) {
@@ -67,6 +71,8 @@ resposta.addEventListener('input', () => {
 });
 
 document.getElementById('botaoConcluir').addEventListener('click', () => {
+    salvarResposta('usuario_demo', perguntas[etapaAtual], resposta.value, xp, tempoSpan.textContent);
+
     etapaAtual++;
     if (etapaAtual < perguntas.length) {
         mostrarTelaPercurso();
@@ -92,6 +98,19 @@ function mostrarTelaPercurso() {
 function esconderTelaPercurso() {
     telaPergunta.style.display = 'block';
     telaPercurso.style.display = 'none';
+}
+
+async function salvarResposta(usuario, etapa, respostaTexto, xp, tempo) {
+    const { data, error } = await supabase
+        .from('respostas')
+        .insert([
+            { usuario, etapa, resposta: respostaTexto, xp, tempo }
+        ]);
+    if (error) {
+        console.error('Erro ao salvar:', error);
+    } else {
+        console.log('Resposta salva:', data);
+    }
 }
 
 iniciar();
