@@ -121,14 +121,20 @@ function finalizarMissao() {
     // Aqui você pode redirecionar, mostrar uma tela final ou salvar os dados no Supabase.
 }
 
-function mostrarNotificacao(mensagem) {
+function mostrarNotificacao(tipo) {
     const notificacao = document.createElement('div');
     notificacao.id = 'notificacaoXP';
-    notificacao.textContent = mensagem;
-    document.body.appendChild(notificacao);
 
+    if (tipo === 'ganho') {
+        notificacao.innerHTML = '🎉 Parabéns! Você ganhou +15 XP ⭐';
+    } else if (tipo === 'perda') {
+        notificacao.innerHTML = '😢 Que triste! Você perdeu -15 XP ⭐';
+    }
+
+    document.body.appendChild(notificacao);
     notificacao.style.display = 'block';
+
     setTimeout(() => {
         notificacao.remove();
-    }, 1500);
+    }, 2000);
 }
