@@ -1,4 +1,4 @@
-const perguntas = [
+aconst perguntas = [
     "Todos os integrantes do grupo participaram ativamente? Comente.",
     "Você já havia vivenciado alguma situação semelhante à atividade desenvolvida? Comente.",
     "Qual foi a sua contribuição para a atividade? Comente.",
@@ -56,10 +56,12 @@ function iniciarTempo() {
 function carregarPergunta() {
     document.getElementById('perguntaNumero').textContent = `Etapa ${etapaAtual + 1}`;
     document.getElementById('perguntaTexto').textContent = perguntas[etapaAtual];
-    document.getElementById('resposta').value = '';
+    const resposta = document.getElementById('resposta');
+    resposta.value = '';
     caracteresAnteriores = 0;
     atualizarProgresso();
     atualizarContadorCaracteres();
+    configurarResposta(); // 👉 Sempre configurar listener ao abrir uma pergunta
 }
 
 function atualizarProgresso() {
@@ -75,28 +77,27 @@ function atualizarContadorCaracteres() {
 
 function configurarResposta() {
     const resposta = document.getElementById('resposta');
-    if (resposta) {
-        resposta.addEventListener('input', () => {
-            const caracteres = resposta.value.length;
-            atualizarContadorCaracteres();
-
-            const diff = caracteres - caracteresAnteriores;
-            if (diff >= 20) {
-                xp += 15;
-                caracteresAnteriores += 20;
-                mostrarNotificacao('ganho');
-            } else if (diff <= -20) {
-                xp = Math.max(0, xp - 15);
-                caracteresAnteriores -= 20;
-                mostrarNotificacao('perda');
-            }
-            document.getElementById('xp').textContent = xp;
-        });
-    }
+    resposta.removeEventListener('input', respostaListener); // ✔️ Remove anterior
+    resposta.addEventListener('input', respostaListener);    // ✔️ Adiciona atualizado
 }
 
-// Inicializa o listener apenas uma vez
-document.addEventListener('DOMContentLoaded', configurarResposta);
+function respostaListener() {
+    const resposta = document.getElementById('resposta');
+    const caracteres = resposta.value.length;
+    atualizarContadorCaracteres();
+
+    const diff = caracteres - caracteresAnteriores;
+    if (diff >= 20) {
+        xp += 15;
+        caracteresAnteriores += 20;
+        mostrarNotificacao('ganho');
+    } else if (diff <= -20) {
+        xp = Math.max(0, xp - 15);
+        caracteresAnteriores -= 20;
+        mostrarNotificacao('perda');
+    }
+    document.getElementById('xp').textContent = xp;
+}
 
 document.getElementById('botaoConcluir').addEventListener('click', () => {
     etapaAtual++;
@@ -124,7 +125,7 @@ function proximaPergunta() {
 
 function finalizarMissao() {
     clearInterval(intervaloTempo);
-    alert('Missão concluída! 🚀');
+    window.location.href = 'leem-finalizacao-dinamica.html';
 }
 
 function mostrarNotificacao(tipo) {
