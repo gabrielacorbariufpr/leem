@@ -38,7 +38,10 @@ body {
 }
 
 .campo {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 15px;
+  text-align: left;
 }
 
 .campo input {
