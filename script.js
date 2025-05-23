@@ -61,9 +61,27 @@ function carregarPergunta() {
     caracteresAnteriores = 0;
     atualizarProgresso();
     atualizarContadorCaracteres();
-    configurarResposta(); // 👉 Sempre configurar listener ao abrir uma pergunta
+
+    // 🔥 Sempre remover o listener anterior antes de adicionar um novo
+    resposta.removeEventListener('input', respostaListener);
+    resposta.addEventListener('input', respostaListener);
 }
 
+function respostaListener() {
+    const resposta = document.getElementById('resposta');
+    const caracteres = resposta.value.length;
+    atualizarContadorCaracteres();
+
+    const diff = caracteres - caracteresAnteriores;
+    if (diff >= 20) {
+        xp += 15;
+        caracteresAnteriores += 20;
+        mostrarNotificacao('ganho');
+    } else if (diff <= -20) {
+        xp = Math.max(0, xp - 15);
+        caracteresAnteriores -= 20;
+        mostrarNotificacao('perda');
+    }
 function atualizarProgresso() {
     const progresso = ((etapaAtual) / perguntas.length) * 100;
     document.getElementById('barraProgresso').style.width = progresso + '%';
