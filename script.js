@@ -27,7 +27,6 @@ function abrirTelaApresentacao() {
         return;
     }
 
-    document.getElementById('nomeApresentacao').textContent = nome;
     document.getElementById('alunoCabecalho').textContent = nome;
     document.getElementById('profCabecalho').textContent = professor;
     document.getElementById('discCabecalho').textContent = disciplina;
@@ -74,22 +73,25 @@ function atualizarContadorCaracteres() {
     contador.textContent = `${texto.length}/500 caracteres`;
 }
 
-document.getElementById('resposta').addEventListener('input', () => {
-    const caracteres = document.getElementById('resposta').value.length;
-    atualizarContadorCaracteres();
+const resposta = document.getElementById('resposta');
+if (resposta) {
+    resposta.addEventListener('input', () => {
+        const caracteres = resposta.value.length;
+        atualizarContadorCaracteres();
 
-    const diff = caracteres - caracteresAnteriores;
-    if (diff >= 20) {
-        xp += 15;
-        caracteresAnteriores += 20;
-        mostrarNotificacao('+15 XP');
-    } else if (diff <= -20) {
-        xp = Math.max(0, xp - 15);
-        caracteresAnteriores -= 20;
-        mostrarNotificacao('-15 XP');
-    }
-    document.getElementById('xp').textContent = xp;
-});
+        const diff = caracteres - caracteresAnteriores;
+        if (diff >= 20) {
+            xp += 15;
+            caracteresAnteriores += 20;
+            mostrarNotificacao('ganho');
+        } else if (diff <= -20) {
+            xp = Math.max(0, xp - 15);
+            caracteresAnteriores -= 20;
+            mostrarNotificacao('perda');
+        }
+        document.getElementById('xp').textContent = xp;
+    });
+}
 
 document.getElementById('botaoConcluir').addEventListener('click', () => {
     etapaAtual++;
@@ -118,21 +120,12 @@ function proximaPergunta() {
 function finalizarMissao() {
     clearInterval(intervaloTempo);
     alert('Missão concluída! 🚀');
-    // Aqui você pode redirecionar, mostrar uma tela final ou salvar os dados no Supabase.
 }
 
 function mostrarNotificacao(tipo) {
     const notificacao = document.createElement('div');
     notificacao.id = 'notificacaoXP';
-if (diff >= 20) {
-    xp += 15;
-    caracteresAnteriores += 20;
-    mostrarNotificacao('ganho');
-} else if (diff <= -20) {
-    xp = Math.max(0, xp - 15);
-    caracteresAnteriores -= 20;
-    mostrarNotificacao('perda');
-}
+
     if (tipo === 'ganho') {
         notificacao.innerHTML = '🎉 Parabéns! Você ganhou +15 XP ⭐';
     } else if (tipo === 'perda') {
