@@ -16,6 +16,23 @@ body {
 .logo {
     height: 50px;
 }
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.campo label {
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.campo input {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
 
 .titulo h1 {
     margin: 0;
