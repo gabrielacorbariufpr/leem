@@ -1,170 +1,101 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Painel de Finalização - LEEM</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f5f5f5;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    .card {
-      background-color: #e8f6ff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      max-width: 600px;
-      width: 90%;
-    }
-    .card h1 {
-      text-align: center;
-      color: #004d7a;
-      margin-bottom: 20px;
-    }
-    .info {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 20px;
-      font-size: 1.1em;
-    }
-    .info p {
-      margin: 0;
-    }
-    .progress-bar {
-      width: 100%;
-      height: 20px;
-      background-color: #ddd;
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-    .progress {
-      height: 100%;
-      width: 100%;
-      background-color: #4caf50;
-      border-radius: 10px;
-      transition: width 0.3s ease;
-    }
-    .acoes {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .acoes button {
-      background-color: #0077b6;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      font-size: 1em;
-    }
-    .acoes button:hover {
-      background-color: #005f8a;
-    }
-    footer {
-      margin-top: 15px;
-      text-align: center;
-      font-size: 0.9em;
-      color: #555;
-    }
-  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="card" id="conteudo-pdf">
-    <h1>🎯 Painel de Finalização</h1>
+<div class="card">
+  <h1>Painel de Finalização</h1>
 
-    <div class="info">
-      <p>📑 <strong>Histórico de Respostas:</strong></p>
-      <p>📝 Resposta 1...</p>
-      <p>📝 Resposta 2...</p>
-    </div>
-
-    <div class="info">
-      <p>📈 <strong>Evolução da Experiência:</strong></p>
-      <p>🔍 Resumo da sua evolução com base nas respostas.</p>
-    </div>
-
-    <div class="info">
-  <p>🏆 <strong>Painel de Conquistas:</strong></p>
-  <p id="medalha"></p>
-  <p id="xp"></p>
-  <p id="rankingXP"></p>
-  <p id="tempo"></p>
-  <p id="rankingTempo"></p>
-</div>
-    
   <div class="info">
-    <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const medalha = localStorage.getItem('medalha') || 'Sem medalha';
-  const xp = localStorage.getItem('xpFinal') || 0;
-  const rankingXP = localStorage.getItem('rankingXP') || 'N/A';
-  const tempo = localStorage.getItem('tempoFinal') || '00:00';
-  const rankingTempo = localStorage.getItem('rankingTempo') || 'N/A';
-
-  // Atualiza os elementos no HTML
-  <p>🏆 <strong>Painel de Conquistas:</strong></p>
-  document.getElementById('medalha').innerText = `🥇 Medalha: ${medalha}`;
-  document.getElementById('xp').innerText = `⭐ XP Final: ${xp}`;
-  document.getElementById('rankingXP').innerText = `🏆 Ranking XP: ${rankingXP}`;
-  document.getElementById('tempo').innerText = `⏱️ Tempo: ${tempo}`;
-  document.getElementById('rankingTempo').innerText = `🥈 Ranking Tempo: ${rankingTempo}`;
-});
-</script>
-</div>
-
-    <div class="progress-bar">
-      <div class="progress" style="width: 100%;"></div>
-    </div>
-
-    <div class="acoes">
-      <button onclick="gerarPDF()">📄 Gerar PDF</button>
-      <button onclick="compartilhar()">📧 Enviar ao Professor</button>
-      <button onclick="voltar()">🔁 Voltar ao Início</button>
-    </div>
-
-    <footer>
-      Desenvolvido por Gabriela Corbari dos Santos • LEEM é oriundo de uma pesquisa de mestrado da UFPR.
-    </footer>
+    <p><strong>Nome:</strong> <span id="nomeUsuario"></span></p>
+    <p><strong>Professor(a):</strong> <span id="nomeProfessor"></span></p>
+    <p><strong>Disciplina:</strong> <span id="nomeDisciplina"></span></p>
+    <p><strong>XP Final:</strong> <span id="xpFinal">0</span></p>
+    <p><strong>Tempo Total:</strong> <span id="tempoFinal">00:00</span></p>
+    <p><strong>Ranking XP:</strong> <span id="rankingXP">-</span></p>
+    <p><strong>Ranking Tempo:</strong> <span id="rankingTempo">-</span></p>
+    <p><strong>Medalha:</strong> <span id="medalha">-</span></p>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <h3>Histórico de Respostas</h3>
+  <div id="historicoRespostas"></div>
 
-  <script>
-    function gerarPDF() {
-      const elemento = document.getElementById('conteudo-pdf');
-      const opt = {
-        margin: 0.3,
-        filename: 'Painel-Finalizacao-LEEM.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-      };
-      html2pdf().set(opt).from(elemento).save();
-    }
+  <div class="acoes">
+    <button onclick="window.location.href='pos-avaliacao.html'">🔄 Refazer</button>
+    <button onclick="window.location.href='index.html'">🏠 Voltar ao Início</button>
+  </div>
+</div>
 
-    function compartilhar() {
-      const texto = encodeURIComponent("Confira meu painel de finalização da missão no LEEM! ⭐🏆");
-      const url = window.location.href;
-      window.open(`mailto:?subject=Meu Painel LEEM&body=${texto}%0A${url}`);
-    }
+<script>
+const supabaseUrl = 'https://wuwdkyfcugmmofziuqmo.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1d2RreWZjdWdtbW9meml1cW1vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwMDgwMDksImV4cCI6MjA2MzU4NDAwOX0.ZEBr1OKGW_rPD9tUeAucx3Ugj4R5kfxcfzZg9iEmdr4';
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-    function voltar() {
-      window.location.href = "index.html"; // Altere para o nome do seu arquivo inicial
-    }
-  </script>
+const nome = localStorage.getItem('nome') || prompt('Digite seu nome para visualizar seu painel:');
+const professor = localStorage.getItem('professor') || '';
+const disciplina = localStorage.getItem('disciplina') || '';
+
+document.getElementById('nomeUsuario').textContent = nome;
+document.getElementById('nomeProfessor').textContent = professor;
+document.getElementById('nomeDisciplina').textContent = disciplina;
+
+async function carregarDados() {
+  const { data, error } = await supabase
+    .from('respostas')
+    .select('*')
+    .eq('usuario', nome);
+
+  if (error) {
+    console.error('Erro ao carregar dados:', error);
+    return;
+  }
+
+  const xpTotal = data.reduce((sum, r) => sum + (r.xp || 0), 0);
+  const tempos = data.map(r => r.tempo || '00:00');
+  const tempoFinal = tempos.length > 0 ? tempos[tempos.length - 1] : '00:00';
+
+  document.getElementById('xpFinal').textContent = xpTotal;
+  document.getElementById('tempoFinal').textContent = tempoFinal;
+
+  // Histórico de respostas
+  const historicoDiv = document.getElementById('historicoRespostas');
+  data.forEach(r => {
+    const p = document.createElement('p');
+    p.textContent = `Etapa: ${r.etapa} → ${r.resposta}`;
+    historicoDiv.appendChild(p);
+  });
+
+  // Ranking XP
+  const { data: rankingXP } = await supabase
+    .rpc('ranking_xp');
+
+  const posXP = rankingXP.findIndex(u => u.usuario === nome) + 1;
+  document.getElementById('rankingXP').textContent = posXP > 0 ? `${posXP}º lugar` : 'N/A';
+
+  // Ranking Tempo
+  const { data: rankingTempo } = await supabase
+    .rpc('ranking_tempo');
+
+  const posTempo = rankingTempo.findIndex(u => u.usuario === nome) + 1;
+  document.getElementById('rankingTempo').textContent = posTempo > 0 ? `${posTempo}º lugar` : 'N/A';
+
+  // Medalhas
+  const medalha = posXP === 1 ? '🏅 Ouro'
+                : posXP === 2 ? '🥈 Prata'
+                : posXP === 3 ? '🥉 Bronze'
+                : '🎖️ Participação';
+  document.getElementById('medalha').textContent = medalha;
+}
+
+carregarDados();
+</script>
 
 </body>
 </html>
