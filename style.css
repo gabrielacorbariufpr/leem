@@ -1,189 +1,75 @@
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  margin: 0;
-  padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #d0e8ff;
-  padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #cef1e4;
+    padding: 10px 20px;
 }
 
 .logo {
-  height: 50px;
+    height: 50px;
 }
 
 .titulo h1 {
-  margin: 0;
+    margin: 0;
 }
 
 .info-xp-tempo {
-  display: flex;
-  gap: 20px;
-  align-items: center;
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
 main, .tela-percurso {
-  padding: 20px;
+    padding: 20px;
 }
 
 .card {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  max-width: 600px;
-  margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 20px auto;
 }
 
 textarea {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-}
-
-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-button:hover {
-  background-color: #0056b3;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
 }
 
 .contador {
-  margin-top: 5px;
-  font-size: 14px;
-  color: #555;
+    margin-top: 10px;
 }
 
-footer {
-  background-color: #d0e8ff;
-  text-align: center;
-  padding: 10px;
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
 
 .tela-percurso {
-  background-color: #f0f8ff;
-  border: 2px solid #ccc;
-  border-radius: 12px;
-  padding: 20px;
-  max-width: 600px;
-  margin: 50px auto;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-align: center;
 }
 
 .status-percurso {
-  margin: 20px 0;
-  font-size: 18px;
+    margin: 20px 0;
 }
-
-.barra-progresso {
-  width: 100%;
-  background-color: #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  height: 20px;
-  margin-top: 10px;
-}
-
-.barra-progresso div {
-  height: 100%;
-  background-color: #4caf50;
-  width: 0%;
-  transition: width 0.5s;
-}
-
-.notificacao {
-  position: fixed;
-  right: 40px;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #ffd700;
-  color: #000;
-  padding: 12px 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  font-size: 16px;
-  z-index: 1000;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.notificacao.ativo {
-  opacity: 1;
-}
-
-/* --------- Tela de Finalização --------- */
-
-.container {
-  max-width: 800px;
-  margin: 30px auto;
-  padding: 20px;
-}
-
-.card-finalizacao {
-  background-color: white;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-h1.titulo-finalizacao {
-  text-align: center;
-  color: #004d99;
-  margin-bottom: 20px;
-}
-
-.card-finalizacao h2 {
-  color: #007bff;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 5px;
-  margin-bottom: 10px;
-}
-
-.painel-conquistas {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 16px;
-}
-
-.painel-conquistas p {
-  margin: 5px 0;
-}
-
-.botoes-finalizacao {
-  text-align: center;
-}
-
-.botoes-finalizacao button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 25px;
-  border-radius: 8px;
-  margin: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
-}
-
-.botoes-finalizacao button:hover {
-  background-color: #0056b3;
-}
-

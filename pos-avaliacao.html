@@ -1,80 +1,50 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Missão: Pós-avaliação</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missão: Pós-avaliação</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Cabeçalho -->
-  <header class="header">
-    <img src="logo-LEEM.png" alt="Logo LEEM" class="logo">
+<header class="header">
+    <img src="assets/logo-LEEM.png" alt="Logo LEEM" class="logo">
     <div class="titulo">
-      <h1>Missão: Pós-avaliação</h1>
-      <p>Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
+        <h1>Missão: Pós-avaliação</h1>
+        <p>Compartilhe suas experiências enquanto ganha pontos e reflexões!</p>
     </div>
     <div class="info-xp-tempo">
-      <div class="xp" title="A cada 20 caracteres digitados, você ganha +15 XP. Ao apagar, perde -15 XP.">
-        ⭐ XP: <span id="xp">0</span>
-      </div>
-      <div class="tempo">
-        ⏱️ <span id="tempo">00:00</span>
-      </div>
+        <div class="xp" title="A cada 20 caracteres digitados, você ganha +15 XP. Ao apagar, perde -15 XP.">
+            ⭐ XP: <span id="xp">0</span>
+        </div>
+        <div class="tempo">
+            ⏱️ <span id="tempo">00:00</span>
+        </div>
     </div>
-  </header>
+</header>
 
-  <!-- Tela de pergunta -->
-  <main id="telaPergunta">
+<main id="telaPergunta">
     <div class="card">
-      <h2 id="perguntaNumero"></h2>
-      <p id="perguntaTexto"></p>
-      <textarea id="resposta" rows="5"></textarea>
-      <div class="contador" id="contadorCaracteres">0/300 caracteres</div>
-      <button id="botaoConcluir">Concluir etapa!</button>
+        <h2 id="perguntaNumero"></h2>
+        <p id="perguntaTexto"></p>
+        <textarea id="resposta" rows="5"></textarea>
+        <div class="contador" id="contadorCaracteres">0/500 caracteres</div>
+        <button id="botaoConcluir">Concluir etapa!</button>
     </div>
-  </main>
+</main>
 
-  <!-- Tela de percurso -->
-  <div id="telaPercurso" class="tela-percurso" style="display: none;">
+<div id="telaPercurso" class="tela-percurso" style="display: none;">
     <h2>🚀 Percurso da Missão</h2>
     <div class="status-percurso">
-      <div>🕓 Tempo: <span id="tempoPercurso">00:00</span></div>
-      <div>⭐ XP acumulado: <span id="xpPercurso">0</span></div>
-      <div>📊 Etapa <span id="etapaAtualPercurso">1</span> de <span id="totalEtapasPercurso">10</span></div>
-      <div class="barra-progresso">
-        <div id="progressoPreenchido"></div>
-      </div>
+        <div>🕓 Tempo: <span id="tempoPercurso">00:00</span></div>
+        <div>⭐ XP acumulado: <span id="xpPercurso">0</span></div>
+        <div>📊 Etapa <span id="etapaAtualPercurso">1</span> de <span id="totalEtapas"></span></div>
     </div>
-    <button id="botaoAvancar">Avançar para a próxima etapa</button>
-  </div>
+    <button id="botaoProxima">Próxima Etapa</button>
+</div>
 
-  <!-- Notificação -->
-  <div id="notificacao" class="notificacao"></div>
-
-  <script>
-  // Recupera os dados do localStorage
-  const xp = localStorage.getItem('xpFinal') || 0;
-  const tempo = localStorage.getItem('tempoFinal') || '00:00';
-  const rankingXP = localStorage.getItem('rankingXP') || 'N/A';
-  const rankingTempo = localStorage.getItem('rankingTempo') || 'N/A';
-  const medalha = localStorage.getItem('medalha') || 'Sem medalha';
-
-  // Atualiza os elementos HTML dinamicamente
-  document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById('medalha').textContent = `🏅 Medalha: ${medalha}`;
-    document.getElementById('xp').textContent = `⭐ XP Final: ${xp}`;
-    document.getElementById('rankingXP').textContent = `🏆 Ranking XP: ${rankingXP}`;
-    document.getElementById('tempo').textContent = `⏱️ Tempo: ${tempo}`;
-    document.getElementById('rankingTempo').textContent = `🥈 Ranking Tempo: ${rankingTempo}`;
-  });
-</script>
-  
-  <footer>
-    Desenvolvido por Gabriela Corbari dos Santos • LEEM é oriundo de uma pesquisa de mestrado da UFPR.
-  </footer>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
