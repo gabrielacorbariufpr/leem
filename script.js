@@ -124,7 +124,15 @@ function finalizarMissao() {
 function mostrarNotificacao(tipo) {
     const notificacao = document.createElement('div');
     notificacao.id = 'notificacaoXP';
-
+if (diff >= 20) {
+    xp += 15;
+    caracteresAnteriores += 20;
+    mostrarNotificacao('ganho');
+} else if (diff <= -20) {
+    xp = Math.max(0, xp - 15);
+    caracteresAnteriores -= 20;
+    mostrarNotificacao('perda');
+}
     if (tipo === 'ganho') {
         notificacao.innerHTML = '🎉 Parabéns! Você ganhou +15 XP ⭐';
     } else if (tipo === 'perda') {
