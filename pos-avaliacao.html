@@ -1,1 +1,70 @@
-<html><body><h1>Pos Avaliacao Organizado</h1></body></html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missão: Pós-avaliação</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+<!-- Tela de Identificação -->
+<div id="telaIdentificacao" class="card">
+    <h2>Identificação da Missão</h2>
+    <label>Nome: <input type="text" id="nome"></label>
+    <label>Professor(a): <input type="text" id="professor"></label>
+    <label>Disciplina: <input type="text" id="disciplina"></label>
+    <button onclick="abrirTelaApresentacao()">Avançar 🚀</button>
+</div>
+
+<!-- Tela de Apresentação -->
+<div id="telaApresentacao" class="card" style="display:none;">
+    <h2>Seja bem-vindo(a)!</h2>
+    <p>Olá <span id="nomeApresentacao"></span>! Sua missão possui <b>10 etapas</b>.</p>
+    <p>Ganhe <b>XP</b> digitando suas respostas. O tempo será <b>cronometrado</b>.</p>
+    <button onclick="iniciarMissao()">Iniciar Missão 🚀</button>
+</div>
+
+<!-- Header -->
+<header class="header" style="display:none;">
+    <img src="assets/logo-LEEM.png" class="logo" alt="Logo">
+    <div class="titulo">
+        <h1>Missão: Pós-avaliação</h1>
+        <p class="subtitulo">Compartilhe sua experiência enquanto ganha pontos e reflexões!</p>
+        <p>Aluno: <span id="alunoCabecalho"></span> | Professor(a): <span id="profCabecalho"></span> | Disciplina: <span id="discCabecalho"></span></p>
+    </div>
+    <div class="info-xp-tempo">
+        <div>⭐ XP: <span id="xp">0</span></div>
+        <div>⏱️ <span id="tempo">00:00</span></div>
+    </div>
+</header>
+
+<!-- Perguntas -->
+<main id="telaPergunta" style="display:none;">
+    <div class="barra-progresso"><div id="barraProgresso"></div></div>
+    <h2 id="perguntaNumero"></h2>
+    <p id="perguntaTexto"></p>
+    <textarea id="resposta" rows="5"></textarea>
+    <div class="contador" id="contadorCaracteres">0/500 caracteres</div>
+    <button id="botaoConcluir">Concluir etapa!</button>
+</main>
+
+<!-- Tela Percurso -->
+<div id="telaPercurso" class="tela-percurso" style="display:none;">
+    <h2>Progresso da Missão</h2>
+    <p>🕓 Tempo: <span id="tempoPercurso">00:00</span></p>
+    <p>⭐ XP acumulado: <span id="xpPercurso">0</span></p>
+    <p>📊 Etapa <span id="etapaAtualPercurso">1</span> de <span id="totalEtapas">10</span></p>
+    <button onclick="proximaPergunta()">Próxima Etapa</button>
+</div>
+
+<!-- Rodapé -->
+<footer class="footer">
+    <p>© 2025 LEEM - Todos os direitos reservados.</p>
+    <p>Desenvolvido por Gabriela Corbari dos Santos • O LEEM é oriundo de uma pesquisa de mestrado da Universidade Federal do Paraná (UFPR).</p>
+</footer>
+
+</body>
+</html>
