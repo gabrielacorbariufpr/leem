@@ -89,21 +89,6 @@ function configurarResposta() {
     resposta.addEventListener('input', respostaListener);    // ✔️ Adiciona atualizado
 }
 
-function respostaListenerSecundario() {
-    const resposta = document.getElementById('resposta');
-    const caracteres = resposta.value.length;
-    atualizarContadorCaracteres();
-
-    const diff = caracteres - caracteresAnteriores;
-    if (diff >= 20) {
-        xp += 15;
-        caracteresAnteriores += 20;
-        mostrarNotificacao('ganho');
-    } else if (diff <= -20) {
-        xp = Math.max(0, xp - 15);
-        caracteresAnteriores -= 20;
-        mostrarNotificacao('perda');
-    }
     document.getElementById('xp').textContent = xp;
 }
 
