@@ -140,8 +140,3 @@ function mostrarNotificacao(tipo) {
     notificacao.style.display = 'none';
   }, 2000);
 }
-
-function finalizarMissao() {
-  clearInterval(intervaloTempo);
-  alert('Missão finalizada!');
-}
