@@ -44,40 +44,10 @@
 const nome = localStorage.getItem('nome') || 'Usuário';
 const professor = localStorage.getItem('professor') || 'Professor';
 const disciplina = localStorage.getItem('disciplina') || 'Disciplina';
+const xpFinal = localStorage.getItem('xpFinal') || 0;
+const tempoFinal = localStorage.getItem('tempoFinal') || '00:00';
+const respostas = JSON.parse(localStorage.getItem('respostas')) || [];
 
-// Dados simulados
-const xpFinal = 150;
-const tempoFinal = '02:34';
-const respostas = [
-  'Todos participaram bem.',
-  'Sim, já vivenciei.',
-  'Contribuí com ideias.',
-  'Sim, dei sugestões.',
-  'Sim, fiz algo parecido.',
-  'Me senti muito envolvido.',
-  'Sim, tivemos desafios técnicos.',
-  'Aprendi muito sobre colaboração.',
-  'Sugiro mais tempo para a atividade.',
-  'Foi uma ótima experiência.'
-];
-
-const rankingXP = [
-  { usuario: 'Alice', total_xp: 180 },
-  { usuario: 'Bob', total_xp: 165 },
-  { usuario: nome, total_xp: xpFinal },
-  { usuario: 'Carol', total_xp: 140 },
-  { usuario: 'David', total_xp: 130 }
-];
-
-const rankingTempo = [
-  { usuario: 'Carol', tempo_total: '02:10' },
-  { usuario: nome, tempo_total: tempoFinal },
-  { usuario: 'Alice', tempo_total: '02:45' },
-  { usuario: 'Bob', tempo_total: '03:00' },
-  { usuario: 'David', tempo_total: '03:15' }
-];
-
-// Preencher dados
 document.getElementById('nomeUsuario').textContent = nome;
 document.getElementById('nomeProfessor').textContent = professor;
 document.getElementById('nomeDisciplina').textContent = disciplina;
@@ -91,6 +61,23 @@ respostas.forEach((r, i) => {
   p.textContent = `Etapa ${i + 1}: ${r}`;
   historico.appendChild(p);
 });
+
+// Ranking simulado incluindo o usuário
+const rankingXP = [
+  { usuario: 'Alice', total_xp: 180 },
+  { usuario: 'Bob', total_xp: 165 },
+  { usuario: nome, total_xp: parseInt(xpFinal) },
+  { usuario: 'Carol', total_xp: 140 },
+  { usuario: 'David', total_xp: 130 }
+].sort((a, b) => b.total_xp - a.total_xp);
+
+const rankingTempo = [
+  { usuario: 'Carol', tempo_total: '02:10' },
+  { usuario: nome, tempo_total: tempoFinal },
+  { usuario: 'Alice', tempo_total: '02:45' },
+  { usuario: 'Bob', tempo_total: '03:00' },
+  { usuario: 'David', tempo_total: '03:15' }
+];
 
 // Ranking XP
 const rankingXPTop = rankingXP.slice(0, 3);
@@ -116,9 +103,10 @@ const medalha = posXP === 1 ? '🏅 Ouro'
   : posXP === 2 ? '🥈 Prata'
   : posXP === 3 ? '🥉 Bronze'
   : '🎖️ Participação';
+
 document.getElementById('medalha').textContent = medalha;
 
-// Compartilhar com professor
+// Compartilhar
 function compartilharComProfessor() {
   const texto = `Olá Professor(a) ${professor}, concluí minha missão na disciplina ${disciplina}!\n⭐ XP: ${xpFinal}\n⏱️ Tempo: ${tempoFinal}\nRanking XP: ${posXP}º\nRanking Tempo: ${posTempo}º\nMedalha: ${medalha}`;
   const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
