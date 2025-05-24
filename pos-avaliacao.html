@@ -1,51 +1,75 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Missão: Pós-avaliação</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Missão: Pós-avaliação</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="telaIdentificacao">
-    <h2>Missão 🚀 : Pós-avaliação</h2>
-    <p>Preencha suas informações para iniciar sua missão 🚀.</p>
-    <label>Nome:</label>
-    <input type="text" id="nome">
-    <label>Professor(a):</label>
-    <input type="text" id="professor">
-    <label>Disciplina:</label>
-    <input type="text" id="disciplina">
-    <button onclick="abrirTelaApresentacao()">Avançar 🚀</button>
+<!-- Tela de Identificação -->
+<div id="telaIdentificacao" class="card">
+  <h2>Missão 🚀 : Pós-avaliação</h2>
+  <p>Preencha suas informações para iniciar sua missão 🚀.</p>
+  <label>Nome:</label>
+  <input type="text" id="nome">
+  <label>Professor(a):</label>
+  <input type="text" id="professor">
+  <label>Disciplina:</label>
+  <input type="text" id="disciplina">
+  <button onclick="abrirTelaApresentacao()">Avançar 🚀</button>
 </div>
 
-<div id="telaApresentacao" style="display: none;">
-    <h2>🚀 Se prepare para começarmos essa missão!</h2>
-    <p>Sua missão possui 10 etapas. Ganhe ⭐ XP digitando suas respostas. O tempo será cronometrado ⏱️.</p>
-    <button onclick="iniciarMissao()">Iniciar Missão 🚀</button>
+<!-- Tela de Apresentação -->
+<div id="telaApresentacao" class="card" style="display: none;">
+  <h2>🚀 Se prepare para começarmos essa missão!</h2>
+  <p>Fique atento às instruções!<br>
+     Sua missão possui <b>10 etapas</b>.<br>
+     Ganhe ⭐ XP digitando suas respostas.<br>
+     O tempo será ⏱️ <b>cronometrado</b>.</p>
+  <button onclick="iniciarMissao()">Iniciar Missão 🚀</button>
 </div>
 
+<!-- Cabeçalho -->
 <header style="display: none;">
+  <img src="logo-LEEM.png" alt="Logo" class="logo">
+  <div>
     <h1>Missão: Pós-avaliação</h1>
-    <div>Aluno: <span id="alunoCabecalho"></span> | Professor(a): <span id="profCabecalho"></span> | Disciplina: <span id="discCabecalho"></span></div>
-    <div>⭐ XP: <span id="xp">0</span> ⏱️ <span id="tempo">00:00</span></div>
+    <p>Compartilhe sua experiência enquanto ganha pontos e reflexões!</p>
+    <p>Aluno: <span id="alunoCabecalho"></span> |
+       Professor(a): <span id="profCabecalho"></span> |
+       Disciplina: <span id="discCabecalho"></span></p>
+  </div>
+  <div class="info-xp-tempo">
+    ⭐ XP: <span id="xp">0</span> ⏱️ <span id="tempo">00:00</span>
+  </div>
 </header>
 
-<div id="telaPergunta" style="display: none;">
-    <h2 id="perguntaNumero"></h2>
-    <p id="perguntaTexto"></p>
-    <textarea id="resposta" rows="5" placeholder="Digite sua resposta..."></textarea>
-    <div id="contadorCaracteres">0/500 caracteres</div>
-    <div id="barraContainer"><div id="barraProgresso"></div></div>
-    <button id="botaoConcluir">Concluir etapa!</button>
+<!-- Tela de Pergunta -->
+<div id="telaPergunta" class="card" style="display: none;">
+  <h2 id="perguntaNumero"></h2>
+  <p id="perguntaTexto"></p>
+  <textarea id="resposta" rows="5" placeholder="Digite sua resposta..."></textarea>
+  <div id="contadorCaracteres">0/500 caracteres</div>
+  <button id="botaoConcluir">Concluir etapa!</button>
 </div>
 
-<div id="telaPercurso" style="display: none;">
-    <h2>✔️ Etapa concluída!</h2>
-    <p>Preparando a próxima etapa...</p>
+<!-- Tela de Percurso -->
+<div id="telaPercurso" class="card" style="display: none;">
+  <h2>📊 Progresso da Missão</h2>
+  <p>⏱️ Tempo: <span id="tempoPercurso">00:00</span> ⭐ XP acumulado: <span id="xpPercurso">0</span> 
+     📑 Etapa <span id="etapaAtualPercurso"></span> de 10</p>
+  <div class="barraContainer">
+    <div id="barraProgresso" class="barraProgresso"></div>
+  </div>
+  <button onclick="proximaPergunta()">Próxima Etapa</button>
 </div>
+
+<footer>
+  © 2025 LEEM - Todos os direitos reservados.<br>
+  Desenvolvido por Gabriela Corbari dos Santos • O LEEM é oriundo de uma pesquisa de mestrado da Universidade Federal do Paraná (UFPR).
+</footer>
 
 <script src="script.js" defer></script>
 </body>
