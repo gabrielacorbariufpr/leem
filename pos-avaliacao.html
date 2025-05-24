@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,84 +9,43 @@
 </head>
 <body>
 
-<!-- Tela de Identificação -->
-<div id="telaIdentificacao" class="card-identificacao">
-  <h2>Missão 🚀 : Pós-avaliação</h2>
-  <p class="subtitulo-identificacao">
-    Preencha suas informações para iniciar sua missão 🚀.
-  </p>
-
-  <div class="campo">
+<div id="telaIdentificacao">
+    <h2>Missão 🚀 : Pós-avaliação</h2>
+    <p>Preencha suas informações para iniciar sua missão 🚀.</p>
     <label>Nome:</label>
-    <input type="text" id="nome" placeholder="Digite seu nome">
-  </div>
-
-  <div class="campo">
+    <input type="text" id="nome">
     <label>Professor(a):</label>
-    <input type="text" id="professor" placeholder="Digite o nome do(a) professor(a)">
-  </div>
-
-  <div class="campo">
+    <input type="text" id="professor">
     <label>Disciplina:</label>
-    <input type="text" id="disciplina" placeholder="Digite a disciplina">
-  </div>
-
-  <button id="botaoConcluir" onclick="abrirTelaApresentacao()">Avançar 🚀</button>
+    <input type="text" id="disciplina">
+    <button onclick="abrirTelaApresentacao()">Avançar 🚀</button>
 </div>
 
-<!-- Tela de Apresentação -->
-<div id="telaApresentacao" class="card-apresentacao" style="display: none;">
-  <h2>🚀 Se prepare para começarmos essa missão!</h2>
-
-  <p>Fique atento às instruções!</p>
-  <p>Sua missão possui <b>10 etapas</b>.</p>
-  <p>Ganhe ⭐ <b>XP</b> digitando suas respostas.</p>
-  <p>O tempo será <b>cronometrado ⏱️</b>.</p>
-
-  <button onclick="iniciarMissao()">Iniciar Missão 🚀</button>
+<div id="telaApresentacao" style="display: none;">
+    <h2>🚀 Se prepare para começarmos essa missão!</h2>
+    <p>Sua missão possui 10 etapas. Ganhe ⭐ XP digitando suas respostas. O tempo será cronometrado ⏱️.</p>
+    <button onclick="iniciarMissao()">Iniciar Missão 🚀</button>
 </div>
 
-<!-- Header -->
-<header class="header" style="display: none;">
-    <img src="logo-LEEM.png" class="logo" alt="Logo">
-    <div class="titulo">
-        <h1>Missão: Pós-avaliação</h1>
-        <p class="subtitulo">Compartilhe sua experiência enquanto ganha pontos e reflexões!</p>
-        <p>Aluno: <span id="alunoCabecalho"></span> | Professor(a): <span id="profCabecalho"></span> | Disciplina: <span id="discCabecalho"></span></p>
-    </div>
-    <div class="info-xp-tempo">
-       <div class="xp" 
-    title="Você ganha +15 XP a cada 20 caracteres digitados. Perde -15 XP se apagar 20 caracteres.">
-    ⭐ XP: <span id="xp">0</span>
-</div>
-        <div>⏱️ <span id="tempo">00:00</span></div>
-    </div>
+<header style="display: none;">
+    <h1>Missão: Pós-avaliação</h1>
+    <div>Aluno: <span id="alunoCabecalho"></span> | Professor(a): <span id="profCabecalho"></span> | Disciplina: <span id="discCabecalho"></span></div>
+    <div>⭐ XP: <span id="xp">0</span> ⏱️ <span id="tempo">00:00</span></div>
 </header>
 
-<!-- Perguntas -->
-<main id="telaPergunta" style="display: none;">
-    <div class="barra-progresso"><div id="barraProgresso"></div></div>
-    <h2 id="perguntaNumero">Pergunta 1</h2>
-    <p id="perguntaTexto">Digite aqui sua resposta...</p>
-    <textarea id="resposta" rows="5"></textarea>
-    <div class="contador" id="contadorCaracteres">0/500 caracteres</div>
-    <button onclick="mostrarTelaPercurso()">Concluir etapa!</button>
-</main>
-
-<!-- Tela Percurso -->
-<div id="telaPercurso" class="tela-percurso" style="display: none;">
-    <h2>Progresso da Missão</h2>
-    <p>🕓 Tempo: <span id="tempoPercurso">00:00</span></p>
-    <p>⭐ XP acumulado: <span id="xpPercurso">0</span></p>
-    <p>📊 Etapa <span id="etapaAtualPercurso">1</span> de <span id="totalEtapas">10</span></p>
-    <button onclick="proximaPergunta()">Próxima Etapa</button>
+<div id="telaPergunta" style="display: none;">
+    <h2 id="perguntaNumero"></h2>
+    <p id="perguntaTexto"></p>
+    <textarea id="resposta" rows="5" placeholder="Digite sua resposta..."></textarea>
+    <div id="contadorCaracteres">0/500 caracteres</div>
+    <div id="barraContainer"><div id="barraProgresso"></div></div>
+    <button id="botaoConcluir">Concluir etapa!</button>
 </div>
 
-<!-- Rodapé -->
-<footer class="footer">
-    <p>© 2025 LEEM - Todos os direitos reservados.</p>
-    <p>Desenvolvido por Gabriela Corbari dos Santos • O LEEM é oriundo de uma pesquisa de mestrado da Universidade Federal do Paraná (UFPR).</p>
-</footer>
+<div id="telaPercurso" style="display: none;">
+    <h2>✔️ Etapa concluída!</h2>
+    <p>Preparando a próxima etapa...</p>
+</div>
 
 <script src="script.js" defer></script>
 </body>
