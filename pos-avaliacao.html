@@ -30,7 +30,7 @@
     <input type="text" id="disciplina" placeholder="Digite a disciplina">
   </div>
 
-  <button onclick="abrirTelaApresentacao()">Avançar 🚀</button>
+  <button id="botaoConcluir" onclick="abrirTelaApresentacao()">Avançar 🚀</button>
 </div>
 
 <!-- Tela de Apresentação -->
@@ -69,7 +69,7 @@
     <p id="perguntaTexto">Digite aqui sua resposta...</p>
     <textarea id="resposta" rows="5"></textarea>
     <div class="contador" id="contadorCaracteres">0/500 caracteres</div>
-    <button id="botaoConcluir">Concluir etapa!</button>
+    <button onclick="mostrarTelaPercurso()">Concluir etapa!</button>
 </main>
 
 <!-- Tela Percurso -->
