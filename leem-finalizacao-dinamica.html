@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Painel de Finalização - LEEM</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,23 +24,31 @@
     <p><strong>Medalha:</strong> <span id="medalha">-</span></p>
   </div>
 
-  <h3>Histórico de Respostas</h3>
+  <h2>🏆 Ranking XP - Top 3</h2>
+  <div id="rankingXPTop"></div>
+
+  <h2>⏱️ Ranking Tempo - Top 3</h2>
+  <div id="rankingTempoTop"></div>
+
+  <h3>📜 Histórico de Respostas</h3>
   <div id="historicoRespostas"></div>
 
   <div class="acoes">
     <button onclick="window.location.href='pos-avaliacao.html'">🔄 Refazer</button>
     <button onclick="window.location.href='index.html'">🏠 Voltar ao Início</button>
+    <button onclick="compartilharComProfessor()">📤 Compartilhar</button>
+    <button onclick="gerarPDF()">🖨️ Gerar PDF</button>
   </div>
 </div>
 
 <script>
 const supabaseUrl = 'https://wuwdkyfcugmmofziuqmo.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1d2RreWZjdWdtbW9meml1cW1vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwMDgwMDksImV4cCI6MjA2MzU4NDAwOX0.ZEBr1OKGW_rPD9tUeAucx3Ugj4R5kfxcfzZg9iEmdr4';
+const supabaseKey = 'YOUR_KEY';
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-const nome = localStorage.getItem('nome') || prompt('Digite seu nome para visualizar seu painel:');
-const professor = localStorage.getItem('professor') || '';
-const disciplina = localStorage.getItem('disciplina') || '';
+const nome = localStorage.getItem('nome') || 'Usuário';
+const professor = localStorage.getItem('professor') || 'Professor';
+const disciplina = localStorage.getItem('disciplina') || 'Disciplina';
 
 document.getElementById('nomeUsuario').textContent = nome;
 document.getElementById('nomeProfessor').textContent = professor;
@@ -58,40 +66,69 @@ async function carregarDados() {
   }
 
   const xpTotal = data.reduce((sum, r) => sum + (r.xp || 0), 0);
-  const tempos = data.map(r => r.tempo || '00:00');
-  const tempoFinal = tempos.length > 0 ? tempos[tempos.length - 1] : '00:00';
+  const tempoFinal = data.length > 0 ? data[data.length - 1].tempo : '00:00';
 
   document.getElementById('xpFinal').textContent = xpTotal;
   document.getElementById('tempoFinal').textContent = tempoFinal;
 
-  // Histórico de respostas
   const historicoDiv = document.getElementById('historicoRespostas');
   data.forEach(r => {
     const p = document.createElement('p');
-    p.textContent = `Etapa: ${r.etapa} → ${r.resposta}`;
+    p.textContent = `Etapa ${r.etapa}: ${r.resposta}`;
     historicoDiv.appendChild(p);
   });
 
-  // Ranking XP
-  const { data: rankingXP } = await supabase
-    .rpc('ranking_xp');
+  // Rankings
+  const { data: rankingXP } = await supabase.rpc('ranking_xp');
+  const { data: rankingTempo } = await supabase.rpc('ranking_tempo');
 
   const posXP = rankingXP.findIndex(u => u.usuario === nome) + 1;
-  document.getElementById('rankingXP').textContent = posXP > 0 ? `${posXP}º lugar` : 'N/A';
-
-  // Ranking Tempo
-  const { data: rankingTempo } = await supabase
-    .rpc('ranking_tempo');
-
   const posTempo = rankingTempo.findIndex(u => u.usuario === nome) + 1;
+
+  document.getElementById('rankingXP').textContent = posXP > 0 ? `${posXP}º lugar` : 'N/A';
   document.getElementById('rankingTempo').textContent = posTempo > 0 ? `${posTempo}º lugar` : 'N/A';
 
-  // Medalhas
+  // Top 3 XP
+  const xpTop = rankingXP.slice(0, 3);
+  document.getElementById('rankingXPTop').innerHTML = xpTop.map((u, i) =>
+    `<p>${i + 1}º ${u.usuario} - ⭐ ${u.total_xp} XP</p>`
+  ).join('');
+
+  // Top 3 Tempo
+  const tempoTop = rankingTempo.slice(0, 3);
+  document.getElementById('rankingTempoTop').innerHTML = tempoTop.map((u, i) =>
+    `<p>${i + 1}º ${u.usuario} - ⏱️ ${u.tempo_total}</p>`
+  ).join('');
+
+  // Medalha
   const medalha = posXP === 1 ? '🏅 Ouro'
                 : posXP === 2 ? '🥈 Prata'
                 : posXP === 3 ? '🥉 Bronze'
                 : '🎖️ Participação';
   document.getElementById('medalha').textContent = medalha;
+}
+
+function compartilharComProfessor() {
+  const texto = `Olá Professor(a) ${professor}, eu conclui minha missão na disciplina ${disciplina}!\n⭐ XP: ${document.getElementById('xpFinal').textContent}\n⏱️ Tempo: ${document.getElementById('tempoFinal').textContent}\nRanking XP: ${document.getElementById('rankingXP').textContent}\nRanking Tempo: ${document.getElementById('rankingTempo').textContent}.`;
+  const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
+  window.open(url, '_blank');
+}
+
+function gerarPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  doc.text('Painel de Finalização - LEEM', 10, 10);
+  doc.text(`Nome: ${nome}`, 10, 20);
+  doc.text(`Professor(a): ${professor}`, 10, 30);
+  doc.text(`Disciplina: ${disciplina}`, 10, 40);
+  doc.text(`XP Final: ${document.getElementById('xpFinal').textContent}`, 10, 50);
+  doc.text(`Tempo: ${document.getElementById('tempoFinal').textContent}`, 10, 60);
+  doc.text(`Ranking XP: ${document.getElementById('rankingXP').textContent}`, 10, 70);
+  doc.text(`Ranking Tempo: ${document.getElementById('rankingTempo').textContent}`, 10, 80);
+  doc.text(`Medalha: ${document.getElementById('medalha').textContent}`, 10, 90);
+
+  doc.save('finalizacao-leem.pdf');
 }
 
 carregarDados();
