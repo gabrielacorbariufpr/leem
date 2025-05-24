@@ -1,3 +1,16 @@
+// Detectar se é um refazer
+window.addEventListener('load', () => {
+  if (window.location.search.includes('refazer=true')) {
+    document.getElementById('telaIdentificacao').style.display = 'none';
+    document.getElementById('telaApresentacao').style.display = 'none';
+    document.querySelector('header').style.display = 'flex';
+    document.getElementById('telaPergunta').style.display = 'block';
+    etapaAtual = 0;
+    carregarPergunta();
+    iniciarTempo();
+  }
+});
+
 const perguntas = [
   "Todos os integrantes do grupo participaram ativamente? Comente.",
   "Você já havia vivenciado alguma situação semelhante à atividade desenvolvida? Comente.",
