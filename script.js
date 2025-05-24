@@ -1,3 +1,9 @@
+
+// ===============================
+// LEEM - Script Pós-Avaliação
+// ===============================
+
+// Dados principais
 const perguntas = [
     "Todos os integrantes do grupo participaram ativamente? Comente.",
     "Você já havia vivenciado alguma situação semelhante à atividade desenvolvida? Comente.",
@@ -17,6 +23,9 @@ let tempo = 0;
 let intervaloTempo;
 let caracteresAnteriores = 0;
 
+// ===============================
+// Função Tela de Identificação
+// ===============================
 function abrirTelaApresentacao() {
     const nome = document.getElementById('nome').value.trim();
     const professor = document.getElementById('professor').value.trim();
@@ -35,15 +44,22 @@ function abrirTelaApresentacao() {
     document.getElementById('telaApresentacao').style.display = 'block';
 }
 
+// ===============================
+// Função Início da Missão
+// ===============================
 function iniciarMissao() {
     document.querySelector('header').style.display = 'flex';
     document.getElementById('telaApresentacao').style.display = 'none';
     document.getElementById('telaPergunta').style.display = 'block';
+
     etapaAtual = 0;
     carregarPergunta();
     iniciarTempo();
 }
 
+// ===============================
+// Função Tempo
+// ===============================
 function iniciarTempo() {
     intervaloTempo = setInterval(() => {
         tempo++;
@@ -53,25 +69,49 @@ function iniciarTempo() {
     }, 1000);
 }
 
+// ===============================
+// Função Carregar Pergunta
+// ===============================
 function carregarPergunta() {
     document.getElementById('perguntaNumero').textContent = `Etapa ${etapaAtual + 1}`;
     document.getElementById('perguntaTexto').textContent = perguntas[etapaAtual];
+
     const resposta = document.getElementById('resposta');
     resposta.value = '';
     caracteresAnteriores = 0;
+
     atualizarProgresso();
     atualizarContadorCaracteres();
 
-    // 🔥 Sempre remover o listener anterior antes de adicionar um novo
     resposta.removeEventListener('input', respostaListener);
     resposta.addEventListener('input', respostaListener);
 }
 
- else if (diff <= -20) {
+// ===============================
+// Listener de Resposta
+// ===============================
+function respostaListener() {
+    const resposta = document.getElementById('resposta');
+    const caracteres = resposta.value.length;
+    atualizarContadorCaracteres();
+
+    const diff = caracteres - caracteresAnteriores;
+    if (diff >= 20) {
+        xp += 15;
+        caracteresAnteriores += 20;
+        mostrarNotificacao('ganho');
+    } else if (diff <= -20) {
         xp = Math.max(0, xp - 15);
         caracteresAnteriores -= 20;
         mostrarNotificacao('perda');
     }
+
+    document.getElementById('xp').textContent = xp;
+}
+
+// ===============================
+// Funções Auxiliares
+// ===============================
 function atualizarProgresso() {
     const progresso = ((etapaAtual) / perguntas.length) * 100;
     document.getElementById('barraProgresso').style.width = progresso + '%';
@@ -83,16 +123,9 @@ function atualizarContadorCaracteres() {
     contador.textContent = `${texto.length}/500 caracteres`;
 }
 
-function configurarResposta() {
-    const resposta = document.getElementById('resposta');
-    resposta.removeEventListener('input', respostaListener); // ✔️ Remove anterior
-    resposta.addEventListener('input', respostaListener);    // ✔️ Adiciona atualizado
-}
-
-    document.getElementById('xp').textContent = xp;
-}
-
-
+// ===============================
+// Controle de Etapas
+// ===============================
 document.getElementById('botaoConcluir').addEventListener('click', () => {
     etapaAtual++;
     if (etapaAtual < perguntas.length) {
@@ -102,27 +135,39 @@ document.getElementById('botaoConcluir').addEventListener('click', () => {
     }
 });
 
-
 function mostrarTelaPercurso() {
     document.getElementById('telaPergunta').style.display = 'none';
-    document.getElementById('telaPercurso').style.display = 'block';
-    document.getElementById('xpPercurso').textContent = xp;
-    document.getElementById('tempoPercurso').textContent = document.getElementById('tempo').textContent;
-    document.getElementById('etapaAtualPercurso').textContent = etapaAtual;
-    document.getElementById('totalEtapas').textContent = perguntas.length;
+    document.getElementById('telaPercurso').style.display = 'flex';
+
+    atualizarProgresso();
+
+    setTimeout(() => {
+        document.getElementById('telaPercurso').style.display = 'none';
+        document.getElementById('telaPergunta').style.display = 'block';
+        carregarPergunta();
+    }, 2000);
 }
 
 function proximaPergunta() {
-    document.getElementById('telaPercurso').style.display = 'none';
-    document.getElementById('telaPergunta').style.display = 'block';
-    carregarPergunta();
+    etapaAtual++;
+    if (etapaAtual < perguntas.length) {
+        carregarPergunta();
+    } else {
+        finalizarMissao();
+    }
 }
 
+// ===============================
+// Função Finalizar Missão
+// ===============================
 function finalizarMissao() {
     clearInterval(intervaloTempo);
     window.location.href = 'leem-finalizacao-dinamica.html';
 }
 
+// ===============================
+// Notificação de XP
+// ===============================
 function mostrarNotificacao(tipo) {
     const notificacao = document.createElement('div');
     notificacao.id = 'notificacaoXP';
@@ -139,22 +184,4 @@ function mostrarNotificacao(tipo) {
     setTimeout(() => {
         notificacao.remove();
     }, 2000);
-}
-
-function respostaListener() {
-    const resposta = document.getElementById('resposta');
-    const caracteres = resposta.value.length;
-    atualizarContadorCaracteres();
-
-    const diff = caracteres - caracteresAnteriores;
-    if (diff >= 20) {
-        xp += 15;
-        caracteresAnteriores += 20;
-        mostrarNotificacao('ganho');
-    } else if (diff <= -20) {
-        xp = Math.max(0, xp - 15);
-        caracteresAnteriores -= 20;
-        mostrarNotificacao('perda');
-    }
-    document.getElementById('xp').textContent = xp;
 }
