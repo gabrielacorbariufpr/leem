@@ -67,17 +67,7 @@ function carregarPergunta() {
     resposta.addEventListener('input', respostaListener);
 }
 
-function respostaListener() {
-    const resposta = document.getElementById('resposta');
-    const caracteres = resposta.value.length;
-    atualizarContadorCaracteres();
-
-    const diff = caracteres - caracteresAnteriores;
-    if (diff >= 20) {
-        xp += 15;
-        caracteresAnteriores += 20;
-        mostrarNotificacao('ganho');
-    } else if (diff <= -20) {
+ else if (diff <= -20) {
         xp = Math.max(0, xp - 15);
         caracteresAnteriores -= 20;
         mostrarNotificacao('perda');
@@ -99,7 +89,7 @@ function configurarResposta() {
     resposta.addEventListener('input', respostaListener);    // ✔️ Adiciona atualizado
 }
 
-function respostaListener() {
+function respostaListenerSecundario() {
     const resposta = document.getElementById('resposta');
     const caracteres = resposta.value.length;
     atualizarContadorCaracteres();
@@ -117,6 +107,7 @@ function respostaListener() {
     document.getElementById('xp').textContent = xp;
 }
 
+
 document.getElementById('botaoConcluir').addEventListener('click', () => {
     etapaAtual++;
     if (etapaAtual < perguntas.length) {
@@ -125,6 +116,7 @@ document.getElementById('botaoConcluir').addEventListener('click', () => {
         finalizarMissao();
     }
 });
+
 
 function mostrarTelaPercurso() {
     document.getElementById('telaPergunta').style.display = 'none';
@@ -162,4 +154,22 @@ function mostrarNotificacao(tipo) {
     setTimeout(() => {
         notificacao.remove();
     }, 2000);
+}
+
+function respostaListener() {
+    const resposta = document.getElementById('resposta');
+    const caracteres = resposta.value.length;
+    atualizarContadorCaracteres();
+
+    const diff = caracteres - caracteresAnteriores;
+    if (diff >= 20) {
+        xp += 15;
+        caracteresAnteriores += 20;
+        mostrarNotificacao('ganho');
+    } else if (diff <= -20) {
+        xp = Math.max(0, xp - 15);
+        caracteresAnteriores -= 20;
+        mostrarNotificacao('perda');
+    }
+    document.getElementById('xp').textContent = xp;
 }
