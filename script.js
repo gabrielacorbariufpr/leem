@@ -78,9 +78,11 @@ function respostaListener() {
   if (diff >= 20) {
     xp += 15;
     caracteresAnteriores += 20;
+    mostrarNotificacao('ganho');
   } else if (diff <= -20) {
     xp = Math.max(0, xp - 15);
     caracteresAnteriores -= 20;
+    mostrarNotificacao('perda');
   }
 
   document.getElementById('xp').textContent = xp;
@@ -106,7 +108,6 @@ function mostrarTelaPercurso() {
   document.getElementById('telaPercurso').style.display = 'block';
 
   atualizarProgresso();
-
   document.getElementById('etapaAtualPercurso').textContent = etapaAtual + 1;
 }
 
@@ -119,6 +120,21 @@ function proximaPergunta() {
 function atualizarProgresso() {
   const progresso = ((etapaAtual) / perguntas.length) * 100;
   document.getElementById('barraProgresso').style.width = progresso + '%';
+}
+
+function mostrarNotificacao(tipo) {
+  const notificacao = document.getElementById('notificacaoXP');
+  notificacao.style.display = 'block';
+
+  if (tipo === 'ganho') {
+    notificacao.innerHTML = '🎉 Parabéns! Você ganhou +15 XP ⭐';
+  } else {
+    notificacao.innerHTML = '😢 Que pena! Você perdeu -15 XP ⭐';
+  }
+
+  setTimeout(() => {
+    notificacao.style.display = 'none';
+  }, 2000);
 }
 
 function finalizarMissao() {
