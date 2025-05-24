@@ -102,6 +102,10 @@ document.getElementById('botaoConcluir').addEventListener('click', () => {
     finalizarMissao();
   }
 });
+function finalizarMissao() {
+  clearInterval(intervaloTempo);
+  window.location.href = 'leem-finalizacao-dinamica.html';
+}
 
 function mostrarTelaPercurso() {
   document.getElementById('telaPergunta').style.display = 'none';
