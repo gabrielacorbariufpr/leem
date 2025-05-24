@@ -51,7 +51,7 @@ function iniciarMissao() {
     document.getElementById('telaApresentacao').style.display = 'none';
     document.getElementById('telaPergunta').style.display = 'block';
 
-    etapaAtual = 0;
+    etapaAtual = 0; // Começa na etapa 0
     carregarPergunta();
     iniciarTempo();
 }
