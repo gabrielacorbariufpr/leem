@@ -3,6 +3,9 @@ body {
   background-color: #f9f9f9;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -25,6 +28,13 @@ header {
   max-width: 700px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   text-align: center;
+}
+
+.campo {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 textarea {
@@ -67,4 +77,18 @@ footer {
   background-color: #d0e8ff;
   text-align: center;
   padding: 10px;
+  margin-top: auto;
+}
+
+.notificacao {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #f0f0f0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid #007bff;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  display: none;
 }
