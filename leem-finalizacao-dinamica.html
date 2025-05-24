@@ -56,7 +56,6 @@ document.getElementById('rankingXPTop').innerHTML = rankingXPTop.map((u, i) =>
   `<p>${i + 1}º ${u.usuario} - ⭐ ${u.total_xp} XP</p>`
 ).join('');
 
-// Ranking Tempo - Top 3
 const rankingTempoTop = rankingTempo.slice(0, 3);
 document.getElementById('rankingTempoTop').innerHTML = rankingTempoTop.map((u, i) =>
   `<p>${i + 1}º ${u.usuario} - ⏱️ ${u.tempo_total}</p>`
