@@ -12,20 +12,29 @@
 <div id="telaIdentificacao" class="card">
   <h2>Missão 🚀 : Pós-avaliação</h2>
   <p>Preencha suas informações para iniciar sua missão 🚀.</p>
-  <label>Nome:</label>
-  <input type="text" id="nome">
-  <label>Professor(a):</label>
-  <input type="text" id="professor">
-  <label>Disciplina:</label>
-  <input type="text" id="disciplina">
+  
+  <div class="campo">
+    <label>Nome:</label>
+    <input type="text" id="nome">
+  </div>
+
+  <div class="campo">
+    <label>Professor(a):</label>
+    <input type="text" id="professor">
+  </div>
+
+  <div class="campo">
+    <label>Disciplina:</label>
+    <input type="text" id="disciplina">
+  </div>
+
   <button onclick="abrirTelaApresentacao()">Avançar 🚀</button>
 </div>
 
 <!-- Tela de Apresentação -->
 <div id="telaApresentacao" class="card" style="display: none;">
   <h2>🚀 Se prepare para começarmos essa missão!</h2>
-  <p>Fique atento às instruções!<br>
-     Sua missão possui <b>10 etapas</b>.<br>
+  <p>Sua missão possui <b>10 etapas</b>.<br>
      Ganhe ⭐ XP digitando suas respostas.<br>
      O tempo será ⏱️ <b>cronometrado</b>.</p>
   <button onclick="iniciarMissao()">Iniciar Missão 🚀</button>
@@ -36,7 +45,6 @@
   <img src="logo-LEEM.png" alt="Logo" class="logo">
   <div>
     <h1>Missão: Pós-avaliação</h1>
-    <p>Compartilhe sua experiência enquanto ganha pontos e reflexões!</p>
     <p>Aluno: <span id="alunoCabecalho"></span> |
        Professor(a): <span id="profCabecalho"></span> |
        Disciplina: <span id="discCabecalho"></span></p>
@@ -66,8 +74,9 @@
   <button onclick="proximaPergunta()">Próxima Etapa</button>
 </div>
 
+<div id="notificacaoXP" class="notificacao" style="display: none;"></div>
+
 <footer>
-  © 2025 LEEM - Todos os direitos reservados.<br>
   Desenvolvido por Gabriela Corbari dos Santos • O LEEM é oriundo de uma pesquisa de mestrado da Universidade Federal do Paraná (UFPR).
 </footer>
 
