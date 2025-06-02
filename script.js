@@ -15,13 +15,14 @@ const perguntas = [
   "Todos os integrantes do grupo participaram ativamente? Comente.",
   "Você já havia vivenciado alguma situação semelhante à atividade desenvolvida? Comente.",
   "Qual foi a sua contribuição para a atividade? Comente.",
-  "Você contribuiu com ideias próprias na realização das atividades do projeto? Comente.",
+  "Você contribuiu com ideias próprias (foi autêntico) na realização das atividades do projeto? Comente.",
   "Você já fez alguma atividade como essa? Se sim, dê exemplos.",
   "Você se sentiu responsável/envolvido durante a atividade? Comente.",
-  "O grupo enfrentou desafios? Quais?",
-  "O que você aprendeu durante essa atividade?",
-  "Quais sugestões você daria para melhorar essa atividade?",
-  "Deixe um comentário geral sobre sua experiência."
+  "Você sente que essa atividade incentivou o uso de Tecnologia Digital de Informação e Comunicação em sua vida? Comente.",
+  "A atividade gerou novos desafios ou você permaneceu na sua zona de conforto? Comente.",
+  "Você acha que o aprendizado alcançado na atividade realizada te ajudará em situações de sua vida? Comente.",
+  "Você achou a atividade interessante, estimulante ou instigante? Comente.",
+  "Você sente que a atividade tem relação com os conceitos/assuntos que você já tinha aprendido? Comente."
 ];
 
 let etapaAtual = 0;
